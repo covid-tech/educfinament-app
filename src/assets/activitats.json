@@ -1,0 +1,93 @@
+{
+    "schools": [
+        {
+            "name" : "Centre 1",
+            "open" : false,
+            "classrooms": [
+                {
+                    "name": "Català 1r",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 1,
+                            "name": "Activitat 1"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Activitat 2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Català 2n",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 3,
+                            "name": "Activitat 1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Matemàtiques 1r",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 4,
+                            "name": "Activitat 1"
+                        },
+                        {
+                            "id": 5,
+                            "name": "Activitat 2"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name" : "Centre 2",
+            "open" : false,
+            "classrooms": [
+                {
+                    "name": "Català 1r",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 1,
+                            "name": "Activitat 1"
+                        },
+                        {
+                            "id": 2,
+                            "name": "Activitat 2"
+                        }
+                    ]
+                },
+                {
+                    "name": "Català 2n",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 3,
+                            "name": "Activitat 1"
+                        }
+                    ]
+                },
+                {
+                    "name": "Matemàtiques 1r",
+                    "open" : false,
+                    "activities": [
+                        {
+                            "id": 4,
+                            "name": "Activitat 1"
+                        },
+                        {
+                            "id": 5,
+                            "name": "Activitat 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+    
+}
