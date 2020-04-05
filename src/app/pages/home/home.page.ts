@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -26,15 +25,23 @@ export class HomePage {
     if (this.automaticClose && this.schools[schoolIndex].open) {
       this.schools
         .filter((item, itemIndex) => itemIndex != schoolIndex)
-        .map(item => item.open = false);
+        .map(item => this.closeSchool(item));
     }
 
+  }
+
+  closeSchool(item) {
+    item.open = false;
+    item.classrooms.forEach(x => {
+      x.open = false;
+    });
   }
 
   toggleClassroom(schoolIndex: number, classroomIndex: number) {
     this.schools[schoolIndex].classrooms[classroomIndex].open = !this.schools[schoolIndex].classrooms[classroomIndex].open;
 
     if (this.automaticClose && this.schools[schoolIndex].classrooms[classroomIndex].open) {
+      
       this.schools[schoolIndex].classrooms
         .filter((item, itemIndex) => itemIndex != classroomIndex)
         .map(item => item.open = false);

@@ -4,7 +4,7 @@
   <ion-list *ngFor="let school of schools; let i = index;" class="ion-no-padding" lines="none"
     detail="false">
 
-    <ion-item (click)="toggleSchool(i)" color="primary">
+    <ion-item class="school" (click)="toggleSchool(i)" [ngClass]="{'school-active': school.open}">
       <ion-icon slot="end" name="arrow-forward" *ngIf="!school.open"></ion-icon>
       <ion-icon slot="end" name="arrow-down" *ngIf="school.open"></ion-icon>
       <ion-label>
@@ -17,7 +17,7 @@
       <!-- Classrooms -->
       <ion-list lines="none" class="ion-no-padding" *ngFor="let classroom of school.classrooms; let j = index;">
 
-        <ion-item (click)="toggleClassroom(i, j)" color="secondary">
+        <ion-item class="classroom" (click)="toggleClassroom(i, j)" [ngClass]="{'classroom-active': classroom.open}">
           
           <ion-buttons slot="end">
             <ion-button (click)="addStudent($event)">

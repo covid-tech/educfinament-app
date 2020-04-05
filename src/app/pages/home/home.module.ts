@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+// Tutorial: https://www.youtube.com/watch?v=w5PR_d6eiQI
+
 @NgModule({
   imports: [
     CommonModule,
