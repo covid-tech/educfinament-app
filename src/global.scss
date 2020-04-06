@@ -24,3 +24,18 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+// CORRECCIO ALINEACIO ICONES DINS DE TEXTS
+// font: https://github.com/ionic-team/ionic/issues/18033
+h1, h2, h3, h4, h5 {
+    ion-icon {
+      vertical-align: middle;
+      padding-bottom: 1px;
+    }
+  }
+  
+  ion-label {
+    ion-icon {
+      margin-bottom: -1px;
+    }
+  }

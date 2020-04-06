@@ -1,9 +1,25 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>signin</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+
+  <!-- 
+    videoProfessor: VideoItem = {
+      author: "Professor",
+      description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      validated: false,
+      videoType: "video/mp4",
+      videoURL: "https://www.w3schools.com/html/mov_bbb.mp4",
+      isAnswer: false
+    } 
+  -->
+  <app-video-item 
+    [video-item]="videoProfessor">
+  </app-video-item>
+
+  <app-video-item 
+    [video-item]="videoAlumneValidat">
+  </app-video-item>
+
+  <app-video-item 
+    [video-item]="videoAlumneNoValidat">
+  </app-video-item>
 
 </ion-content>

@@ -1,0 +1,23 @@
+video {
+    width: 100%;
+    height: auto;
+}
+
+ion-card p {
+    padding-bottom: 0;
+}
+
+ion-card ion-item {
+    --inner-padding-start: 0;
+    // --inner-padding-end: 0;
+    --background: transparent;
+    // --color: var(--ion-color-light);
+}
+
+ion-button.btn-validar {
+    width: 120px;
+}
+
+h1, p {
+    display: inline-block;
+}
