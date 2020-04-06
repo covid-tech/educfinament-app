@@ -1,5 +1,8 @@
 {
-  "name": "educfinament",
-  "integrations": {},
+  "name": "video-transcoding",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

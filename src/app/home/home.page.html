@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Enviar vídeo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="this.isProcessingVideo" vertical="start" horizontal="center" slot="fixed" style="width: 100%;">
+    <ion-progress-bar vertical="start" horizontal="center" type="indeterminate" mode="ios"></ion-progress-bar>
+  </div>
+
+  <div id="container">
+    <ion-fab *ngIf="!this.isProcessingVideo" vertical="center" horizontal="center" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="top">
+        <ion-fab-button (click)="getVideoFromLibrary()">
+            <ion-icon name="folder-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="getVideoFromCamera()">
+          <ion-icon name="videocam-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+
+</ion-content>
