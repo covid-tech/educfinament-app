@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
 import { File } from '@ionic-native/file/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { VideoEditor } from '@ionic-native/video-editor/ngx';
-import { AlertController } from '@ionic/angular';
 import * as AWS from 'aws-sdk';
-import { cloudCredentials } from '../../environments/cloud.credentials.prod';
-import { EducfinamentVideoCapture } from '../shared-classes/educfinament.video.capture.class';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-})
-export class HomePage implements OnInit {
+interface EducfinamentVideoCaptureResult {
+    videoUrl: string;
+    thumbnailUrl: string;
+}
 
-  public isProcessingVideo: boolean = false;
-  private videoCapture: EducfinamentVideoCapture;
+export class EducfinamentVideoCapture
+{
+  private file: File = new File();
+  private camera: Camera = new Camera();
+  private videoEditor: VideoEditor = new VideoEditor();
+  private cloudCredentials: any = {};
 
-  constructor(private file: File, private camera: Camera, private videoEditor: VideoEditor, public alertController: AlertController) {
+  constructor(_cloudCredentials: any) {
+    this.cloudCredentials = _cloudCredentials;
   }
 
-  ngOnInit() {
-    this.videoCapture = new EducfinamentVideoCapture();
+  public getVideoFromCamera() {
+    return this.getVideoAndUploadToS3(this.camera.PictureSourceType.CAMERA);
   }
-/*
+
+  public getVideoFromLibrary() {
+    return this.getVideoAndUploadToS3(this.camera.PictureSourceType.PHOTOLIBRARY);
+  }
+
   private getVideoAndUploadToS3(sourceType: any) {
-    return new Promise(function(resolve, reject) {
+    return new Promise<EducfinamentVideoCaptureResult>(function(resolve, reject) {
 
       let options: CameraOptions = {
         destinationType: this.camera.DestinationType.FILE_URI,
@@ -44,6 +47,16 @@ export class HomePage implements OnInit {
             outputFileType: this.videoEditor.OutputFileType.MPEG4,
             optimizeForNetworkUse: this.videoEditor.OptimizeForNetworkUse.YES,
             saveToLibrary: false
+/*
+            maintainAspectRatio: true, // optional (ios only), defaults to true
+            width: 640, // optional, see note below on width and height
+            height: 640, // optional, see notes below on width and height
+            videoBitrate: 1000000, // optional, bitrate in bits, defaults to 1 megabit (1000000)
+            fps: 24, // optional (android only), defaults to 24
+            audioChannels: 2, // optional (ios only), number of audio channels, defaults to 2
+            audioSampleRate: 44100, // optional (ios only), sample rate for the audio, defaults to 44100
+            audioBitrate: 128000, // optional (ios only), audio bitrate for the video in bits, defaults to 128 kilobits (128000)
+*/
           }).then((videoFileUri: string) => {
             this.videoEditor.createThumbnail({
               fileUri: fileEntry.fullPath,
@@ -84,7 +97,7 @@ export class HomePage implements OnInit {
         this.file.readAsArrayBuffer("file://"+path, fileEntry.name)
           .then((videoData: ArrayBuffer) => {
 
-            AWS.config.update(cloudCredentials);
+            AWS.config.update(this.cloudCredentials);
             var config = {
               region: "us-west-2",
               useDualstack: false,
@@ -111,43 +124,6 @@ export class HomePage implements OnInit {
         reject(error);
       });
     }.bind(this));
-  }
-*/
-  public getVideoFromCamera() {
-    this.isProcessingVideo = true;
-
-    this.videoCapture.getVideoFromCamera().then((data) => {
-      this.showAlert("VIDEO URL: "+data.videoUrl);
-      this.showAlert("THUMBNAIL URL: "+data.thumbnailUrl)
-      this.isProcessingVideo = false;
-    }, (error) => {
-      this.showAlert("ERROR: " + error.message);
-      this.isProcessingVideo = false;
-    });
-  }
-
-  public getVideoFromLibrary() {
-    this.isProcessingVideo = true;
-
-    this.videoCapture.getVideoFromLibrary().then((data) => {
-      this.showAlert("VIDEO URL: "+data.videoUrl);
-      this.showAlert("THUMBNAIL URL: "+data.thumbnailUrl)
-      this.isProcessingVideo = false;
-    }, (error) => {
-      this.showAlert("ERROR: " + error.message);
-      this.isProcessingVideo = false;
-    });
-  }
-
-  async showAlert(msg: string) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: '',
-      message: msg,
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 
 }
