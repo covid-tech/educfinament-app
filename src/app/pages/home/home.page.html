@@ -23,7 +23,7 @@
       </ion-text>
 
       <div *ngFor="let activity of classroom.activities">
-        <app-activity-item [activity]="activity"></app-activity-item>
+        <app-activity-item [activity]="activity" [color]="activity.color"></app-activity-item>
       </div>
 
     </div>
