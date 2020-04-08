@@ -9,6 +9,7 @@ import { User } from 'src/app/user';
 export class ActivityBtnComponent implements OnInit {
 
   @Input('user') user: User;
+  @Input('small') small: boolean = false;
 
   constructor() { }
 

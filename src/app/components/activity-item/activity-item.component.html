@@ -1,0 +1,20 @@
+<div class="activity">
+
+  <div class="bar"></div>
+
+  <div class="share">
+    <ion-button (click)="onClick()" fill="solid" shape="round" size="small">
+      <ion-icon slot="icon-only" name="person-add"></ion-icon>
+    </ion-button>  
+  </div>
+
+  <div class="info">
+    <p class="title">{{ activity.title }}</p>
+    <p class="subtitle">{{ activity.description }}</p>
+    
+    <div class="users">
+      <app-activity-btn *ngFor="let user of activity.users" [user]="user" small="true"></app-activity-btn>
+    </div>
+  </div>
+
+</div>

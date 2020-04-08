@@ -10,11 +10,59 @@
                     "activities": [
                         {
                             "id": 1,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         },
                         {
                             "id": 2,
-                            "name": "Activitat 2"
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -24,7 +72,31 @@
                     "activities": [
                         {
                             "id": 3,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -34,11 +106,59 @@
                     "activities": [
                         {
                             "id": 4,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         },
                         {
                             "id": 5,
-                            "name": "Activitat 2"
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 }
@@ -54,11 +174,59 @@
                     "activities": [
                         {
                             "id": 1,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         },
                         {
                             "id": 2,
-                            "name": "Activitat 2"
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -68,7 +236,31 @@
                     "activities": [
                         {
                             "id": 3,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 },
@@ -78,11 +270,59 @@
                     "activities": [
                         {
                             "id": 4,
-                            "name": "Activitat 1"
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         },
                         {
                             "id": 5,
-                            "name": "Activitat 2"
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                }
+                            ]
                         }
                     ]
                 }

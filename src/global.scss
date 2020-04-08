@@ -28,6 +28,9 @@
 // CORRECCIO ALINEACIO ICONES DINS DE TEXTS
 // font: https://github.com/ionic-team/ionic/issues/18033
 h1, h2, h3, h4, h5 {
+
+  font-family: 'Cabin', sans-serif;
+
   ion-icon {
     vertical-align: middle;
     padding-bottom: 1px;

@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { VideoItemComponent } from '../video-item/video-item.component';
 import { ActivityBtnComponent } from '../activity-btn/activity-btn.component';
+import { ActivityItemComponent } from '../activity-item/activity-item.component';
 
 
 
 @NgModule({
   declarations: [
     VideoItemComponent,
-    ActivityBtnComponent
+    ActivityBtnComponent,
+    ActivityItemComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +19,8 @@ import { ActivityBtnComponent } from '../activity-btn/activity-btn.component';
   ],
   exports: [
     VideoItemComponent,
-    ActivityBtnComponent
+    ActivityBtnComponent,
+    ActivityItemComponent
   ]
 })
 export class SharedComponentsModule { }

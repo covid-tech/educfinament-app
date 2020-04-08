@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>signup</ion-title>
+    <ion-title class="ion-text-left">Escola les vinyes</ion-title>
+    <ion-buttons slot="end">
+      <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="light">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-content class="ion-padding-horizontal">
+
+  <ion-text color="medium">
+    <h3 style="font-weight: lighter;">Català 1r</h3>
+  </ion-text>
+
+  <app-activity-item [activity]="activity"></app-activity-item>
+  <app-activity-item [activity]="activity"></app-activity-item>
+  <app-activity-item [activity]="activity"></app-activity-item>
 
 </ion-content>
