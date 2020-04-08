@@ -1,5 +1,7 @@
 {
   "name": "educfinament",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
