@@ -61,6 +61,34 @@
                                     "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
                                     "sent": true,
                                     "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false
                                 }
                             ]
                         }
@@ -74,29 +102,7 @@
                             "id": 3,
                             "title": "Activitat 1",
                             "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
-                            "users": [
-                                {
-                                    "nom": "Pepet",
-                                    "cognoms": "Canals",
-                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
-                                    "sent": true,
-                                    "validated": false
-                                },
-                                {
-                                    "nom": "Pepet",
-                                    "cognoms": "Canals",
-                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
-                                    "sent": true,
-                                    "validated": false
-                                },
-                                {
-                                    "nom": "Pepet",
-                                    "cognoms": "Canals",
-                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
-                                    "sent": true,
-                                    "validated": false
-                                }
-                            ]
+                            "users": []
                         }
                     ]
                 },

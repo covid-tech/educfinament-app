@@ -3,8 +3,8 @@
   <div class="bar"></div>
 
   <div class="share">
-    <ion-button (click)="onClick()" fill="solid" shape="round" size="small">
-      <ion-icon slot="icon-only" name="person-add"></ion-icon>
+    <ion-button (click)="onClick()" shape="round" fill="clear">
+      <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
     </ion-button>  
   </div>
 
@@ -13,7 +13,9 @@
     <p class="subtitle">{{ activity.description }}</p>
     
     <div class="users">
-      <app-activity-btn *ngFor="let user of activity.users" [user]="user" small="true"></app-activity-btn>
+      <app-activity-btn *ngFor="let user of firstUsers()" [user]="user" small="true"></app-activity-btn>
+      <div class="extra-qty" *ngIf="activity.users.length && activity.users.length > maxUsers">{{ extraUsersText() }}</div>
+      <p class="no-users" *ngIf="activity.users.length < 1">Encara no hi ha participants</p>
     </div>
   </div>
 
