@@ -3,8 +3,14 @@ video {
     height: auto;
 }
 
+ion-card {
+    --background: #FFD65D;
+    border-radius: 0px;
+}
+
 ion-card p {
     padding-bottom: 0;
+    color: black;
 }
 
 ion-card ion-item {
@@ -16,6 +22,7 @@ ion-card ion-item {
 
 ion-button.btn-validar {
     width: 120px;
+    --border-radius: 10px;
 }
 
 h1, p {

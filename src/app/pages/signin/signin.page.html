@@ -1,3 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button fill="clear">
+        Tornar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Activitat</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        Editar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
   <!-- 
@@ -9,17 +25,23 @@
       videoURL: "https://www.w3schools.com/html/mov_bbb.mp4",
       isAnswer: false
     } 
-  -->
+  <app-video-item 
+    [video-item]="videoAlumneNoValidat">
+  </app-video-item> -->
+
   <app-video-item 
     [video-item]="videoProfessor">
   </app-video-item>
 
-  <app-video-item 
-    [video-item]="videoAlumneValidat">
-  </app-video-item>
+  <div class="ion-margin-bottom flex-container ion-margin-horizontal">
+    <app-activity-btn 
+      *ngFor="let user of usuaris"
+      [user]="user">
+    </app-activity-btn>
+  </div>
 
   <app-video-item 
-    [video-item]="videoAlumneNoValidat">
+    [video-item]="videoProfessor2">
   </app-video-item>
 
 </ion-content>
