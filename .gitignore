@@ -1,3 +1,6 @@
+.credentials.prod.ts
+src/environments/cloud.credentials.prod.ts
+
 # Specifies intentionally untracked files to ignore when using Git
 # http://git-scm.com/docs/gitignore
 

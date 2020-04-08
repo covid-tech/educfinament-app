@@ -1,3 +1,6 @@
+.credentials.prod.ts
+src/environments/cloud.credentials.prod.ts
+
 # Logs
 logs
 *.log
