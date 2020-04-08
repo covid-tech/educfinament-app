@@ -6,6 +6,7 @@ import * as AWS from 'aws-sdk';
 /*
 USAGE EXAMPLE:
 
+import { cloudCredentials } from '../../environments/cloud.credentials.prod';
 import { EducfinamentVideoCapture } from '../shared-classes/educfinament.video.capture.class';
 
 export class UploadVideoPage {

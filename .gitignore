@@ -1,3 +1,4 @@
+src/cloud.credentials.prod.ts
 .credentials.prod.ts
 src/environments/cloud.credentials.prod.ts
 
