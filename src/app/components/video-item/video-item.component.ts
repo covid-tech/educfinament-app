@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VideoItem } from 'src/app/models/video-item';
+import { VideoItem } from 'models/models';
 
 @Component({
   selector: 'app-video-item',

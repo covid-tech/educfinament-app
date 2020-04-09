@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { VideoItem } from 'src/app/models/video-item';
+import { VideoItem } from 'models/models';
 import { User } from 'src/app/user';
 
 @Component({
@@ -94,7 +94,7 @@ export class SigninPage implements OnInit {
       validated: false
     }
   ];
-  
+
 
   constructor() { }
 
