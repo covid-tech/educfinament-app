@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { SharedComponentsModule } from 'src/app/components/shared-components/shared-components.module';
 
 // Tutorial: https://www.youtube.com/watch?v=w5PR_d6eiQI
 
@@ -13,6 +14,7 @@ import { HomePage } from './home.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    SharedComponentsModule,
     RouterModule.forChild([
       {
         path: '',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-home',
@@ -9,14 +10,24 @@ import { HttpClient } from '@angular/common/http';
 export class HomePage {
 
   schools: any[];
+  selectedSchool: any;
   automaticClose = true;
+
+  public user: User = {
+    nom: "Pepet",
+    cognoms: "Canals",
+    profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
+    sent: true,
+    validated: false
+  };
 
   constructor(
     private http: HttpClient
   ) {
     this.http.get('assets/activitats.json').subscribe(res => {
       this.schools = res["schools"];
-    })
+      this.selectedSchool = this.schools[0];
+    });
   }
 
   toggleSchool(schoolIndex: number) {

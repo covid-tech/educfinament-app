@@ -1,4 +1,4 @@
-<ion-card [color]="videoItem.isAnswer ? 'light' : 'secondary'">
+<ion-card class="ion-no-margin">
   <video controls preload="none" poster="https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg">
     <!-- https://www.w3schools.com/html/mov_bbb.mp4 -->
     <!-- video/mp4 -->
@@ -13,7 +13,7 @@
     </p>
 
     <!-- Autor -->
-    <ion-item lines="none" [color]="videoItem.isAnswer ? 'light' : 'secondary'">
+    <ion-item lines="none">
       <ion-label>
         <ion-icon name="person"></ion-icon>
          {{videoItem.author}}
@@ -21,7 +21,7 @@
     </ion-item>
 
     <!-- Validacio -->
-    <ion-item *ngIf="videoItem.isAnswer" lines="none" [color]="videoItem.isAnswer ? 'light' : 'secondary'">
+    <ion-item *ngIf="videoItem.isAnswer" lines="none">
 
       <ion-text 
         *ngIf="videoItem.isAnswer"

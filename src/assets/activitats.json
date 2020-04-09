@@ -10,11 +10,105 @@
                     "activities": [
                         {
                             "id": 1,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/frutas-1552246920.jpg",
+                            "color": "blue",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": null,
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/91.jpg",
+                                    "sent": true,
+                                    "validated": true,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/men/92.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/93.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         },
                         {
                             "id": 2,
-                            "name": "Activitat 2"
+                            "thumbnail": "https://okdiario.com/img/2018/05/28/herramientas.jpg",
+                            "color": "red",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/61.jpg",
+                                    "sent": true,
+                                    "validated": true,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/men/45.jpg",
+                                    "sent": true,
+                                    "validated": true,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/men/59.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/men/43.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/68.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         }
                     ]
                 },
@@ -24,7 +118,13 @@
                     "activities": [
                         {
                             "id": 3,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://assets.afcdn.com/story/20161017/989289_w980h638c1cx511cy250.jpg",
+                            "color": "pink",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": []
                         }
                     ]
                 },
@@ -34,11 +134,73 @@
                     "activities": [
                         {
                             "id": 4,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "yellow",
+                            "dataInici": null,
+                            "dataFi": null,
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         },
                         {
                             "id": 5,
-                            "name": "Activitat 2"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         }
                     ]
                 }
@@ -54,11 +216,73 @@
                     "activities": [
                         {
                             "id": 1,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         },
                         {
                             "id": 2,
-                            "name": "Activitat 2"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         }
                     ]
                 },
@@ -68,7 +292,38 @@
                     "activities": [
                         {
                             "id": 3,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         }
                     ]
                 },
@@ -78,11 +333,73 @@
                     "activities": [
                         {
                             "id": 4,
-                            "name": "Activitat 1"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 1",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         },
                         {
                             "id": 5,
-                            "name": "Activitat 2"
+                            "thumbnail": "https://images.unsplash.com/photo-1577234286642-fc512a5f8f11?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+                            "color": "purple",
+                            "dataInici": "2020-04-08T21:58:50.188Z",
+                            "dataFi": "2020-04-10T21:58:50.188Z",
+                            "title": "Activitat 2",
+                            "description": "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+                            "users": [
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                },
+                                {
+                                    "nom": "Pepet",
+                                    "cognoms": "Canals",
+                                    "profileImg": "https://randomuser.me/api/portraits/med/women/94.jpg",
+                                    "sent": true,
+                                    "validated": false,
+                                    "publicada": true
+                                }
+                            ]
                         }
                     ]
                 }

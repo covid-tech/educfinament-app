@@ -1,8 +1,46 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@font-face {
+  font-family: 'Cabin';
+  src: url('../assets/font/Cabin/Cabin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Cabin';
+  src: url('../assets/font/Cabin/Cabin-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/font/Source_Sans_Pro/SourceSansPro-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/font/Source_Sans_Pro/SourceSansPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  src: url('../assets/font/Source_Sans_Pro/SourceSansPro-Light.ttf') format('truetype');
+  font-weight: lighter;
+  font-style: normal;
+}
+
 /** Ionic CSS Variables **/
 :root {
+  
+  --ion-font-family: 'Cabin';
+
   --ion-color-primary: #094888;
   --ion-color-primary-rgb: 9,72,136;
   --ion-color-primary-contrast: #ffffff;

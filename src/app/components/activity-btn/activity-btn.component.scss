@@ -1,0 +1,64 @@
+// Degradats => https://uigradients.com/
+
+div {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    display: inline-flex;
+    text-align: center;
+    vertical-align: top;
+}
+
+.outter {
+    width: 60px;
+    height: 60px;
+    // border-radius: 15px;
+    border-radius: 50%;
+    // margin-top: 10px;
+}
+
+.inner {
+    width: 50px;
+    height: 50px;
+    // border-radius: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    background-size: cover;
+}
+
+.outter.small {
+    width: 30px;
+    height: 30px;
+    // border-radius: 7px;
+    border-radius: 50%;
+}
+
+.outter.small .inner {
+    width: 27px;
+    height: 27px;
+    // border-radius: 6px;
+    border-radius: 50%;
+    font-size: 12px;
+}
+
+.pending {
+    background: #D3CCE3;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: #333 !important;
+}
+
+.no-validated {
+    background: #FF416C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+}
+
+.validated {
+    background: #00b09b;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color: white;
+}
