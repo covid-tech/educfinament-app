@@ -27,6 +27,7 @@
     "@ionic-native/video-editor": "^5.0.0-beta.24",
     "@ionic/angular": "^5.0.0",
     "aws-sdk": "^2.655.0",
+    "cordova-android": "8.1.0",
     "cordova-ios": "^5.1.1",
     "core-js": "^2.5.4",
     "rxjs": "^6.5.5",
@@ -76,7 +77,8 @@
       "cordova-plugin-ionic-keyboard": {}
     },
     "platforms": [
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

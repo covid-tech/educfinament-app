@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/user';
-import { Activity } from 'src/app/activity';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
+//import { VideoItem } from 'models/models';
+//import { User } from 'src/app/user';
 
 @Component({
   selector: 'app-signup',
@@ -9,52 +11,40 @@ import { Activity } from 'src/app/activity';
 })
 export class SignupPage implements OnInit {
 
-  public user: User = {
-    nom: "Pepet",
-    cognoms: "Canals",
-    profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-    sent: true,
-    validated: false
-  };
+  public signUpForm: FormGroup;
 
-  public activity: Activity = {
-    title: "Fem de constructors",
-    description: "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
-    users: [
-      {
-        nom: "Pepet",
-        cognoms: "Canals",
-        profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-        sent: true,
-        validated: false
-      },
-      {
-        nom: "Pepet",
-        cognoms: "Canals",
-        profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-        sent: true,
-        validated: false
-      },
-      {
-        nom: "Pepet",
-        cognoms: "Canals",
-        profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-        sent: true,
-        validated: false
-      },
-      {
-        nom: "Pepet",
-        cognoms: "Canals",
-        profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-        sent: true,
-        validated: false
-      }
-    ]
-  };
-
-  constructor() { }
+  constructor(public formBuilder: FormBuilder, public loadingController: LoadingController) {
+    this.signUpForm = this.createSignUpForm();
+  }
 
   ngOnInit() {
+  }
+
+  public doRegister() {
+    // TODO: Call register API endpoint
+    this.showLoaderIndicator();
+  }
+
+  private createSignUpForm() {
+    return new FormGroup({
+      fullname: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      password: new FormControl('', Validators.required)
+    });
+  }
+
+  async showLoaderIndicator() {
+    // TODO: Dismiss only when finishes API call
+    const loading = await this.loadingController.create({
+      message: 'Carregant...',
+      duration: 2000
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
   }
 
 }
