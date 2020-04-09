@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  SERVER_API_URL: 'http://educfinament.albiasoft.com',
+  SERVER_API_COOKIE_DOMAIN: 'educfinament.albiasoft.com'
 };
 
 /*
