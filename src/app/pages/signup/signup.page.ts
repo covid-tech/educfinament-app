@@ -21,13 +21,19 @@ export class SignupPage implements OnInit {
   ngOnInit() {
   }
 
-  public doRegister() {
+  public checkAndDoRegister() {
     if(Math.floor((Date.now() - Date.parse(this.signUpForm.value.birthdate)) / 31536000000) < 18) {
-      this.presentAlert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+      this.presentAlert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", () => {
+        this.doRegister();
+      });
     } else {
-      // TODO: Call register API endpoint
-      this.showLoaderIndicator();
+      this.doRegister();
     }
+  }
+
+  private doRegister() {
+    // TODO: Call register API endpoint
+    this.showLoaderIndicator();
   }
 
   public goToLogin() {
@@ -57,11 +63,15 @@ export class SignupPage implements OnInit {
     const { role, data } = await loading.onDidDismiss();
   }
 
-  async presentAlert(msg: string) {
+  async presentAlert(msg: string, callback: any) {
     const alert = await this.alertController.create({
       header: 'Avís',
       message: msg,
-      buttons: ["Ok"]
+      buttons: [{
+          text: 'Ok',
+          handler: () => {
+            callback();
+          }}]
     });
 
     await alert.present();
