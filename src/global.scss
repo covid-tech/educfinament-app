@@ -29,7 +29,7 @@
 // font: https://github.com/ionic-team/ionic/issues/18033
 h1, h2, h3, h4, h5 {
 
-  font-family: 'Cabin', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 
   ion-icon {
     vertical-align: middle;
@@ -67,4 +67,59 @@ ion-label {
 
 .shadow-5 {
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+// COLORS PERSONALITZATS
+.ion-color-yellow {
+  --ion-color-base: var(--ion-color-yellow) !important;
+  --ion-color-base-rgb: var(--ion-color-yellow-rgb) !important;
+  --ion-color-contrast: var(--ion-color-yellow-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-yellow-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-yellow-shade) !important;
+  --ion-color-tint: var(--ion-color-yellow-tint) !important;
+}
+
+.ion-color-blue {
+  --ion-color-base: var(--ion-color-blue) !important;
+  --ion-color-base-rgb: var(--ion-color-blue-rgb) !important;
+  --ion-color-contrast: var(--ion-color-blue-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-blue-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-blue-shade) !important;
+  --ion-color-tint: var(--ion-color-blue-tint) !important;
+}
+
+.ion-color-red {
+  --ion-color-base: var(--ion-color-red) !important;
+  --ion-color-base-rgb: var(--ion-color-red-rgb) !important;
+  --ion-color-contrast: var(--ion-color-red-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-red-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-red-shade) !important;
+  --ion-color-tint: var(--ion-color-red-tint) !important;
+}
+
+.ion-color-purple {
+  --ion-color-base: var(--ion-color-purple) !important;
+  --ion-color-base-rgb: var(--ion-color-purple-rgb) !important;
+  --ion-color-contrast: var(--ion-color-purple-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-purple-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-purple-shade) !important;
+  --ion-color-tint: var(--ion-color-purple-tint) !important;
+}
+
+.ion-color-pink {
+  --ion-color-base: var(--ion-color-pink) !important;
+  --ion-color-base-rgb: var(--ion-color-pink-rgb) !important;
+  --ion-color-contrast: var(--ion-color-pink-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-pink-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-pink-shade) !important;
+  --ion-color-tint: var(--ion-color-pink-tint) !important;
+}
+
+.ion-color-turquoise {
+  --ion-color-base: var(--ion-color-turquoise) !important;
+  --ion-color-base-rgb: var(--ion-color-turquoise-rgb) !important;
+  --ion-color-contrast: var(--ion-color-turquoise-contrast) !important;
+  --ion-color-contrast-rgb: var(--ion-color-turquoise-contrast-rgb) !important;
+  --ion-color-shade: var(--ion-color-turquoise-shade) !important;
+  --ion-color-tint: var(--ion-color-turquoise-tint) !important;
 }
