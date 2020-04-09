@@ -20,7 +20,7 @@ export interface AuthenticateResponse {
   imatgePerfil: string;
 }
 
-export interface SignUp {
+export interface SignUpRequest {
   username: string,
   password: string,
   email: string,

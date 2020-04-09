@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
 import { SigninPage } from 'pages/signin/signin.page';
-//import { VideoItem } from 'models/models';
-//import { User } from 'src/app/user';
+import { SignUpRequest, SignUpResponse } from 'models/models';
+import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
 @Component({
   selector: 'app-signup',
@@ -13,8 +13,9 @@ import { SigninPage } from 'pages/signin/signin.page';
 export class SignupPage implements OnInit {
 
   public signUpForm: FormGroup;
+  private loadingIndicator: any;
 
-  constructor(public alertController: AlertController, public navCtrl: NavController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(private userManagerAPIClient: UserManagerAPIClient, public alertController: AlertController, public navCtrl: NavController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
     this.signUpForm = this.createSignUpForm();
   }
 
@@ -23,7 +24,7 @@ export class SignupPage implements OnInit {
 
   public checkAndDoRegister() {
     if(Math.floor((Date.now() - Date.parse(this.signUpForm.value.birthdate)) / 31536000000) < 18) {
-      this.presentAlert("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", () => {
+      this.presentAlert("Avís", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", () => {
         this.doRegister();
       });
     } else {
@@ -32,8 +33,32 @@ export class SignupPage implements OnInit {
   }
 
   private doRegister() {
-    // TODO: Call register API endpoint
     this.showLoaderIndicator();
+
+    let signupRequest: SignUpRequest = {
+      username: this.signUpForm.value.email,
+      password: this.signUpForm.value.password,
+      email: this.signUpForm.value.email,
+      nom: this.signUpForm.value.fullname,
+      cognoms: ""
+    };
+
+    this.userManagerAPIClient.signUp(signupRequest).subscribe(
+      data => {
+        this.hideLoaderIndicator();
+        // TODO: Call login API endpoint with provided email and password in the registration form, and go to the page asking for the join code.
+      },
+      err => {
+        //this.errorDialog.open(err);
+        this.hideLoaderIndicator();
+        setTimeout(() => {
+          this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard.", () => {});
+        }, 1000);
+      },
+      () => {
+      }
+    );
+
   }
 
   public goToLogin() {
@@ -53,19 +78,19 @@ export class SignupPage implements OnInit {
   }
 
   async showLoaderIndicator() {
-    // TODO: Dismiss only when finishes API call
-    const loading = await this.loadingController.create({
-      message: 'Carregant...',
-      duration: 2000
+    this.loadingIndicator = await this.loadingController.create({
+      message: 'Carregant...'
     });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
+    await this.loadingIndicator.present();
   }
 
-  async presentAlert(msg: string, callback: any) {
+  async hideLoaderIndicator() {
+    setTimeout(() => { this.loadingIndicator.dismiss(); }, 500);
+  }
+
+  async presentAlert(header: string, msg: string, callback: any) {
     const alert = await this.alertController.create({
-      header: 'Avís',
+      header: header,
       message: msg,
       buttons: [{
           text: 'Ok',

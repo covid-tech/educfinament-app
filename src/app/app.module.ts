@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from "@angular/common/http";
 
+import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -29,6 +31,7 @@ import { HttpClientModule } from "@angular/common/http";
     VideoEditor,
     File,
     Camera,
+    UserManagerAPIClient,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
