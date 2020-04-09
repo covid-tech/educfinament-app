@@ -9,7 +9,7 @@
   <form [formGroup]="signUpForm" (ngSubmit)="doRegister()" padding-right>
     <ion-item>
       <ion-label position="floating">Nom complet</ion-label>
-      <ion-input type="password" formControlName="password" required></ion-input>
+      <ion-input type="text" formControlName="fullname" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Email</ion-label>
@@ -21,7 +21,7 @@
     </ion-item>
     <ion-item>
       <ion-label position="floating">Data de naixement</ion-label>
-      <ion-datetime value="2019-10-01T15:43:40.394Z" display-timezone="utc"></ion-datetime>
+      <ion-datetime value="2000-01-01T00:00:00.000Z" formControlName="birthdate" display-timezone="utc"></ion-datetime>
     </ion-item>
 
     <ion-button color="primary" expand="block" [disabled]="!signUpForm.valid" type="submit">Registrar-me</ion-button>
@@ -36,6 +36,6 @@
     Ja estàs registrat?
   </p>
 
-  <ion-button color="primary" expand="block" type="submit">Accedir</ion-button>
+  <ion-button color="primary" expand="block" (click)="goToLogin()">Accedir</ion-button>
 
 </ion-content>
