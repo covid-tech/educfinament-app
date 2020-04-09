@@ -40,4 +40,8 @@ export class ActivityItemComponent implements OnInit {
     }
   }
 
+  onClick() {
+    console.log('test');
+  }
+
 }

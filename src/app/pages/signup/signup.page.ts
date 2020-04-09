@@ -20,6 +20,9 @@ export class SignupPage implements OnInit {
   public activity: Activity = {
     title: "Fem de constructors",
     description: "Utilitza objectes que tinguin les formes que es veuen al vídeo i fes una construcció",
+    dataFi: null,
+    dataInici: null,
+    thumbnail: "https://www.consalud.es/estetic/uploads/s1/10/82/42/4/las-frutas-nos-aportan-vitaminas-fibra-minerales-y-agua-foto-freepik.jpeg",
     users: [
       {
         nom: "Pepet",
