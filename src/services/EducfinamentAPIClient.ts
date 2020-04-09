@@ -1,66 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { environment } from 'environments/environment';
-import { Authenticate, AuthenticateResponse, SignUp, SignUpResponse } from 'models/models';
-import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class EducfinamentAPIClient {
 
-  constructor(
-    private http: HttpClient
-  ) {
-  }
-
-  login(data: Authenticate) {
-    let url = environment.SERVER_API_URL + "/infoUsuari/login";
-
-    return Observable.create(observer => {
-      this.postContentToURL(url, JSON.stringify(data)).subscribe(
-        (res: AuthenticateResponse) => {
-          observer.next(res);
-          observer.complete();
-        }, err => {
-          observer.error(err);
-        }, () => {}
-      );
-    });
-  }
-
-  logout() {
-    let url = environment.SERVER_API_URL + "/infoUsuari/logout";
-
-    return Observable.create(observer => {
-      this.getContentFromURL(url).subscribe(
-        data => {
-          observer.next({});
-          observer.complete();
-        }, err => {
-          observer.error(err);
-        }, () => {}
-      );
-    });
-  }
-
-  signUp(data: SignUp) {
-    let url = environment.SERVER_API_URL + "/infoUsuari/registre";
-
-    return Observable.create(observer => {
-      this.postContentToURL(url, JSON.stringify(data)).subscribe(
-        (res: SignUpResponse) => {
-          observer.next(res);
-          observer.complete();
-        }, err => {
-          observer.error(err);
-        }, () => {}
-      );
-
-    });
+  constructor(private http: HttpClient) {
   }
 
   private handleError(error: HttpErrorResponse) {
-    return error;
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an observable with a user-facing error message
+    return throwError(
+      'Something bad happened; please try again later.');
   };
 
   public getContentFromURL(url: string):any {
@@ -115,8 +77,7 @@ export class EducfinamentAPIClient {
     });
 
     return this.http.post(requestURL, content, {
-      headers: httpHeaders,
-      withCredentials: true,
+      headers: httpHeaders
     }).pipe(
       catchError(this.handleError.bind(this))
     );
