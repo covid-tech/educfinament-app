@@ -1,47 +1,22 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-button fill="clear">
-        Tornar
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Activitat</ion-title>
-    <ion-buttons slot="end">
-      <ion-button fill="clear">
-        Editar
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar>
+    <ion-title class="ion-text-left">Accedir</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding-horizontal">
 
-  <!-- 
-    videoProfessor: VideoItem = {
-      author: "Professor",
-      description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      validated: false,
-      videoType: "video/mp4",
-      videoURL: "https://www.w3schools.com/html/mov_bbb.mp4",
-      isAnswer: false
-    } 
-  <app-video-item 
-    [video-item]="videoAlumneNoValidat">
-  </app-video-item> -->
+  <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" formControlName="email" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contrasenya</ion-label>
+      <ion-input type="password" formControlName="password" required></ion-input>
+    </ion-item>
 
-  <app-video-item 
-    [video-item]="videoProfessor">
-  </app-video-item>
-
-  <div class="ion-margin-bottom flex-container ion-margin-horizontal">
-    <app-activity-btn 
-      *ngFor="let user of usuaris"
-      [user]="user">
-    </app-activity-btn>
-  </div>
-
-  <app-video-item 
-    [video-item]="videoProfessor2">
-  </app-video-item>
+    <ion-button color="primary" expand="block" [disabled]="!signInForm.valid" type="submit">Login</ion-button>
+  </form>
 
 </ion-content>
