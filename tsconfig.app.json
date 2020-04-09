@@ -2,7 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "environments/*": ["src/environments/*"],
+      "classes/*": ["src/app/classes/*"],
+      "models/*": ["src/models/*"],
+      "services/*": ["src/services/*"]
+    }
   },
   "include": [
     "src/**/*.ts"
