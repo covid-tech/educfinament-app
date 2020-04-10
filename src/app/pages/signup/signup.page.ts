@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
-import { SigninPage } from 'pages/signin/signin.page';
-import { SignUpRequest, SignUpResponse } from 'models/models';
+import { SignUpRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
 @Component({
@@ -49,7 +48,6 @@ export class SignupPage implements OnInit {
         // TODO: Call login API endpoint with provided email and password in the registration form, and go to the page asking for the join code.
       },
       err => {
-        //this.errorDialog.open(err);
         this.hideLoaderIndicator();
         setTimeout(() => {
           this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard.", () => {});

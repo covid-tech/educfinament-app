@@ -8,7 +8,7 @@ export interface VideoItem {
   isAnswer: boolean;
 }
 
-export interface Authenticate {
+export interface AuthenticateRequest {
   user: string;
   pass: string;
 }

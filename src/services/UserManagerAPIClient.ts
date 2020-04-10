@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { SerializationHelper } from 'models/SerializationHelper';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
-
 import { environment } from 'environments/environment';
-import { Authenticate, AuthenticateResponse, SignUpRequest, SignUpResponse } from 'models/models';
+import { AuthenticateRequest, AuthenticateResponse, SignUpRequest, SignUpResponse } from 'models/models';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class UserManagerAPIClient extends EducfinamentAPIClient {
 
-    login(data: Authenticate) {
+    signIn(data: AuthenticateRequest) {
       let url = environment.SERVER_API_URL + "/infoUsuari/login";
 
       return Observable.create(observer => {
         this.postContentToURL(url, JSON.stringify(data)).subscribe(
           (res: AuthenticateResponse) => {
+            this.storage.set('jwt', res.jwt);
             observer.next(res);
             observer.complete();
           }, err => {
@@ -38,6 +38,10 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
         );
 
       });
+    }
+
+    logout() {
+      this.storage.remove('jwt');
     }
 
 }
