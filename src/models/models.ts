@@ -7,7 +7,7 @@ export interface User {
   resetPasswordToken: string,
   confirmed: boolean,
   blocked: boolean,
-  role: string,
+  role: any, // TODO: Crear model role
   nom: string,
   cognoms: string,
   imatgePerfil: ImatgePerfil,
@@ -46,7 +46,10 @@ export interface Activitat {
   grup: Grup,
   imatgeVideoInici: string,
   materials: string,
-  criterisAvaluacio: string,
+  criteriAvaluacioMoltBe: string,
+  criteriAvaluacioBe: string,
+  criteriAvaluacioFluix: string,
+  criteriAvaluacioNoAssolit: string,
   imatgeVideoFi: string,
   observacionsFi: string,
   calValidacio: boolean,
@@ -55,7 +58,8 @@ export interface Activitat {
   participants: Array<User>,
   videoFi: Video,
   codiInvitacioProfessor: string,
-  codiInvitacioAlumne: string
+  codiInvitacioAlumne: string,
+  esPrivada: boolean
 }
 
 
@@ -65,7 +69,7 @@ export interface Video {
   urlVideo: string,
   urlThumbnail: string,
   validat: boolean,
-  enviatPer: string,
+  enviatPer: User,
   dataPublicacio: Date,
   activitat: string,
   copsVist: number,
@@ -108,7 +112,7 @@ export interface AuthenticateRequest {
 
 export interface AuthenticateResponse {
   jwt: string;
-  usuari: User
+  user: User
   // nom: string;
   // cognoms: string;
   // imatgePerfil: string;

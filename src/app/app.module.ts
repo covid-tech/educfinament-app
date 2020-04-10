@@ -18,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
 import { TokenInterceptor } from 'services/token.interceptor';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { TokenInterceptor } from 'services/token.interceptor';
     File,
     Camera,
     UserManagerAPIClient,
+    ActivitatManagerAPIClient,
     OrganitzacioManagerAPIClient,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
