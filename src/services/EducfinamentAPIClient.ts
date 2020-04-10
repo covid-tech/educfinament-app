@@ -26,7 +26,7 @@ export class EducfinamentAPIClient {
       'Something bad happened; please try again later.');
   };
 
-  public getContentFromURL(url: string):any {
+  public getContentFromURL(url: string): any {
     let requestURL = url;
     const httpHeaders = new HttpHeaders({
       "Accept": "application/json",
@@ -41,7 +41,7 @@ export class EducfinamentAPIClient {
     );
   }
 
-  public deleteContentFromURL(url: string):any {
+  public deleteContentFromURL(url: string): any {
     let requestURL = url;
     const httpHeaders = new HttpHeaders({
       "Accept": "application/json",
@@ -55,7 +55,7 @@ export class EducfinamentAPIClient {
     );
   }
 
-  public putContentToURL(url: string, content: string):any {
+  public putContentToURL(url: string, content: string): any {
     let requestURL = url;
     const httpHeaders = new HttpHeaders({
       "Accept": "application/json",
@@ -70,7 +70,7 @@ export class EducfinamentAPIClient {
     );
   }
 
-  public postContentToURL(url: string, content: string):any {
+  public postContentToURL(url: string, content: string): any {
     let requestURL = url;
     const httpHeaders = new HttpHeaders({
       "Accept": "application/json",
