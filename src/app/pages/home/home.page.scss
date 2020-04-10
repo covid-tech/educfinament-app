@@ -43,3 +43,13 @@ ion-avatar {
   }
 
 }
+
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+
+  h3 {
+    margin-bottom: 0.8em;
+  }
+
+}

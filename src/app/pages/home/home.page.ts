@@ -13,69 +13,30 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
 
-  schools: any[];
-  selectedSchool: any;
-  automaticClose = true;
   user: User;
+  organizations: Organitzacio[];
   selectedOrg: Organitzacio;
 
-  // public user: User = {
-  //   nom: "Pepet",
-  //   cognoms: "Canals",
-  //   profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-  //   sent: true,
-  //   validated: false
-  // };
-
   constructor(
-    private http: HttpClient,
     private auth: AuthService,
     private userMgr: UserManagerAPIClient,
     private router: Router
-  ) {
-    // this.http.get('assets/activitats.json').subscribe(res => {
-    //   this.schools = res["schools"];
-    //   this.selectedSchool = this.schools[0];
-    // });
-  }
+  ) {}
 
   ionViewWillEnter() {
+    this.carregaInfoUsuari();
+  }
+
+  async carregaInfoUsuari() {
     this.user = this.auth.getUser();
-    
-    let orgs = this.user.organitzacions;
-    if (orgs && orgs.length > 0) {
-      this.selectedOrg = orgs[0];
-    }
-  }
-
-  toggleSchool(schoolIndex: number) {
-    this.schools[schoolIndex].open = !this.schools[schoolIndex].open;
-
-    if (this.automaticClose && this.schools[schoolIndex].open) {
-      this.schools
-        .filter((item, itemIndex) => itemIndex != schoolIndex)
-        .map(item => this.closeSchool(item));
-    }
-
-  }
-
-  closeSchool(item) {
-    item.open = false;
-    item.classrooms.forEach(x => {
-      x.open = false;
-    });
-  }
-
-  toggleClassroom(schoolIndex: number, classroomIndex: number) {
-    this.schools[schoolIndex].classrooms[classroomIndex].open = !this.schools[schoolIndex].classrooms[classroomIndex].open;
-
-    if (this.automaticClose && this.schools[schoolIndex].classrooms[classroomIndex].open) {
-      
-      this.schools[schoolIndex].classrooms
-        .filter((item, itemIndex) => itemIndex != classroomIndex)
-        .map(item => item.open = false);
-    }
-
+    this.userMgr.getInfoUsuari(this.user.id)
+      .subscribe(
+        res => {
+          this.auth.setUser(res);
+          this.organizations = res.organitzacions;
+          this.selectedOrg = this.organizations[0];
+        }
+      );
   }
 
   addStudent(ev: any) {
@@ -98,6 +59,10 @@ export class HomePage {
 
   userImg() {
     return this.user ? this.auth.getUserProfileImg() : null;      
+  }
+
+  creaActivitat() {
+    this.router.navigate(['new-activity']);
   }
 
 }

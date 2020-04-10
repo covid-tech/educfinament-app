@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button color="light">
+  <ion-fab-button color="light" (click)="creaActivitat()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -21,7 +21,15 @@
     <div *ngFor="let grup of selectedOrg.grups">
 
       <ion-text color="medium">
-        <h3 style="font-weight: lighter;">{{ grup.nom }}</h3>
+
+        <ion-item lines="none">
+          <h3>{{ grup.nom }}</h3>
+          <ion-button (click)="creaActivitat(grup)" slot="end" fill="clear" class="ion-no-margin">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>   
+        </ion-item>
+
+        <!-- <h3 style="font-weight: lighter;">{{ grup.nom }}</h3> -->
         <p (click)="afegeixActivitat(grup)" class="ion-text-center" *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
           <ion-icon name="add"></ion-icon>
           Crea una activitat
@@ -35,7 +43,7 @@
     </div>
   </div>
 
-  <div *ngIf="!selectedOrg" class="invitacio">
+<div *ngIf="!selectedOrg || selectedOrg.grups.length == 0" class="invitacio">
     <ion-label color="light">Introdueix el codi:</ion-label>
     <ion-input type="text" placeholder="Codi d'invitació"></ion-input>
   </div>
