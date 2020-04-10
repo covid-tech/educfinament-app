@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Activitat } from 'models/models';
 import { ActionSheetController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity-item',
@@ -13,7 +14,8 @@ export class ActivityItemComponent implements OnInit {
   @Input('max-users') maxUsers: number = 5;
 
   constructor(
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private router: Router
   ) { }
 
   ngOnInit() { }
@@ -81,6 +83,10 @@ export class ActivityItemComponent implements OnInit {
       }]
     });
     await actionSheet.present();
+  }
+
+  goToActivity() {
+    this.router.navigate(['activity', this.activity.id]);
   }
 
 }

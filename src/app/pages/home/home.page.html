@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-left">Escola les vinyes</ion-title>
+    <ion-title class="ion-text-left">{{ selectedOrg.nom || 'Educfinament' }}</ion-title>
 
     <ion-avatar slot="end" *ngIf="user" (click)="doLogout()">
       <img [src]="user.imatgePerfil || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'"/>
