@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { VideoItem } from 'models/models';
 import { cloudCredentials } from 'environments/cloud.credentials.prod';
@@ -17,9 +18,11 @@ export class UploadStudentVideoPage implements OnInit {
   public isVideoUploaded: Boolean = false;
   private videoCapture: EducfinamentVideoCapture;
   public videoData: VideoItem;
+  public videoForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private alertController: AlertController) {
+  constructor(public formBuilder: FormBuilder, private route: ActivatedRoute, private alertController: AlertController) {
     this.videoCapture = new EducfinamentVideoCapture(cloudCredentials);
+    this.videoForm = this.createVideoForm();
   }
 
   ngOnInit() {
@@ -31,10 +34,18 @@ export class UploadStudentVideoPage implements OnInit {
     });
   }
 
+  private createVideoForm() {
+    return new FormGroup({
+      description: new FormControl('', Validators.required),
+    });
+  }
+
   public getVideoFromCamera() {
     this.isProcessingVideo = true;
 
     this.videoCapture.getVideoFromCamera().then((data) => {
+      this.showAlert("VIDEO URL: " + data.videoUrl);
+      this.showAlert("THUMBNAIl URL: " + data.thumbnailUrl);
       this.videoData = {
         author: "Albert Nadal Garriga",
         description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
@@ -56,6 +67,8 @@ export class UploadStudentVideoPage implements OnInit {
     this.isProcessingVideo = true;
 
     this.videoCapture.getVideoFromLibrary().then((data) => {
+      this.showAlert("VIDEO URL: " + data.videoUrl);
+      this.showAlert("THUMBNAIl URL: " + data.thumbnailUrl);
       this.videoData = {
         author: "Albert Nadal Garriga",
         description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",

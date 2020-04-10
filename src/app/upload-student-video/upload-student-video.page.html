@@ -9,9 +9,19 @@
     <ion-progress-bar vertical="start" horizontal="center" type="indeterminate" mode="ios"></ion-progress-bar>
   </div>
 
-  <div id="container">
+  <!--<div id="container">
 
-  </div>
+    <form [formGroup]="videoForm" (ngSubmit)="checkAndDoRegister()" padding-right>
+
+      <ion-input placeholder="Nom complet" type="text" formControlName="fullname" required></ion-input>
+
+      <ion-button shape="round" color="pink" expand="block" [disabled]="!signUpForm.valid" type="submit">Registrar-me</ion-button>
+
+      <p class="ion-text-center">Ja estàs registrat?<a (click)="goToLogin()"> Inicia sessió</a></p>
+
+    </form>
+
+  </div>-->
 
   <app-video-item *ngIf="isVideoUploaded"
                   [video-item]="videoData"></app-video-item>

@@ -39,35 +39,5 @@
       </ion-buttons>
     </ion-item>
 
-    <!-- Tot junt -->
-    <!-- <ion-item lines="none" [color]="videoItem.isAnswer ? 'light' : 'secondary'">
-
-      <ion-text
-        *ngIf="videoItem.isAnswer"
-        slot="start"
-        [color]="videoItem.validated ? 'success' : 'danger'">
-        <h1>
-          <ion-icon
-            [name]="videoItem.validated ? 'checkmark-circle' : 'alert-circle' "
-          ></ion-icon>
-        </h1>
-      </ion-text>
-
-      <ion-label>
-        <ion-icon name="person"></ion-icon>
-         {{videoItem.author}}
-      </ion-label>
-      <ion-buttons slot="end">
-        <ion-button
-          *ngIf="videoItem.isAnswer"
-          class="btn-validar"
-          (click)="videoItem.validated = !videoItem.validated"
-          [color]="videoItem.validated ? 'danger' : 'success'"
-          fill="solid">
-          {{ videoItem.validated ? "DESVALIDAR" : "VALIDAR" }}
-        </ion-button>
-      </ion-buttons>
-    </ion-item> -->
-
   </ion-card-content>
 </ion-card>
