@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Injectable()
 export class EducfinamentAPIClient {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public storage: Storage) {
   }
 
   private handleError(error: HttpErrorResponse) {

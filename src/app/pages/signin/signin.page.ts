@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
-//import { VideoItem } from 'models/models';
-//import { User } from 'src/app/user';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { AuthenticateRequest, AuthenticateResponse } from 'models/models';
+import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
 @Component({
   selector: 'app-signin',
@@ -12,8 +12,9 @@ import { LoadingController } from '@ionic/angular';
 export class SigninPage implements OnInit {
 
   public signInForm: FormGroup;
+  private loadingIndicator: any;
 
-  constructor(public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(private userManagerAPIClient: UserManagerAPIClient, public alertController: AlertController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
     this.signInForm = this.createSignInForm();
   }
 
@@ -21,8 +22,28 @@ export class SigninPage implements OnInit {
   }
 
   public doLogin() {
-    // TODO: Call login API endpoint
     this.showLoaderIndicator();
+
+    let signinRequest: AuthenticateRequest = {
+      user: this.signInForm.value.email,
+      pass: this.signInForm.value.password
+    };
+
+    this.userManagerAPIClient.signIn(signinRequest).subscribe(
+      data => {
+        this.hideLoaderIndicator();
+        // TODO: Go to the main page
+      },
+      err => {
+        this.hideLoaderIndicator();
+        // TODO: Verify the http response code and show the proper message
+        setTimeout(() => {
+          this.presentAlert("Error", "Hi ha hagut un problema amb l'autentificació. Intenti-ho de nou.", () => {});
+        }, 1000);
+      },
+      () => {
+      }
+    );
   }
 
   private createSignInForm() {
@@ -36,14 +57,28 @@ export class SigninPage implements OnInit {
   }
 
   async showLoaderIndicator() {
-    // TODO: Dismiss only when finishes API call
-    const loading = await this.loadingController.create({
-      message: 'Carregant...',
-      duration: 2000
+    this.loadingIndicator = await this.loadingController.create({
+      message: 'Carregant...'
     });
-    await loading.present();
+    await this.loadingIndicator.present();
+  }
 
-    const { role, data } = await loading.onDidDismiss();
+  async hideLoaderIndicator() {
+    setTimeout(() => { this.loadingIndicator.dismiss(); }, 500);
+  }
+
+  async presentAlert(header: string, msg: string, callback: any) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: msg,
+      buttons: [{
+          text: 'Ok',
+          handler: () => {
+            callback();
+          }}]
+    });
+
+    await alert.present();
   }
 
 }
