@@ -59,7 +59,7 @@ export class SignupPage implements OnInit {
       err => {
         this.hideLoaderIndicator();
         setTimeout(() => {
-          this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard.", () => {});
+          this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard. \n" + JSON.stringify(err), () => {});
         }, 1000);
       },
       () => {
