@@ -25,3 +25,21 @@ ion-avatar {
   width: 32px;
   height: 32px;
 }
+
+.invitacio {
+  background: var(--ion-color-blue);
+  margin-top: 32px;
+  padding: 16px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  border-radius: 16px;
+
+  ion-input {
+    margin-top: 16px;
+    --background: var(--ion-color-light);
+    border-radius: 100px;
+    --padding-start: 8px;
+  }
+
+}

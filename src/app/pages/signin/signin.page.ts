@@ -39,7 +39,6 @@ export class SigninPage implements OnInit {
     this.userManagerAPIClient.signIn(signinRequest).subscribe(
       data => {
         this.hideLoaderIndicator();
-        // TODO: Gestionar token d'autenticacio
         this.router.navigate(['home']);
       },
       err => {

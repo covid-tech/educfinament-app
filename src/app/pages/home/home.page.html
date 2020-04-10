@@ -6,9 +6,6 @@
       <img [src]="userImg() || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'"/>
     </ion-avatar>
 
-    <!-- <ion-buttons slot="end">
-      <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn>
-    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -38,5 +35,9 @@
     </div>
   </div>
 
+  <div *ngIf="!selectedOrg" class="invitacio">
+    <ion-label color="light">Introdueix el codi:</ion-label>
+    <ion-input type="text" placeholder="Codi d'invitació"></ion-input>
+  </div>
 
 </ion-content>

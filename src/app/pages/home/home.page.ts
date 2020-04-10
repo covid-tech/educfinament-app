@@ -97,8 +97,7 @@ export class HomePage {
   }
 
   userImg() {
-    return this.user ? this.auth.getUserProfileImg() : null;
-      
+    return this.user ? this.auth.getUserProfileImg() : null;      
   }
 
 }

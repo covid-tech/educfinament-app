@@ -29,7 +29,11 @@ export class AuthService {
   }
   
   getUserProfileImg() {
-    return environment.SERVER_API_URL + this.user.imatgePerfil.url;
+    if (this.user.imatgePerfil) {
+      return environment.SERVER_API_URL + this.user.imatgePerfil.url;
+    } else {
+      return null;
+    }
   }
 
 }
