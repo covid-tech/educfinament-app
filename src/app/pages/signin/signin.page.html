@@ -1,25 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title class="ion-text-left">Accedir</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  
+  <div class="content">
+    <img src="../../../assets/imatges/logo_trans.png"/>
+    <ion-card class="ion-padding ion-no-margin">
+      <h1 class="ion-text-center">Inicia sessió</h1>
+      <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
+  
+        <ion-input type="text" formControlName="email" placeholder="Correu electrònic" required></ion-input>
+        <ion-input type="password" formControlName="password" placeholder="Contrasenya" required></ion-input>
+    
+        <ion-button color="pink" expand="block" [disabled]="!signInForm.valid" type="submit" shape="round">Entrar</ion-button>
+  
+        <p class="ion-text-center">Encara no tens compte?<a (click)="goToSignup()"> Crea'n un</a></p>
+  
+      </form>
+    </ion-card>
+  </div>
 
-<ion-content class="ion-padding-horizontal">
-
-  <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" formControlName="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contrasenya</ion-label>
-      <ion-input type="password" formControlName="password" required></ion-input>
-    </ion-item>
-
-    <ion-button color="primary" expand="block" [disabled]="!signInForm.valid" type="submit">Login</ion-button>
-  </form>
 
 </ion-content>

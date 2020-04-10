@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
+import { SigninPage } from 'pages/signin/signin.page';
+import { Router } from '@angular/router';
 import { SignUpRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
@@ -14,7 +16,14 @@ export class SignupPage implements OnInit {
   public signUpForm: FormGroup;
   private loadingIndicator: any;
 
-  constructor(private userManagerAPIClient: UserManagerAPIClient, public alertController: AlertController, public navCtrl: NavController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(
+    public formBuilder: FormBuilder, 
+    private alertController: AlertController, 
+    private router: Router, 
+    private loadingController: LoadingController,
+    private userManagerAPIClient: UserManagerAPIClient,
+    public navCtrl: NavController,
+  ) {
     this.signUpForm = this.createSignUpForm();
   }
 
@@ -50,7 +59,7 @@ export class SignupPage implements OnInit {
       err => {
         this.hideLoaderIndicator();
         setTimeout(() => {
-          this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard.", () => {});
+          this.presentAlert("Error", "Hi ha hagut un problema amb el registre. Intenti-ho més tard. \n" + JSON.stringify(err), () => {});
         }, 1000);
       },
       () => {
@@ -60,7 +69,7 @@ export class SignupPage implements OnInit {
   }
 
   public goToLogin() {
-    this.navCtrl.navigateForward("signin");
+    this.router.navigate(['signin']);
   }
 
   private createSignUpForm() {

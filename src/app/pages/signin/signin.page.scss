@@ -1,14 +1,46 @@
 ion-content {
-    --background: white;  /* fallback for old browsers */
+    --background: #32558d;  /* fallback for old browsers */
+    --background: -webkit-linear-gradient(to bottom, var(--ion-color-blue) 60%, var(--ion-color-pink));  /* Chrome 10-25, Safari 5.1-6 */
+    --background: linear-gradient(to bottom, var(--ion-color-blue) 60%, var(--ion-color-pink)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    text-align: center;
 }
 
-.flex-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
+ion-input {
+    border: 2px solid #EEE;
+    border-radius: 5px;
+    margin-bottom: 16px;
 }
 
-.flex-container * {
-    margin: 0 5px;
-    margin-top: 10px;
+h1 {
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: var(--ion-color-dark);
+    font-weight: bold;
+}
+
+ion-button {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.content {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;    
+}
+
+ion-card {
+    border-radius: 16px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--ion-color-dark);
+}
+
+img {
+    width: 40%;
+    margin-bottom: 32px;
 }

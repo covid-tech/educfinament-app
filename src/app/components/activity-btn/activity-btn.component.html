@@ -1,5 +1,5 @@
 <div class="outter" [ngClass]="{'pending': !user.sent, 'no-validated': user.sent && !user.validated, 'validated': user.sent && user.validated, 'shadow-1': true, 'shadow-2': !user.validated && !small, 'small': small}">
-  <div class="inner" [style.background]=" user.profileImg ? 'url(' + user.profileImg + ')' : 'transparent'">
+  <div class="inner" [style.background]=" user.profileImg ? 'url(' + user.profileImg + ')' : 'transparent'" [style.background-size]="'cover'">
     <span *ngIf="!user.profileImg">{{ getStands() }}</span>
   </div>
 </div>

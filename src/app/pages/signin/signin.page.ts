@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { AuthenticateRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
@@ -14,7 +15,13 @@ export class SigninPage implements OnInit {
   public signInForm: FormGroup;
   private loadingIndicator: any;
 
-  constructor(private userManagerAPIClient: UserManagerAPIClient, public alertController: AlertController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(
+    public formBuilder: FormBuilder, 
+    public loadingController: LoadingController,
+    private router: Router,
+    private userManagerAPIClient: UserManagerAPIClient, 
+    public alertController: AlertController
+  ) {
     this.signInForm = this.createSignInForm();
   }
 
@@ -32,18 +39,23 @@ export class SigninPage implements OnInit {
     this.userManagerAPIClient.signIn(signinRequest).subscribe(
       data => {
         this.hideLoaderIndicator();
-        // TODO: Go to the main page
+        // TODO: Gestionar token d'autenticacio
+        this.router.navigate(['home']);
       },
       err => {
         this.hideLoaderIndicator();
         // TODO: Verify the http response code and show the proper message
         setTimeout(() => {
-          this.presentAlert("Error", "Hi ha hagut un problema amb l'autentificació. Intenti-ho de nou.", () => {});
+          this.presentAlert("Error", "Hi ha hagut un problema amb l'autentificació. Intenti-ho de nou.\n" + JSON.stringify(err), () => {});
         }, 1000);
       },
       () => {
       }
     );
+  }
+
+  public goToSignup() {
+    this.router.navigate(['signup']);
   }
 
   private createSignInForm() {
