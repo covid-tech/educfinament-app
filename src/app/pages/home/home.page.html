@@ -1,9 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title class="ion-text-left">Escola les vinyes</ion-title>
-    <ion-buttons slot="end">
-      <!-- <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn> -->
-    </ion-buttons>
+
+    <ion-avatar slot="end" *ngIf="user" (click)="doLogout()">
+      <img [src]="user.imatgePerfil || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'"/>
+    </ion-avatar>
+
+    <!-- <ion-buttons slot="end">
+      <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -27,7 +32,7 @@
       </ion-text>
 
       <div *ngFor="let activitat of grup.activitats">
-        <app-activity-item [activity]="activitat" [color]="'blue'"></app-activity-item>
+        <app-activity-item [activity]="activitat"></app-activity-item>
       </div>
 
     </div>

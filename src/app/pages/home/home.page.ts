@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
 import { Organitzacio, User, Grup } from 'models/models';
 import { AuthService } from 'services/auth/auth.service';
+import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +29,9 @@ export class HomePage {
 
   constructor(
     private http: HttpClient,
-    private auth: AuthService
+    private auth: AuthService,
+    private userMgr: UserManagerAPIClient,
+    private router: Router
   ) {
     // this.http.get('assets/activitats.json').subscribe(res => {
     //   this.schools = res["schools"];
@@ -87,5 +91,9 @@ export class HomePage {
     console.log('Encara no va aixo');
   }
 
+  doLogout() {
+    this.userMgr.logout();
+    this.router.navigate(['signin']);
+  }
 
 }

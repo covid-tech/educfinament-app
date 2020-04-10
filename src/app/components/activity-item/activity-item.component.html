@@ -1,11 +1,11 @@
 <div class="back" [style.background]="'url(' + activity.imatgeVideoInici + ')'" [style.background-size]="'cover'">
-  <div class="color" [style.background]="getColor(color, true)">
+  <div class="color" [style.background]="getColor(activity.color, true)">
     <div class="activity">
 
-      <div class="bar" [style.background]="getColor(color)"></div>
+      <div class="bar" [style.background]="getColor(activity.color)"></div>
 
       <div class="share">
-        <ion-button (click)="obreOpcions()" shape="round" fill="clear" [style.color]="getColor(color)">
+        <ion-button (click)="obreOpcions()" shape="round" fill="clear" [style.color]="getColor(activity.color)">
           <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
         </ion-button>
       </div>
@@ -23,9 +23,9 @@
         <div class="users">
           <app-activity-btn *ngFor="let usuari of firstUsers()" [user]="usuari" small="true"></app-activity-btn>
           <div class="extra-qty" *ngIf="activity.participants && activity.participants.length && activity.participants.length > maxUsers"
-            [style.color]="getColor(color)">{{ extraUsersText() }}
+            [style.color]="getColor(activity.color)">{{ extraUsersText() }}
           </div>
-          <p class="no-users" *ngIf="activity.participants && activity.participants.length < 1">Encara no hi ha participants</p>
+          <p class="no-users" *ngIf="!activity.participants || activity.participants.length < 1">Encara no hi ha participants</p>
         </div>
       </div>
 
