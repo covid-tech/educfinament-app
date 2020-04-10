@@ -96,4 +96,9 @@ export class HomePage {
     this.router.navigate(['signin']);
   }
 
+  userImg() {
+    return this.user ? this.auth.getUserProfileImg() : null;
+      
+  }
+
 }

@@ -10,7 +10,7 @@ export interface User {
   role: string,
   nom: string,
   cognoms: string,
-  imatgePerfil: string,
+  imatgePerfil: ImatgePerfil,
   organitzacions: Array<Organitzacio>
 }
 
@@ -77,6 +77,28 @@ export interface Grup {
   nom: string,
   activitats: Array<Activitat>,
   participants: Array<User>
+}
+
+export interface Role {
+  id: number,
+  name: string,
+  description: string,
+  type: string
+}
+
+export interface ImatgePerfil {
+  id: 5,
+  name: string,
+  hash: string,
+  sha256: string,
+  ext: string,
+  mime: string,
+  size: number,
+  url: string,
+  provider: string,
+  provider_metadata: any,
+  created_at: Date,
+  updated_at: Date
 }
 
 export interface AuthenticateRequest {
