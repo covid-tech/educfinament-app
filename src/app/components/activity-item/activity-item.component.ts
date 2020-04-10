@@ -57,7 +57,10 @@ export class ActivityItemComponent implements OnInit {
 
   }
 
-  async obreOpcions() {
+  async obreOpcions(ev) {
+
+    ev.stopPropagation();
+
     const actionSheet = await this.actionSheetCtrl.create({
       header: 'Albums',
       buttons: [{

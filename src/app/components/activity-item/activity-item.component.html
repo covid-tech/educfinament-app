@@ -5,7 +5,7 @@
       <div class="bar" [style.background]="getColor(activity.color)"></div>
 
       <div class="share">
-        <ion-button (click)="obreOpcions()" shape="round" fill="clear" [style.color]="getColor(activity.color)">
+        <ion-button (click)="obreOpcions($event)" shape="round" fill="clear" [style.color]="getColor(activity.color)">
           <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
         </ion-button>
       </div>
