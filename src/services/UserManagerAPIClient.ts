@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { SerializationHelper } from 'models/SerializationHelper';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
 import { AuthenticateRequest, AuthenticateResponse, SignUpRequest, SignUpResponse } from 'models/models';
@@ -22,7 +21,10 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
       this.postContentToURL(url, JSON.stringify(data)).subscribe(
         (res: AuthenticateResponse) => {
           this.storage.set('jwt', res.jwt);
+          this.storage.set('email', data.user);
+          this.storage.set('password', data.pass);
           this.auth.setToken(res.jwt);
+          this.auth.setUser(res.usuari);
           observer.next(res);
           observer.complete();
         }, err => {
@@ -34,6 +36,7 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
 
   signUp(data: SignUpRequest) {
     let url = environment.SERVER_API_URL + "/infoUsuari/registre";
+
     return Observable.create(observer => {
       this.postContentToURL(url, JSON.stringify(data)).subscribe(
         (res: SignUpResponse) => {
@@ -41,7 +44,7 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
           observer.complete();
         }, err => {
           observer.error(err);
-        }, () => { }
+        }, () => {}
       );
 
     });
