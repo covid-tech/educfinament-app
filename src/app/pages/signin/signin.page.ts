@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
-import { AuthenticateRequest, AuthenticateResponse } from 'models/models';
+import { AuthenticateRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
 @Component({
