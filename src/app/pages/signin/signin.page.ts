@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 //import { VideoItem } from 'models/models';
 //import { User } from 'src/app/user';
 
@@ -13,7 +14,11 @@ export class SigninPage implements OnInit {
 
   public signInForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(
+    public formBuilder: FormBuilder, 
+    public loadingController: LoadingController,
+    private router: Router
+  ) {
     this.signInForm = this.createSignInForm();
   }
 
@@ -23,6 +28,10 @@ export class SigninPage implements OnInit {
   public doLogin() {
     // TODO: Call login API endpoint
     this.showLoaderIndicator();
+  }
+
+  public goToSignup() {
+    this.router.navigate(['signup']);
   }
 
   private createSignInForm() {

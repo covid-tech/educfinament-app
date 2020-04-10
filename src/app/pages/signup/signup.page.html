@@ -1,41 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-left">Registre</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content scrollY="false">
 
-<ion-content class="ion-padding-horizontal">
+<!-- <img src="../../../assets/imatges/logo_trans.png"/> -->
+  <h1 class="logo">Educfinament</h1>
 
-  <form [formGroup]="signUpForm" (ngSubmit)="checkAndDoRegister()" padding-right>
-    <ion-item>
-      <ion-label position="floating">Nom complet</ion-label>
-      <ion-input type="text" formControlName="fullname" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" formControlName="email" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Contrasenya</ion-label>
-      <ion-input type="password" formControlName="password" required></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Data de naixement</ion-label>
+  <ion-card class="ion-padding">
+    <h1 class="ion-text-center">Crea un compte</h1>
+    <form [formGroup]="signUpForm" (ngSubmit)="checkAndDoRegister()" padding-right>
+      
+      <ion-input placeholder="Nom complet" type="text" formControlName="fullname" required></ion-input>
+      <ion-input placeholder="Email" type="text" formControlName="email" required></ion-input>
+      <ion-input placeholder="Contrasenya" type="password" formControlName="password" required></ion-input>
+
+      <ion-label>Data de naixement</ion-label>
       <ion-datetime value="2000-01-01T00:00:00.000Z" formControlName="birthdate" display-timezone="utc"></ion-datetime>
-    </ion-item>
+      
+      <p>
+        En fer el registre, esteu acceptant els termes i condicions de l'app Educfinament que podeu consultar <a href="https://docs.google.com/document/d/1OBFqIX7usdlfhcdu1Mu9PJXxmc2odptmROV1wTtQ_PI" target="_blank">aquí</a>.
+      </p>
 
-    <ion-button color="primary" expand="block" [disabled]="!signUpForm.valid" type="submit">Registrar-me</ion-button>
-  </form>
+      <ion-button shape="round" color="pink" expand="block" [disabled]="!signUpForm.valid" type="submit">Registrar-me</ion-button>
 
-  <p>
-    En fer el registre, esteu acceptant els termes i condicions de l'app Educfinament que podeu consultar aquí.
-  </p>
+      <p class="ion-text-center">Ja estàs registrat?<a (click)="goToLogin()"> Inicia sessió</a></p>
 
-  <br/>
-  <p>
-    Ja estàs registrat?
-  </p>
-
-  <ion-button color="primary" expand="block" (click)="goToLogin()">Accedir</ion-button>
-
+    </form>
+  </ion-card>
+  
 </ion-content>

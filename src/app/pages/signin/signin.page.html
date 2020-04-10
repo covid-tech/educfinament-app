@@ -1,18 +1,21 @@
-<ion-content scrollY="false">
+<ion-content>
   
-  <ion-card class="ion-padding">
+  <div class="content">
     <img src="../../../assets/imatges/logo_trans.png"/>
-    <h1 class="ion-text-center">Inicia sessió</h1>
-    <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
-
-      <ion-input type="text" formControlName="email" placeholder="Correu electrònic" required></ion-input>
-      <ion-input type="password" formControlName="password" placeholder="Contrasenya" required></ion-input>
+    <ion-card class="ion-padding ion-no-margin">
+      <h1 class="ion-text-center">Inicia sessió</h1>
+      <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
   
-      <ion-button color="pink" expand="block" [disabled]="!signInForm.valid" type="submit" shape="round">Login</ion-button>
+        <ion-input type="text" formControlName="email" placeholder="Correu electrònic" required></ion-input>
+        <ion-input type="password" formControlName="password" placeholder="Contrasenya" required></ion-input>
+    
+        <ion-button color="pink" expand="block" [disabled]="!signInForm.valid" type="submit" shape="round">Entrar</ion-button>
+  
+        <p class="ion-text-center">Encara no tens compte?<a (click)="goToSignup()"> Crea'n un</a></p>
+  
+      </form>
+    </ion-card>
+  </div>
 
-      <p class="ion-text-center">Encara no tens compte?<a href=""> Crea'n un</a></p>
-
-    </form>
-  </ion-card>
 
 </ion-content>

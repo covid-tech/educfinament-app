@@ -1,5 +1,4 @@
 ion-content {
-    // --background: var(--ion-color-blue);  /* fallback for old browsers */
     --background: #32558d;  /* fallback for old browsers */
     --background: -webkit-linear-gradient(to bottom, var(--ion-color-blue) 60%, var(--ion-color-pink));  /* Chrome 10-25, Safari 5.1-6 */
     --background: linear-gradient(to bottom, var(--ion-color-blue) 60%, var(--ion-color-pink)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -24,12 +23,14 @@ ion-button {
     margin-bottom: 40px;
 }
 
-ion-card {
-    overflow: visible;
+.content {
     position: absolute;
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;    
+}
+
+ion-card {
     border-radius: 16px;
 }
 
@@ -39,13 +40,7 @@ a {
     color: var(--ion-color-dark);
 }
 
-
 img {
-    top: -200px;
-    left: 50%;
-    margin-left: -25%;
-    position: absolute;
-    width: 50%;
-    text-align: center;
-    margin-top: 20px;
+    width: 40%;
+    margin-bottom: 32px;
 }

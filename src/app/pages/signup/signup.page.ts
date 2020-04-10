@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
 import { SigninPage } from 'pages/signin/signin.page';
+import { Router } from '@angular/router';
 //import { VideoItem } from 'models/models';
 //import { User } from 'src/app/user';
 
@@ -14,7 +15,12 @@ export class SignupPage implements OnInit {
 
   public signUpForm: FormGroup;
 
-  constructor(public alertController: AlertController, public navCtrl: NavController, public formBuilder: FormBuilder, public loadingController: LoadingController) {
+  constructor(
+    public formBuilder: FormBuilder, 
+    private alertController: AlertController, 
+    private router: Router, 
+    private loadingController: LoadingController
+  ) {
     this.signUpForm = this.createSignUpForm();
   }
 
@@ -37,7 +43,7 @@ export class SignupPage implements OnInit {
   }
 
   public goToLogin() {
-    this.navCtrl.navigateForward("signin");
+    this.router.navigate(['signin']);
   }
 
   private createSignUpForm() {
