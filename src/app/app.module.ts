@@ -12,10 +12,12 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
+import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
+import { TokenInterceptor } from 'services/token.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +36,9 @@ import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
     File,
     Camera,
     UserManagerAPIClient,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    OrganitzacioManagerAPIClient,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

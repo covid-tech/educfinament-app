@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/user';
+import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
+import { Organitzacio } from 'models/models';
 
 @Component({
   selector: 'app-home',
@@ -22,12 +24,22 @@ export class HomePage {
   };
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private orgMgrAPIClient: OrganitzacioManagerAPIClient
   ) {
     this.http.get('assets/activitats.json').subscribe(res => {
       this.schools = res["schools"];
       this.selectedSchool = this.schools[0];
     });
+  }
+
+  ionViewWillEnter() {
+    this.orgMgrAPIClient.getOrganitzacio(1)
+      .subscribe(
+        (organitzacio: Organitzacio) => {
+          console.log("Org: " + organitzacio);
+        }
+      );
   }
 
   toggleSchool(schoolIndex: number) {

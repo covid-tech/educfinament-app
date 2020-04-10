@@ -4,44 +4,51 @@ import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
 import { AuthenticateRequest, AuthenticateResponse, SignUpRequest, SignUpResponse } from 'models/models';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth/auth.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class UserManagerAPIClient extends EducfinamentAPIClient {
 
-    signIn(data: AuthenticateRequest) {
-      let url = environment.SERVER_API_URL + "/infoUsuari/login";
+  constructor(public http: HttpClient, public storage: Storage, private auth: AuthService) {
+    super(http, storage);
+  }
 
-      return Observable.create(observer => {
-        this.postContentToURL(url, JSON.stringify(data)).subscribe(
-          (res: AuthenticateResponse) => {
-            this.storage.set('jwt', res.jwt);
-            observer.next(res);
-            observer.complete();
-          }, err => {
-            observer.error(err);
-          }, () => {}
-        );
-      });
-    }
+  signIn(data: AuthenticateRequest) {
+    let url = environment.SERVER_API_URL + "/infoUsuari/login";
 
-    signUp(data: SignUpRequest) {
-      let url = environment.SERVER_API_URL + "/infoUsuari/registre";
+    return Observable.create(observer => {
+      this.postContentToURL(url, JSON.stringify(data)).subscribe(
+        (res: AuthenticateResponse) => {
+          this.storage.set('jwt', res.jwt);
+          this.auth.setToken(res.jwt);
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }, () => { }
+      );
+    });
+  }
 
-      return Observable.create(observer => {
-        this.postContentToURL(url, JSON.stringify(data)).subscribe(
-          (res: SignUpResponse) => {
-            observer.next(res);
-            observer.complete();
-          }, err => {
-            observer.error(err);
-          }, () => {}
-        );
+  signUp(data: SignUpRequest) {
+    let url = environment.SERVER_API_URL + "/infoUsuari/registre";
+    return Observable.create(observer => {
+      this.postContentToURL(url, JSON.stringify(data)).subscribe(
+        (res: SignUpResponse) => {
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }, () => { }
+      );
 
-      });
-    }
+    });
+  }
 
-    logout() {
-      this.storage.remove('jwt');
-    }
+  logout() {
+    this.storage.remove('jwt');
+  }
 
 }
