@@ -23,7 +23,7 @@ export class SignupPage implements OnInit {
 
   public checkAndDoRegister() {
     if(Math.floor((Date.now() - Date.parse(this.signUpForm.value.birthdate)) / 31536000000) < 18) {
-      this.presentAlert("Avís", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", () => {
+      this.presentAlert("Avís", "No ets major d'edat, és per això que t'aconsellem que utilitzis aquesta aplicació sota la supervisió d'un tutor.", () => {
         this.doRegister();
       });
     } else {
