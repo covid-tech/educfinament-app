@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Puja la teva resposta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="this.isProcessingVideo" vertical="start" horizontal="center" slot="fixed" style="width: 100%;">
+    <ion-progress-bar vertical="start" horizontal="center" type="indeterminate" mode="ios"></ion-progress-bar>
+  </div>
+
+  <div id="container">
+
+  </div>
+
+  <app-video-item *ngIf="isVideoUploaded"
+                  [video-item]="videoData"></app-video-item>
+
+</ion-content>

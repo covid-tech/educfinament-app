@@ -9,7 +9,7 @@ import { VideoItem } from 'models/models';
 export class VideoItemComponent implements OnInit {
 
   @Input('video-item') videoItem: VideoItem;
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 

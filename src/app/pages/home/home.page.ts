@@ -52,7 +52,7 @@ export class HomePage {
     this.schools[schoolIndex].classrooms[classroomIndex].open = !this.schools[schoolIndex].classrooms[classroomIndex].open;
 
     if (this.automaticClose && this.schools[schoolIndex].classrooms[classroomIndex].open) {
-      
+
       this.schools[schoolIndex].classrooms
         .filter((item, itemIndex) => itemIndex != classroomIndex)
         .map(item => item.open = false);

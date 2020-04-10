@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-activity',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityPage implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  public goToUploadVideoFromLibrary() {
+    this.router.navigate(['upload-student-video'], { queryParams: { source: "library" } });
+  }
+
+  public goToUploadVideoFromFromCamera() {
+    this.router.navigate(['upload-student-video'], { queryParams: { source: "camera" } });
   }
 
 }
