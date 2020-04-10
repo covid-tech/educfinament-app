@@ -1,31 +1,31 @@
-<div class="back" [style.background]="'url(' + activity.thumbnail + ')'" [style.background-size]="'cover'">
+<div class="back" [style.background]="'url(' + activity.imatgeVideoInici + ')'" [style.background-size]="'cover'">
   <div class="color" [style.background]="getColor(color, true)">
     <div class="activity">
 
       <div class="bar" [style.background]="getColor(color)"></div>
 
       <div class="share">
-        <ion-button (click)="onClick()" shape="round" fill="clear" [style.color]="getColor(color)">
+        <ion-button (click)="obreOpcions()" shape="round" fill="clear" [style.color]="getColor(color)">
           <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
         </ion-button>
       </div>
 
       <div class="info">
-        <p class="title">{{ activity.title }}</p>
+        <p class="title">{{ activity.titol }}</p>
         <p class="subtitle">
           <ion-text color="medium">
-            <span *ngIf="activity.dataInici">{{ activity.dataInici | date:'dd/MM/yyyy' }}</span>
-            <span *ngIf="activity.dataInici && activity.dataFi"> - {{ activity.dataFi | date:'dd/MM/yyyy' }}</span>
-            <span *ngIf="!activity.dataInici && !activity.dataFi">No publicada</span>
+            <span *ngIf="activity.dataPublicacio">{{ activity.dataPublicacio | date:'dd/MM/yyyy' }}</span>
+            <span *ngIf="activity.dataPublicacio && activity.dataFinalitzacio"> - {{ activity.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
+            <span *ngIf="!activity.dataPublicacio && !activity.dataFinalitzacio">No publicada</span>
           </ion-text>
         </p>
 
         <div class="users">
-          <app-activity-btn *ngFor="let user of firstUsers()" [user]="user" small="true"></app-activity-btn>
-          <div class="extra-qty" *ngIf="activity.users.length && activity.users.length > maxUsers"
+          <app-activity-btn *ngFor="let usuari of firstUsers()" [user]="usuari" small="true"></app-activity-btn>
+          <div class="extra-qty" *ngIf="activity.participants && activity.participants.length && activity.participants.length > maxUsers"
             [style.color]="getColor(color)">{{ extraUsersText() }}
           </div>
-          <p class="no-users" *ngIf="activity.users.length < 1">Encara no hi ha participants</p>
+          <p class="no-users" *ngIf="activity.participants && activity.participants.length < 1">Encara no hi ha participants</p>
         </div>
       </div>
 

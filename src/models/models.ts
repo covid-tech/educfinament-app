@@ -1,3 +1,20 @@
+export interface User {
+  id: string,
+  username: string,
+  email: string,
+  provider: string,
+  password: string,
+  resetPasswordToken: string,
+  confirmed: boolean,
+  blocked: boolean,
+  role: string,
+  nom: string,
+  cognoms: string,
+  imatgePerfil: string,
+  organitzacions: Array<Organitzacio>
+}
+
+
 export interface VideoItem {
   author: string;
   description: string;
@@ -14,22 +31,6 @@ export interface Organitzacio {
   created_at: Date,
   updated_at: Date,
   grups: Array<Grup>
-}
-
-export interface User {
-  id: string,
-  username: string,
-  email: string,
-  provider: string,
-  password: string,
-  resetPasswordToken: string,
-  confirmed: boolean,
-  blocked: boolean,
-  role: string,
-  nom: string,
-  cognoms: string,
-  imatgePerfil: string,
-  organitzacions: Array<string>
 }
 
 export interface Activitat {
@@ -85,9 +86,10 @@ export interface AuthenticateRequest {
 
 export interface AuthenticateResponse {
   jwt: string;
-  nom: string;
-  cognoms: string;
-  imatgePerfil: string;
+  usuari: User
+  // nom: string;
+  // cognoms: string;
+  // imatgePerfil: string;
 }
 
 export interface SignUpRequest {

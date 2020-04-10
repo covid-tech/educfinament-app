@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/user';
+import { User } from 'models/models';
 
 @Component({
   selector: 'app-activity-btn',
@@ -8,7 +8,7 @@ import { User } from 'src/app/user';
 })
 export class ActivityBtnComponent implements OnInit {
 
-  @Input('user') user: User;
+  @Input('user') usuari: User;
   @Input('small') small: boolean = false;
 
   constructor() { }
@@ -16,7 +16,7 @@ export class ActivityBtnComponent implements OnInit {
   ngOnInit() {}
 
   getStands() {
-    return this.user.nom[0].toUpperCase() + this.user.cognoms[0].toUpperCase();
+    return this.usuari.nom[0].toUpperCase() + this.usuari.cognoms[0].toUpperCase();
   }
 
 }

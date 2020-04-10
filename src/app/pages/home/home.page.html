@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title class="ion-text-left">Escola les vinyes</ion-title>
     <ion-buttons slot="end">
-      <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn>
+      <!-- <app-activity-btn style="margin-right: 16px;" [user]="user" small="true"></app-activity-btn> -->
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -15,15 +15,19 @@
 
 <ion-content class="ion-padding-horizontal">
 
-  <div *ngIf="selectedSchool">
-    <div *ngFor="let classroom of selectedSchool.classrooms">
+  <div *ngIf="selectedOrg">
+    <div *ngFor="let grup of selectedOrg.grups">
 
       <ion-text color="medium">
-        <h3 style="font-weight: lighter;">{{ classroom.name }}</h3>
+        <h3 style="font-weight: lighter;">{{ grup.nom }}</h3>
+        <p (click)="afegeixActivitat(grup)" class="ion-text-center" *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
+          <ion-icon name="add"></ion-icon>
+          Crea una activitat
+        </p>
       </ion-text>
 
-      <div *ngFor="let activity of classroom.activities">
-        <app-activity-item [activity]="activity" [color]="activity.color"></app-activity-item>
+      <div *ngFor="let activitat of grup.activitats">
+        <app-activity-item [activity]="activitat" [color]="'blue'"></app-activity-item>
       </div>
 
     </div>

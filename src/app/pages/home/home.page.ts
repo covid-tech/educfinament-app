@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/user';
 import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
-import { Organitzacio } from 'models/models';
+import { Organitzacio, User, Grup } from 'models/models';
+import { AuthService } from 'services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -14,32 +14,34 @@ export class HomePage {
   schools: any[];
   selectedSchool: any;
   automaticClose = true;
+  user: User;
+  selectedOrg: Organitzacio;
 
-  public user: User = {
-    nom: "Pepet",
-    cognoms: "Canals",
-    profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-    sent: true,
-    validated: false
-  };
+  // public user: User = {
+  //   nom: "Pepet",
+  //   cognoms: "Canals",
+  //   profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
+  //   sent: true,
+  //   validated: false
+  // };
 
   constructor(
     private http: HttpClient,
-    private orgMgrAPIClient: OrganitzacioManagerAPIClient
+    private auth: AuthService
   ) {
-    this.http.get('assets/activitats.json').subscribe(res => {
-      this.schools = res["schools"];
-      this.selectedSchool = this.schools[0];
-    });
+    // this.http.get('assets/activitats.json').subscribe(res => {
+    //   this.schools = res["schools"];
+    //   this.selectedSchool = this.schools[0];
+    // });
   }
 
   ionViewWillEnter() {
-    this.orgMgrAPIClient.getOrganitzacio(1)
-      .subscribe(
-        (organitzacio: Organitzacio) => {
-          console.log("Org: " + organitzacio);
-        }
-      );
+    this.user = this.auth.getUser();
+    
+    let orgs = this.user.organitzacions;
+    if (orgs && orgs.length > 0) {
+      this.selectedOrg = orgs[0];
+    }
   }
 
   toggleSchool(schoolIndex: number) {
@@ -79,6 +81,10 @@ export class HomePage {
 
   openActivity() {
     console.log("Open activity");
+  }
+
+  afegeixActivitat(grup: Grup) {
+    console.log('Encara no va aixo');
   }
 
 

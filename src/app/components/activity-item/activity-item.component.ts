@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Activity } from 'src/app/activity';
+import { Activitat } from 'models/models';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-activity-item',
@@ -8,21 +9,29 @@ import { Activity } from 'src/app/activity';
 })
 export class ActivityItemComponent implements OnInit {
 
-  @Input('activity') activity: Activity;
+  @Input('activity') activity: Activitat;
   @Input('max-users') maxUsers: number = 5;
   @Input('color') color: string = 'purple';
 
-  constructor() { }
+  constructor(
+    private actionSheetCtrl: ActionSheetController
+  ) { }
 
   ngOnInit() {}
 
   extraUsersText() {
-    return `+${this.activity.users.length - this.maxUsers}`;
+    return `+${this.activity.participants.length - this.maxUsers}`;
   }
   
   firstUsers() {
-    let qty = this.activity.users.length > this.maxUsers ? this.maxUsers : this.activity.users.length;
-    return this.activity.users.slice(0, qty);
+
+    if (this.activity.participants) {
+      let qty = this.activity.participants.length > this.maxUsers ? this.maxUsers : this.activity.participants.length;
+      return this.activity.participants.slice(0, qty);
+    } else {
+      return [];
+    }
+
   }
 
   getColor(color:string, transparent:boolean = false) {
@@ -40,8 +49,44 @@ export class ActivityItemComponent implements OnInit {
     }
   }
 
-  onClick() {
-    console.log('test');
+  async obreOpcions() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Albums',
+      buttons: [{
+        text: 'Delete',
+        role: 'destructive',
+        icon: 'trash',
+        handler: () => {
+          console.log('Delete clicked');
+        }
+      }, {
+        text: 'Share',
+        icon: 'share',
+        handler: () => {
+          console.log('Share clicked');
+        }
+      }, {
+        text: 'Play (open modal)',
+        icon: 'arrow-dropright-circle',
+        handler: () => {
+          console.log('Play clicked');
+        }
+      }, {
+        text: 'Favorite',
+        icon: 'heart',
+        handler: () => {
+          console.log('Favorite clicked');
+        }
+      }, {
+        text: 'Cancel',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
 }

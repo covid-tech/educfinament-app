@@ -1,5 +1,11 @@
-<div class="outter" [ngClass]="{'pending': !user.sent, 'no-validated': user.sent && !user.validated, 'validated': user.sent && user.validated, 'shadow-1': true, 'shadow-2': !user.validated && !small, 'small': small}">
-  <div class="inner" [style.background]=" user.profileImg ? 'url(' + user.profileImg + ')' : 'transparent'" [style.background-size]="'cover'">
-    <span *ngIf="!user.profileImg">{{ getStands() }}</span>
+<div class="outter" [ngClass]="{
+  'pending': !usuari.sent, 
+  'no-validated': usuari.sent && !usuari.validated, 
+  'validated': usuari.sent && usuari.validated, 
+  'shadow-1': true, 
+  'shadow-2': !usuari.validated && !small, 
+  'small': small}">
+  <div class="inner" [style.background]=" usuari.imatgePerfil ? 'url(' + usuari.imatgePerfil + ')' : 'transparent'" [style.background-size]="'cover'">
+    <span *ngIf="!usuari.imatgePerfil">{{ getStands() }}</span>
   </div>
 </div>
