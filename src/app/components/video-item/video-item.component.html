@@ -3,14 +3,14 @@
     <source [src]="videoItem.videoURL" [type]="videoItem.videoType">
     Your browser does not support HTML5 video.
   </video>
-  <ion-card-content class="ion-no-padding">
+  <ion-card-content class="ion-no-padding" *ngIf="videoItem.author || videoItem.description">
 
     <p class="ion-padding" *ngIf="videoItem.description">
       {{videoItem.description}}
     </p>
 
     <!-- Autor -->
-    <ion-item lines="none">
+    <ion-item *ngIf="videoItem.author" lines="none">
       <ion-label>
         <ion-icon name="person"></ion-icon>
          {{videoItem.author}}

@@ -60,16 +60,22 @@ export class EducfinamentVideoCapture
   private camera: Camera = new Camera();
   private videoEditor: VideoEditor = new VideoEditor();
   private cloudCredentials: any = {};
+  private isTranscodingCallback: any;
+  private isUploadingCallback: any;
 
   constructor(_cloudCredentials: any) {
     this.cloudCredentials = _cloudCredentials;
   }
 
-  public getVideoFromCamera() {
+  public getVideoFromCamera(_isTranscodingCallback: any, _isUploadingCallback: any) {
+    this.isTranscodingCallback = _isTranscodingCallback;
+    this.isUploadingCallback = _isUploadingCallback;
     return this.getVideoAndUploadToS3(this.camera.PictureSourceType.CAMERA);
   }
 
-  public getVideoFromLibrary() {
+  public getVideoFromLibrary(_isTranscodingCallback: any, _isUploadingCallback: any) {
+    this.isTranscodingCallback = _isTranscodingCallback;
+    this.isUploadingCallback = _isUploadingCallback;
     return this.getVideoAndUploadToS3(this.camera.PictureSourceType.PHOTOLIBRARY);
   }
 
@@ -91,6 +97,7 @@ export class EducfinamentVideoCapture
       let output_filename: string = (new Date().getTime()).toString() + "-" + uuid;
 
       this.camera.getPicture(options).then(video => {
+          this.isTranscodingCallback();
           this.videoEditor.transcodeVideo({
             fileUri: video,
             outputFileName: output_filename + "-video",
@@ -115,6 +122,7 @@ export class EducfinamentVideoCapture
               height: 480,
               quality: 100
             }).then((thumbnailFileUri: string) => {
+              this.isUploadingCallback();
               this.uploadFile(videoFileUri).then((videoKey: any) => {
                 this.uploadFile(thumbnailFileUri).then((thumbnailKey: any) => {
                   resolve({ videoUrl: "https://educfinament.s3-us-west-2.amazonaws.com/"+videoKey,
