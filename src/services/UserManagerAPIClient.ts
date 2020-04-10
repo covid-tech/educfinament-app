@@ -52,6 +52,8 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
 
   logout() {
     this.storage.remove('jwt');
+    this.auth.setToken(null);
+    this.auth.setUser(null);
   }
 
 }
