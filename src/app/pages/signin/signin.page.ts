@@ -4,6 +4,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthenticateRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
+import { AuthService } from 'services/auth/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,12 +21,23 @@ export class SigninPage implements OnInit {
     public loadingController: LoadingController,
     private router: Router,
     private userManagerAPIClient: UserManagerAPIClient, 
-    public alertController: AlertController
+    public alertController: AlertController,
+    private auth: AuthService
   ) {
     this.signInForm = this.createSignInForm();
   }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter() {
+    this.comprovaSessio();
+  }
+
+  async comprovaSessio() {
+    this.auth.existingSession().then(res => {
+      // if (res) this.router.navigate(['home']);
+    })
   }
 
   public doLogin() {

@@ -64,14 +64,14 @@ export class UploadStudentVideoPage implements OnInit {
     }).then((data) => {
 
       this.videoData = {
-        id: "",
+        id: 0,
         descripcio: "",
         urlVideo: data.videoUrl,
         urlThumbnail: data.thumbnailUrl,
         validat: false,
         enviatPer: null,
         dataPublicacio: new Date(),
-        activitat: "",
+        activitat: 0,
         copsVist: 0,
         visitants: ""
       };

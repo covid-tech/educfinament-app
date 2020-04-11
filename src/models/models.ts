@@ -123,6 +123,11 @@ export interface AuthenticateResponse {
   // imatgePerfil: string;
 }
 
+export interface AcceptaActivitatRequest {
+  usuari: string,
+  codiInvitacio: string
+}
+
 export interface SignUpRequest {
   username: string,
   password: string,

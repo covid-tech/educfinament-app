@@ -8,6 +8,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
 import { ColorService } from 'src/app/color.service';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomePage {
   user: User;
   organizations: Organitzacio[];
   selectedOrg: Organitzacio;
+  codiInvitacio: string;
 
   constructor(
     private auth: AuthService,
@@ -26,7 +28,8 @@ export class HomePage {
     private router: Router,
     private alertController: AlertController,
     private grupMgr: GrupManagerAPIClient,
-    private color: ColorService
+    private color: ColorService,
+    private activitatMgr: ActivitatManagerAPIClient
   ) {}
 
   ionViewWillEnter() {
@@ -134,6 +137,18 @@ export class HomePage {
 
   getColor(color: string, transparent: boolean = false) {
     return this.color.getColor(color, transparent);
+  }
+
+  acceptaInvitacio() {
+    this.activitatMgr.acceptaActivitatAmbCodi(this.user, this.codiInvitacio)
+      .subscribe(
+        res => { 
+          console.log("Resposta: ", res); 
+          this.carregaInfoUsuari();
+          this.codiInvitacio = "";
+        },
+        err => { console.log("Error: ", err); }
+      );
   }
 
 }
