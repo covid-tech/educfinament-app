@@ -24,7 +24,10 @@ const routes: Routes = [
     path: 'new-activity/:id',
     loadChildren: () => import('./pages/new-activity/new-activity.module').then( m => m.NewActivityPageModule)
   },
-
+  {
+    path: 'upload-avatar-page',
+    loadChildren: () => import('./pages/upload-avatar-page/upload-avatar.module').then( m => m.UploadAvatarPageModule)
+  }
 ];
 
 @NgModule({

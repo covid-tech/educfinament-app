@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelAvatar()">
+        Cancel·lar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Selecciona el teu avatar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="publishAvatar()">
+        Fet
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isAvatarUploaded">
+  <img [src]="avatarUrl" style="width:100%">
+</ion-content>
