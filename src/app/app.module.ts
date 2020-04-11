@@ -17,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { UploadStudentVideoPageModule } from 'pages/upload-student-video/upload-student-video.module';
+import { UploadActivityVideoPageModule } from 'pages/upload-activity-video/upload-activity-video.module';
 import { UploadAvatarPageModule } from 'pages/upload-avatar-page/upload-avatar.module';
 
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
@@ -36,6 +37,7 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     AppRoutingModule,
     HttpClientModule,
     UploadStudentVideoPageModule,
+    UploadActivityVideoPageModule,
     UploadAvatarPageModule
   ],
   providers: [

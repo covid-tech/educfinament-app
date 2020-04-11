@@ -24,14 +24,14 @@ export class ActivityPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private activitatsAPI: ActivitatManagerAPIClient,
     private router: Router,
-    // private androidPermissions: AndroidPermissionService,
+    private androidPermissions: AndroidPermissionService,
     public modalController: ModalController) {
   }
-  
-  ngOnInit() {
-    // this.androidPermissions.requestNecessaryPermissions().then(() => {
 
-    // });
+  ngOnInit() {
+    this.androidPermissions.requestNecessaryPermissions().then(() => {
+
+    });
   }
 
   ionViewDidEnter() {
@@ -70,8 +70,8 @@ export class ActivityPage implements OnInit {
         professor: this.user
       }
     };
-    
+
     this.router.navigate(['new-activity', this.activitat.id]);
   }
-  
+
 }
