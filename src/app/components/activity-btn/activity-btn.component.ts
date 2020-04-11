@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'models/models';
+import { User, Video } from 'models/models';
 
 @Component({
   selector: 'app-activity-btn',
@@ -8,7 +8,7 @@ import { User } from 'models/models';
 })
 export class ActivityBtnComponent implements OnInit {
 
-  @Input('user') usuari: User;
+  @Input('video') video: Video;
   @Input('small') small: boolean = false;
 
   constructor() { }
@@ -17,16 +17,18 @@ export class ActivityBtnComponent implements OnInit {
 
   getStands() {
 
-    let parts = this.usuari.nom.split(" ");
+    return "AA";
 
-    switch(parts.length) {
-      case 0:
-        return " ";
-      case 1:
-        return parts[0].substr(0, 2).toUpperCase();
-      case 2:
-        return parts[0].substr(0, 1).toUpperCase() + parts[1].substr(0,1).toUpperCase();
-    }
+    // let parts = this.video.enviatPer.nom.split(" ");
+
+    // switch(parts.length) {
+    //   case 0:
+    //     return " ";
+    //   case 1:
+    //     return parts[0].substr(0, 2).toUpperCase();
+    //   case 2:
+    //     return parts[0].substr(0, 1).toUpperCase() + parts[1].substr(0,1).toUpperCase();
+    // }
 
   }
 

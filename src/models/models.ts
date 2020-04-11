@@ -29,12 +29,14 @@ export interface Organitzacio {
   nom: string,
   created_at: Date,
   updated_at: Date,
-  grups: Array<Grup>
+  grups: Array<Grup>,
+  socProfessor: boolean,
 }
 
 export interface Activitat {
   id: string,
   titol: string,
+  descripcio: string,
   objectius: string,
   videos: Array<Video>,
   videoInici: Video,
@@ -43,6 +45,7 @@ export interface Activitat {
   publicada: boolean,
   color: string,
   grup: Grup,
+  socProfessor: boolean,
   imatgeVideoInici: string,
   materials: string,
   criteriAvaluacioMoltBe: string,
@@ -54,7 +57,6 @@ export interface Activitat {
   calValidacio: boolean,
   copsVista: number,
   visitants: Array<User>,
-  participants: Array<User>,
   videoFi: Video,
   codiInvitacioProfessor: string,
   codiInvitacioAlumne: string,
@@ -64,14 +66,14 @@ export interface Activitat {
 
 
 export interface Video {
-  id: string,
+  id: number,
   descripcio: string,
   urlVideo: string,
   urlThumbnail: string,
   validat: boolean,
-  enviatPer: User,
+  enviatPer: any,
   dataPublicacio: Date,
-  activitat: string,
+  activitat: number,
   copsVist: number,
   visitants: string
 }
@@ -82,7 +84,8 @@ export interface Grup {
   activitats: Array<Activitat>,
   participants: Array<User>,
   organitzacio: Organitzacio,
-  professors: User[]
+  professors: User[],
+  socProfessor?: boolean,
 }
 
 export interface Role {
