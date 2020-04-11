@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/signin/signin.module').then( m => m.SigninPageModule)
   },
   {
-    path: 'activity',
+    path: 'activity/:id',
     loadChildren: () => import('./pages/activity/activity.module').then( m => m.ActivityPageModule)
   },
   {

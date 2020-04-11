@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VideoItem } from 'models/models';
+import { VideoItem, Video } from 'models/models';
 
 @Component({
   selector: 'app-video-item',
@@ -8,24 +8,17 @@ import { VideoItem } from 'models/models';
 })
 export class VideoItemComponent implements OnInit {
 
-  @Input('video-item') videoItem: VideoItem;
-  constructor() {}
+  @Input('video') video: Video;
+  constructor() { }
 
   ngOnInit() {}
 
   getBackgroundColor() {
-    if (!this.videoItem.isAnswer) {
-      return 'secondary';
-    }
-    return this.videoItem.validated ? 'success' : 'danger';
+    return 'secondary';
   }
 
   getItemColor() {
-    if (!this.videoItem.isAnswer) {
-      return 'secondary';
-    }
-
-    return this.videoItem.validated ? 'success' : 'danger';
+    return 'secondary';
   }
 
 }

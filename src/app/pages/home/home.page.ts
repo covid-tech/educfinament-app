@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from 'src/app/user';
+import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
+import { Organitzacio, User, Grup } from 'models/models';
+import { AuthService } from 'services/auth/auth.service';
+import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,55 +13,30 @@ import { User } from 'src/app/user';
 })
 export class HomePage {
 
-  schools: any[];
-  selectedSchool: any;
-  automaticClose = true;
-
-  public user: User = {
-    nom: "Pepet",
-    cognoms: "Canals",
-    profileImg: "https://randomuser.me/api/portraits/med/women/94.jpg",
-    sent: true,
-    validated: false
-  };
+  user: User;
+  organizations: Organitzacio[];
+  selectedOrg: Organitzacio;
 
   constructor(
-    private http: HttpClient
-  ) {
-    this.http.get('assets/activitats.json').subscribe(res => {
-      this.schools = res["schools"];
-      this.selectedSchool = this.schools[0];
-    });
+    private auth: AuthService,
+    private userMgr: UserManagerAPIClient,
+    private router: Router
+  ) {}
+
+  ionViewWillEnter() {
+    this.carregaInfoUsuari();
   }
 
-  toggleSchool(schoolIndex: number) {
-    this.schools[schoolIndex].open = !this.schools[schoolIndex].open;
-
-    if (this.automaticClose && this.schools[schoolIndex].open) {
-      this.schools
-        .filter((item, itemIndex) => itemIndex != schoolIndex)
-        .map(item => this.closeSchool(item));
-    }
-
-  }
-
-  closeSchool(item) {
-    item.open = false;
-    item.classrooms.forEach(x => {
-      x.open = false;
-    });
-  }
-
-  toggleClassroom(schoolIndex: number, classroomIndex: number) {
-    this.schools[schoolIndex].classrooms[classroomIndex].open = !this.schools[schoolIndex].classrooms[classroomIndex].open;
-
-    if (this.automaticClose && this.schools[schoolIndex].classrooms[classroomIndex].open) {
-
-      this.schools[schoolIndex].classrooms
-        .filter((item, itemIndex) => itemIndex != classroomIndex)
-        .map(item => item.open = false);
-    }
-
+  async carregaInfoUsuari() {
+    this.user = this.auth.getUser();
+    this.userMgr.getInfoUsuari(this.user.id)
+      .subscribe(
+        res => {
+          this.auth.setUser(res);
+          this.organizations = res.organitzacions;
+          this.selectedOrg = this.organizations[0];
+        }
+      );
   }
 
   addStudent(ev: any) {
@@ -69,5 +48,21 @@ export class HomePage {
     console.log("Open activity");
   }
 
+  afegeixActivitat(grup: Grup) {
+    console.log('Encara no va aixo');
+  }
+
+  doLogout() {
+    this.userMgr.logout();
+    this.router.navigate(['signin']);
+  }
+
+  userImg() {
+    return this.user ? this.auth.getUserProfileImg() : null;      
+  }
+
+  creaActivitat() {
+    this.router.navigate(['new-activity']);
+  }
 
 }

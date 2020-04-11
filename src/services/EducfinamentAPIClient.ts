@@ -3,12 +3,12 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Storage } from '@ionic/storage';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { AuthService } from './auth/auth.service';
 
 @Injectable()
 export class EducfinamentAPIClient {
 
-  constructor(private http: HttpClient, public storage: Storage) {
-  }
+  constructor(public http: HttpClient, public storage: Storage) {}
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -19,7 +19,8 @@ export class EducfinamentAPIClient {
       // The response body may contain clues as to what went wrong,
       console.error(
         `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
+        `body was:`,
+        error.error) ;
     }
     // return an observable with a user-facing error message
     return throwError(

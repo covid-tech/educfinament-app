@@ -1,43 +1,47 @@
 <ion-card class="ion-no-margin">
-  <video controls preload="none" [poster]="videoItem.thumbnailURL">
-    <source [src]="videoItem.videoURL" [type]="videoItem.videoType">
+  <video controls preload="none" [poster]="video.urlThumbnail">
+    <!-- https://www.w3schools.com/html/mov_bbb.mp4 -->
+    <!-- video/mp4 -->
+    <source [src]="video.urlVideo">
     Your browser does not support HTML5 video.
   </video>
   <ion-card-content class="ion-no-padding" *ngIf="videoItem.author || videoItem.description">
 
-    <p class="ion-padding" *ngIf="videoItem.description">
-      {{videoItem.description}}
+    <p class="ion-padding" *ngIf="video.descripcio">
+      <!-- Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been... -->
+      {{video.descripcio}}
     </p>
 
     <!-- Autor -->
     <ion-item *ngIf="videoItem.author" lines="none">
       <ion-label>
         <ion-icon name="person"></ion-icon>
-         {{videoItem.author}}
+         {{video.enviatPer.nom}}
       </ion-label>
     </ion-item>
 
     <!-- Validacio -->
-    <ion-item *ngIf="videoItem.isAnswer" lines="none">
-      <ion-text
-        *ngIf="videoItem.isAnswer"
+    <!-- <ion-item *ngIf="video.isAnswer" lines="none">
+
+      <ion-text 
+        *ngIf="video.isAnswer"
         slot="start"
-        [color]="videoItem.validated ? 'success' : 'danger'">
-        <h1><ion-icon [name]="videoItem.validated ? 'checkmark-circle' : 'alert-circle' "></ion-icon></h1>
-        <p class="ion-margin-left"> &nbsp;{{ videoItem.validated ? 'VALIDAT' : 'NO VALIDAT' }}</p>
+        [color]="video.validated ? 'success' : 'danger'">
+        <h1><ion-icon [name]="video.validated ? 'checkmark-circle' : 'alert-circle' "></ion-icon></h1>
+        <p class="ion-margin-left"> &nbsp;{{ video.validated ? 'VALIDAT' : 'NO VALIDAT' }}</p>
       </ion-text>
 
       <ion-buttons slot="end">
-        <ion-button
-          *ngIf="videoItem.isAnswer"
+        <ion-button 
+          *ngIf="video.isAnswer"
           class="btn-validar"
-          (click)="videoItem.validated = !videoItem.validated"
-          [color]="videoItem.validated ? 'danger' : 'success'"
+          (click)="video.validated = !video.validated" 
+          [color]="video.validated ? 'danger' : 'success'" 
           fill="solid">
-          {{ videoItem.validated ? "DESVALIDAR" : "VALIDAR" }}
+          {{ video.validated ? "DESVALIDAR" : "VALIDAR" }}
         </ion-button>
       </ion-buttons>
-    </ion-item>
+    </ion-item> -->
 
   </ion-card-content>
 </ion-card>

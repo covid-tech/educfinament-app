@@ -1,6 +1,14 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>activity</ion-title>
+  <ion-toolbar color="light">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ activitat ? activitat.titol : 'Activitat' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        Editar
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,8 +20,33 @@
 
 <ion-content>
 
-<p *ngIf="newVideoDataString">
-  VIDEO: {{newVideoDataString}}
-</p>
+  <!-- 
+    videoProfessor: VideoItem = {
+      author: "Professor",
+      description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      validated: false,
+      videoType: "video/mp4",
+      videoURL: "https://www.w3schools.com/html/mov_bbb.mp4",
+      isAnswer: false
+    } 
+  <app-video-item 
+    [video-item]="videoAlumneNoValidat">
+  </app-video-item> -->
 
+  <app-video-item 
+    *ngIf="activitat && activitat.videoInici"
+    [video]="activitat.videoInici"></app-video-item>
+  
+  <div class="ion-margin-bottom flex-container ion-margin-horizontal" *ngIf="activitat && activitat.participants">
+    <app-activity-btn 
+      *ngFor="let user of activitat.participants"
+      [user]="user">
+    </app-activity-btn>
+  </div>
+  
+  <app-video-item 
+    *ngIf="activitat && activitat.videoFi"
+    [video]="activitat.videoFi">
+  </app-video-item>
+  
 </ion-content>

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AndroidPermissionService } from 'services/AndroidPermissionService';
-import { /*AlertController,*/ ModalController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-student-video.page';
-import { VideoItem } from 'models/models';
+import { ActivatedRoute } from '@angular/router';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
+import { Activitat, User, VideoItem } from 'models/models';
 
 @Component({
   selector: 'app-activity',
@@ -11,14 +13,37 @@ import { VideoItem } from 'models/models';
 })
 export class ActivityPage implements OnInit {
 
-  public newVideoDataString: string;
+  id: number;
+  activitat: Activitat;
 
-  constructor(private androidPermissions: AndroidPermissionService/*, private alertController: AlertController*/, public modalController: ModalController) { }
+  videoInici: VideoItem;
+  videoFi: VideoItem;
 
+  constructor(
+    private activatedRoute: ActivatedRoute, 
+    private activitatsAPI: ActivitatManagerAPIClient,
+  private androidPermissions: AndroidPermissionService,
+  public modalController: ModalController) {
+  }
+  
   ngOnInit() {
     this.androidPermissions.requestNecessaryPermissions().then(() => {
 
     });
+  }
+  
+  ionViewDidEnter() {
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.activitatsAPI.obtenirActivitat(this.id)
+      .subscribe((res: Activitat) => {
+        
+        // BORRAR: Nomes per dev
+        res.videoInici = res.videos[0];
+        res.videoFi = res.videos[0];
+        // FI BORRAR
+        
+        this.activitat = res;
+      });
   }
 
   async showModalUploadVideo() {
@@ -36,14 +61,4 @@ export class ActivityPage implements OnInit {
     }
   }
 
-/*  async showAlert(msg: string) {
-    const alert = await this.alertController.create({
-      header: 'Alert',
-      subHeader: '',
-      message: msg,
-      buttons: ['OK']
-    });
-
-    alert.present();
-  }*/
 }

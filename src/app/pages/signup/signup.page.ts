@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
 import { SigninPage } from 'pages/signin/signin.page';
 import { Router } from '@angular/router';
-import { SignUpRequest } from 'models/models';
+import { SignUpRequest, AuthenticateRequest } from 'models/models';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 
 @Component({
@@ -53,8 +53,25 @@ export class SignupPage implements OnInit {
 
     this.userManagerAPIClient.signUp(signupRequest).subscribe(
       data => {
-        this.hideLoaderIndicator();
-        // TODO: Call login API endpoint with provided email and password in the registration form, and go to the page asking for the join code.
+        
+        let signinRequest: AuthenticateRequest = {
+          user: this.signUpForm.value.email,
+          pass: this.signUpForm.value.password
+        };       
+
+        this.userManagerAPIClient.signIn(signinRequest).subscribe(
+          data => {
+            this.hideLoaderIndicator();
+            this.router.navigate(['home']);
+          },
+          err => {
+            this.hideLoaderIndicator();
+            // TODO: Verify the http response code and show the proper message
+            setTimeout(() => {
+              this.presentAlert("Error", "Hi ha hagut un problema amb l'autentificació. Intenti-ho de nou.\n" + JSON.stringify(err), () => {});
+            }, 1000);
+          }
+        );
       },
       err => {
         this.hideLoaderIndicator();
