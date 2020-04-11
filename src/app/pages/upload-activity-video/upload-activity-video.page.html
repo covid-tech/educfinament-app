@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelVideo()">
+        Cancel·lar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Selecciona el vídeo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="publishVideo()">
+        Fet
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isVideoUploaded">
+  <app-video-item [video]="videoData"></app-video-item>
+</ion-content>
