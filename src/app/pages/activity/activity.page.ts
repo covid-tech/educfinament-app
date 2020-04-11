@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-student-video.page';
 import { ActivatedRoute } from '@angular/router';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
-import { Activitat, User, Video } from 'models/models';
+import { Activitat, User, Video, VideoItem } from 'models/models';
 
 @Component({
   selector: 'app-activity',
