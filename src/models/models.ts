@@ -122,7 +122,8 @@ export interface SignUpRequest {
   password: string,
   email: string,
   nom: string,
-  cognoms: string
+  cognoms: string,
+  imatgePerfil: string
 }
 
 export interface SignUpResponse {

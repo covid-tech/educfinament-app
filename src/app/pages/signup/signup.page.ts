@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { LoadingController, NavController, AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { UploadAvatarPage } from 'pages/upload-avatar-page/upload-avatar.page';
 import { SigninPage } from 'pages/signin/signin.page';
 import { Router } from '@angular/router';
 import { SignUpRequest, AuthenticateRequest } from 'models/models';
@@ -15,14 +17,17 @@ export class SignupPage implements OnInit {
 
   public signUpForm: FormGroup;
   private loadingIndicator: any;
+  public avatarUrl: string = "../../../assets/imatges/camera_btn.jpg";
+  public isAvatarUploaded: boolean = false;
 
   constructor(
-    public formBuilder: FormBuilder, 
-    private alertController: AlertController, 
-    private router: Router, 
+    public formBuilder: FormBuilder,
+    private alertController: AlertController,
+    private router: Router,
     private loadingController: LoadingController,
     private userManagerAPIClient: UserManagerAPIClient,
     public navCtrl: NavController,
+    public modalController: ModalController
   ) {
     this.signUpForm = this.createSignUpForm();
   }
@@ -48,16 +53,17 @@ export class SignupPage implements OnInit {
       password: this.signUpForm.value.password,
       email: this.signUpForm.value.email,
       nom: this.signUpForm.value.fullname,
-      cognoms: ""
+      cognoms: "",
+      imatgePerfil: this.isAvatarUploaded ? this.avatarUrl : "https://educfinament.s3-us-west-2.amazonaws.com/avatars/default.jpg"
     };
 
     this.userManagerAPIClient.signUp(signupRequest).subscribe(
       data => {
-        
+
         let signinRequest: AuthenticateRequest = {
           user: this.signUpForm.value.email,
           pass: this.signUpForm.value.password
-        };       
+        };
 
         this.userManagerAPIClient.signIn(signinRequest).subscribe(
           data => {
@@ -83,6 +89,21 @@ export class SignupPage implements OnInit {
       }
     );
 
+  }
+
+  async selectAvatar() {
+    const modal = await this.modalController.create({
+      component: UploadAvatarPage,
+      componentProps: {}
+    });
+
+    modal.present();
+    let data: any = await modal.onWillDismiss();
+
+    if (data.data && data.data.hasOwnProperty('avatarUrl')) {
+      this.avatarUrl = data.data.avatarUrl;
+      this.isAvatarUploaded = true;
+    }
   }
 
   public goToLogin() {

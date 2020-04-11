@@ -1,19 +1,28 @@
 <ion-content class="ion-padding">
 
-<!-- <img src="../../../assets/imatges/logo_trans.png"/> -->
+  <!-- <img src="../../../assets/imatges/logo_trans.png"/> -->
   <h1 class="logo">Educfinament</h1>
 
   <ion-card class="ion-padding ion-no-margin">
     <h1 class="ion-text-center">Crea un compte</h1>
     <form [formGroup]="signUpForm" (ngSubmit)="checkAndDoRegister()" padding-right>
-      
+
       <ion-input placeholder="Nom complet" type="text" formControlName="fullname" required></ion-input>
       <ion-input placeholder="Email" type="text" formControlName="email" required></ion-input>
       <ion-input placeholder="Contrasenya" type="password" formControlName="password" required></ion-input>
 
-      <ion-label>Data de naixement</ion-label>
-      <ion-datetime value="2000-01-01T00:00:00.000Z" formControlName="birthdate" display-timezone="utc"></ion-datetime>
-      
+      <table style="width:100%">
+        <tr>
+          <td style="width:62px">
+            <img [src]="avatarUrl" (click)="selectAvatar()" style="position: unset; top: unset; bottom: unset; border-radius: 6px; margin-bottom: 10px;">
+          </td>
+          <td style="padding-left:20px">
+            <ion-label>Data de naixement</ion-label>
+            <ion-datetime value="2000-01-01T00:00:00.000Z" formControlName="birthdate" display-timezone="utc"></ion-datetime>
+          </td>
+        </tr>
+      </table>
+
       <p>
         En fer el registre, esteu acceptant els termes i condicions de l'app Educfinament que podeu consultar <a href="https://docs.google.com/document/d/1OBFqIX7usdlfhcdu1Mu9PJXxmc2odptmROV1wTtQ_PI" target="_blank">aquí</a>.
       </p>
@@ -24,5 +33,5 @@
 
     </form>
   </ion-card>
-  
+
 </ion-content>

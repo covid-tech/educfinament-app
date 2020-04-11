@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { VideoEditor } from '@ionic-native/video-editor/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
+import { Crop } from '@ionic-native/crop/ngx';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { IonicStorageModule } from '@ionic/storage';
 import { UploadStudentVideoPageModule } from 'pages/upload-student-video/upload-student-video.module';
+import { UploadAvatarPageModule } from 'pages/upload-avatar-page/upload-avatar.module';
 
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
@@ -33,7 +35,8 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
-    UploadStudentVideoPageModule
+    UploadStudentVideoPageModule,
+    UploadAvatarPageModule
   ],
   providers: [
     StatusBar,
@@ -41,6 +44,7 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     VideoEditor,
     File,
     Camera,
+    Crop,
     AndroidPermissions,
     UserManagerAPIClient,
     ActivitatManagerAPIClient,

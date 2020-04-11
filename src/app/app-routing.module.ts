@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'new-activity',
     loadChildren: () => import('./pages/new-activity/new-activity.module').then( m => m.NewActivityPageModule)
   },
+  {
+    path: 'upload-avatar-page',
+    loadChildren: () => import('./pages/upload-avatar-page/upload-avatar.module').then( m => m.UploadAvatarPageModule)
+  },
 
 ];
 
