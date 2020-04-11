@@ -13,22 +13,22 @@ ion-input, ion-datetime {
 
 h1 {
     margin-top: 0;
-    margin-bottom: 40px;
+    // margin-bottom: 40px;
     color: var(--ion-color-dark);
     font-weight: bold;
 }
 
 ion-button {
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
 ion-card {
     overflow: visible;
-    position: absolute;
-    bottom: 8px;
-    left: 8px;
-    right: 8px;
+    // position: absolute;
+    // bottom: 8px;
+    // left: 8px;
+    // right: 8px;
     border-radius: 16px;
 }
 
@@ -49,4 +49,8 @@ img {
 .logo {
     color: var(--ion-color-light);
     margin-top: 16px;
+}
+
+p {
+    margin: 0;
 }
