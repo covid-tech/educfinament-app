@@ -35,6 +35,7 @@ export class NewActivityPage implements OnInit {
         .subscribe((res: Activitat) => {
         this.activitat = res;
         this.videoIniciThumbnailUrl = this.activitat.imatgeVideoInici || "../../../assets/imatges/add_video_btn.jpg";
+        this.videoFinalThumbnailUrl = this.activitat.imatgeVideoFi || "../../../assets/imatges/add_video_btn.jpg";
       });
 
     } else {

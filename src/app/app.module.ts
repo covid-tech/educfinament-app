@@ -26,6 +26,7 @@ import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 import { TokenInterceptor } from 'services/token.interceptor';
 import { AndroidPermissionService } from 'services/AndroidPermissionService'
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
+import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
 
 @NgModule({
   declarations: [AppComponent],
@@ -52,6 +53,7 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     ActivitatManagerAPIClient,
     OrganitzacioManagerAPIClient,
     GrupManagerAPIClient,
+    VideoManagerAPIClient,
     AndroidPermissionService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
