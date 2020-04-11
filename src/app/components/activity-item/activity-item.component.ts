@@ -38,18 +38,18 @@ export class ActivityItemComponent implements OnInit {
   getColor(transparent: boolean = false) {
 
     switch (this.activity.color) {
-      case 'yellow':
+      case 'groc':
         return transparent ? 'rgba(243, 196, 79, 0.5)' : '#f3c34c';
-      case 'blue':
+      case 'turquesa':
         return transparent ? 'rgba(56, 175, 174, 0.5)' : '#38afae';
-      case 'red':
+      case 'vermell':
         return transparent ? 'rgba(239, 74, 61, 0.5)' : '#ef4a3d';
-      case 'purple':
+      case 'lila':
         return transparent ? 'rgba(127, 133, 215, 0.5)' : '#7f85d7';
-      case 'pink':
+      case 'rosa':
         return transparent ? 'rgba(239, 72, 145, 0.5)' : '#ef4891';
       default:
-        let colors = ['yellow', 'blue', 'red', 'purple', 'pink'];
+        let colors = ['groc', 'turquesa', 'vermell', 'lila', 'rosa'];
         var randomIndex = Math.floor(Math.random() * colors.length); // color aleatori
         this.activity.color = colors[randomIndex];
         return this.getColor(transparent);
