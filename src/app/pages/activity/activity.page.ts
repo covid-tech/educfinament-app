@@ -15,33 +15,32 @@ export class ActivityPage implements OnInit {
 
   id: number;
   activitat: Activitat;
-
   videoInici: VideoItem;
   videoFi: VideoItem;
 
   constructor(
-    private activatedRoute: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute,
     private activitatsAPI: ActivitatManagerAPIClient,
-  private androidPermissions: AndroidPermissionService,
-  public modalController: ModalController) {
+    private androidPermissions: AndroidPermissionService,
+    public modalController: ModalController) {
   }
-  
+
   ngOnInit() {
     this.androidPermissions.requestNecessaryPermissions().then(() => {
 
     });
   }
-  
+
   ionViewDidEnter() {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.activitatsAPI.obtenirActivitat(this.id)
       .subscribe((res: Activitat) => {
-        
+
         // BORRAR: Nomes per dev
         res.videoInici = res.videos[0];
         res.videoFi = res.videos[0];
         // FI BORRAR
-        
+
         this.activitat = res;
       });
   }
@@ -54,10 +53,9 @@ export class ActivityPage implements OnInit {
 
     modal.present();
     let data: any = await modal.onWillDismiss();
-    if(data.data.hasOwnProperty('video')) {
+    if (data.data.hasOwnProperty('video')) {
       // TODO: Call proper API endpoint to save the video data
       let videoItem: VideoItem = data.data.video;
-      this.newVideoDataString = JSON.stringify(videoItem);
     }
   }
 
