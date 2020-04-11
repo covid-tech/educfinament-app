@@ -58,7 +58,8 @@ export interface Activitat {
   videoFi: Video,
   codiInvitacioProfessor: string,
   codiInvitacioAlumne: string,
-  esPrivada: boolean
+  esPrivada: boolean,
+  professors: User[]
 }
 
 
@@ -79,7 +80,9 @@ export interface Grup {
   id: string,
   nom: string,
   activitats: Array<Activitat>,
-  participants: Array<User>
+  participants: Array<User>,
+  organitzacio: Organitzacio,
+  professors: User[]
 }
 
 export interface Role {

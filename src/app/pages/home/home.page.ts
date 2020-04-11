@@ -69,7 +69,8 @@ export class HomePage {
 
     let extras: NavigationExtras = {
       state: {
-        grup: grup
+        grup: grup,
+        professor: this.user
       }
     };
     this.router.navigate(['new-activity'], extras);
@@ -103,12 +104,17 @@ export class HomePage {
                 id: null,
                 activitats: [],
                 participants: [],
-                nom: data.nomgrup
+                nom: data.nomgrup,
+                organitzacio: this.selectedOrg,
+                professors: [this.user]
               }
 
               this.grupMgr.creaGrup(grup)
                 .subscribe(
-                  res => { console.log("RES: ", res); },
+                  res => { 
+                    console.log("Grup creat: ", res); 
+                    this.carregaInfoUsuari();
+                  },
                   err => { console.log("ERR: ", err); }
                 );
 

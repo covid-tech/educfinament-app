@@ -36,7 +36,8 @@ export class NewActivityPage implements OnInit {
     videoFi: null,
     codiInvitacioProfessor: null,
     codiInvitacioAlumne: null,
-    esPrivada: false
+    esPrivada: false,
+    professors: []
   };
 
   constructor(
@@ -45,6 +46,7 @@ export class NewActivityPage implements OnInit {
   ) {
     if (this.router.getCurrentNavigation().extras.state) {
       this.activitat.grup = this.router.getCurrentNavigation().extras.state.grup;
+      this.activitat.professors.push(this.router.getCurrentNavigation().extras.state.professor); 
     } else {
       console.log("TODO: Msg hi ha hagut un problema al obtenir les dades del grup")
     }
