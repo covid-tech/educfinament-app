@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, LoadingController, ModalController } from '@ionic/angular';
-import { VideoItem } from 'models/models';
+import { Video } from 'models/models';
 import { cloudCredentials } from 'environments/cloud.credentials.prod';
 import { EducfinamentVideoCapture } from 'classes/educfinament.video.capture.class';
 
@@ -14,7 +14,7 @@ export class UploadStudentVideoPage implements OnInit {
   public isTranscodingVideo: Boolean = false;
   public isUploadingVideo: Boolean = false;
   public isVideoUploaded: Boolean = false;
-  public videoData: VideoItem;
+  public videoData: Video;
   public videoDescription: string;
   private loadingIndicator: any;
   private videoCapture: EducfinamentVideoCapture;
@@ -28,7 +28,7 @@ export class UploadStudentVideoPage implements OnInit {
   }
 
   async publishVideo() {
-    this.videoData.description = this.videoDescription;// document.getElementById("description").nodeValue;
+    this.videoData.descripcio = this.videoDescription;// document.getElementById("description").nodeValue;
     await this.modalController.dismiss({ video: this.videoData });
   }
 
@@ -62,14 +62,18 @@ export class UploadStudentVideoPage implements OnInit {
       await this.hideLoaderIndicator();
       await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
+
       this.videoData = {
-        author: null,
-        description: "",
-        validated: false,
-        videoType: "video/mp4",
-        videoURL: data.videoUrl,
-        thumbnailURL: data.thumbnailUrl,
-        isAnswer: false
+        id: "",
+        descripcio: "",
+        urlVideo: data.videoUrl,
+        urlThumbnail: data.thumbnailUrl,
+        validat: false,
+        enviatPer: null,
+        dataPublicacio: new Date(),
+        activitat: "",
+        copsVist: 0,
+        visitants: ""
       };
 
       this.isVideoUploaded = true;
@@ -100,7 +104,7 @@ export class UploadStudentVideoPage implements OnInit {
     }
   }
 
-/*  async showAlert(msg: string) {
+  async showAlert(msg: string) {
     const alert = await this.alertController.create({
       header: 'Alert',
       subHeader: '',
@@ -109,5 +113,5 @@ export class UploadStudentVideoPage implements OnInit {
     });
 
     await alert.present();
-  }*/
+  }
 }

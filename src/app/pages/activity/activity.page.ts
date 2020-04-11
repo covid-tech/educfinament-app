@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-student-video.page';
 import { ActivatedRoute } from '@angular/router';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
-import { Activitat, User, VideoItem } from 'models/models';
+import { Activitat, User, Video } from 'models/models';
 
 @Component({
   selector: 'app-activity',
@@ -55,7 +55,7 @@ export class ActivityPage implements OnInit {
     let data: any = await modal.onWillDismiss();
     if (data.data.hasOwnProperty('video')) {
       // TODO: Call proper API endpoint to save the video data
-      let videoItem: VideoItem = data.data.video;
+      let videoItem: Video = data.data.video;
     }
   }
 
