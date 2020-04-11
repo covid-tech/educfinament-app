@@ -9,7 +9,6 @@ export interface User {
   blocked: boolean,
   role: any, // TODO: Crear model role
   nom: string,
-  cognoms: string,
   imatgePerfil: ImatgePerfil,
   organitzacions: Array<Organitzacio>
 }
