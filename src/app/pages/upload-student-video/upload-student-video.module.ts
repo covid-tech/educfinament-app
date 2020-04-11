@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 
 import { IonicModule } from '@ionic/angular';
@@ -14,7 +14,6 @@ import { UploadStudentVideoPage } from './upload-student-video.page';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule,
     SharedComponentsModule,
     UploadStudentVideoPageRoutingModule

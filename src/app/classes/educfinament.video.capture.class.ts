@@ -1,6 +1,7 @@
 import { File } from '@ionic-native/file/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { VideoEditor } from '@ionic-native/video-editor/ngx';
+import { AlertController } from '@ionic/angular';
 import * as AWS from 'aws-sdk';
 
 /*
@@ -50,21 +51,22 @@ export class UploadVideoPage {
 */
 
 interface EducfinamentVideoCaptureResult {
-    videoUrl: string;
-    thumbnailUrl: string;
+  videoUrl: string;
+  thumbnailUrl: string;
 }
 
-export class EducfinamentVideoCapture
-{
+export class EducfinamentVideoCapture {
   private file: File = new File();
   private camera: Camera = new Camera();
   private videoEditor: VideoEditor = new VideoEditor();
   private cloudCredentials: any = {};
   private isTranscodingCallback: any;
   private isUploadingCallback: any;
+  private alertController: AlertController;
 
   constructor(_cloudCredentials: any) {
     this.cloudCredentials = _cloudCredentials;
+    this.alertController = new AlertController();
   }
 
   public getVideoFromCamera(_isTranscodingCallback: any, _isUploadingCallback: any) {
@@ -97,25 +99,26 @@ export class EducfinamentVideoCapture
       let output_filename: string = (new Date().getTime()).toString() + "-" + uuid;
 
       this.camera.getPicture(options).then(video => {
-          this.isTranscodingCallback();
+        this.isTranscodingCallback();
+        this.file.resolveLocalFilesystemUrl("file://"+video).then(fileEntry => {
           this.videoEditor.transcodeVideo({
-            fileUri: video,
+            fileUri: "file://"+video,
             outputFileName: output_filename + "-video",
             outputFileType: this.videoEditor.OutputFileType.MPEG4,
             optimizeForNetworkUse: this.videoEditor.OptimizeForNetworkUse.YES,
             saveToLibrary: false,
-/*
-            maintainAspectRatio: true, // optional (ios only), defaults to true
-            width: 640, // optional, see note below on width and height
-            height: 480, // optional, see notes below on width and height
-            videoBitrate: 100, // optional, bitrate in bits, defaults to 1 megabit (1000000)
-            fps: 24, // optional (android only), defaults to 24
-            audioChannels: 2, // optional (ios only), number of audio channels, defaults to 2
-            audioSampleRate: 44100, // optional (ios only), sample rate for the audio, defaults to 44100
-            audioBitrate: 128000, // optional (ios only), audio bitrate for the video in bits, defaults to 128 kilobits (128000)*/
+
+            //            maintainAspectRatio: true, // optional (ios only), defaults to true
+            //            width: 640, // optional, see note below on width and height
+            //            height: 480, // optional, see notes below on width and height
+            //            videoBitrate: 100, // optional, bitrate in bits, defaults to 1 megabit (1000000)
+            //            fps: 24, // optional (android only), defaults to 24
+            //            audioChannels: 2, // optional (ios only), number of audio channels, defaults to 2
+            //            audioSampleRate: 44100, // optional (ios only), sample rate for the audio, defaults to 44100
+            //            audioBitrate: 128000, // optional (ios only), audio bitrate for the video in bits, defaults to 128 kilobits (128000)
           }).then((videoFileUri: string) => {
             this.videoEditor.createThumbnail({
-              fileUri: video, //fileEntry.fullPath,
+              fileUri: "file://"+video, //fileEntry.fullPath,
               outputFileName: output_filename + "-thumbnail",
               atTime: 2,
               width: 320,
@@ -125,21 +128,32 @@ export class EducfinamentVideoCapture
               this.isUploadingCallback();
               this.uploadFile(videoFileUri).then((videoKey: any) => {
                 this.uploadFile(thumbnailFileUri).then((thumbnailKey: any) => {
-                  resolve({ videoUrl: "https://educfinament.s3-us-west-2.amazonaws.com/"+videoKey,
-                            thumbnailUrl: "https://educfinament.s3-us-west-2.amazonaws.com/"+thumbnailKey});
+                  resolve({
+                    videoUrl: "https://educfinament.s3-us-west-2.amazonaws.com/" + videoKey,
+                    thumbnailUrl: "https://educfinament.s3-us-west-2.amazonaws.com/" + thumbnailKey
+                  });
                 }, (error: any) => {
+                  this.showAlert("ERROR: " + error);
                   reject(error);
                 });
               }, (error: any) => {
+                this.showAlert("ERROR: " + error);
                 reject(error);
               });
             }).catch((error: any) => {
+              this.showAlert("ERROR: " + error);
               reject(error);
             });
           }).catch((error: any) => {
+            this.showAlert("ERROR: " + error);
             reject(error);
           });
+        }).catch((error: any) => {
+          this.showAlert("ERROR: " + error);
+          reject(error);
+        });
       }, (error: any) => {
+        this.showAlert("Has de seleccionar un vídeo.");
         reject(error);
       });
     }.bind(this));
@@ -150,7 +164,7 @@ export class EducfinamentVideoCapture
       this.file.resolveLocalFilesystemUrl("file://" + filename).then(fileEntry => {
         let path: string = filename.replace(fileEntry.name, "");
 
-        this.file.readAsArrayBuffer("file://"+path, fileEntry.name)
+        this.file.readAsArrayBuffer("file://" + path, fileEntry.name)
           .then((videoData: ArrayBuffer) => {
 
             AWS.config.update(this.cloudCredentials);
@@ -163,7 +177,7 @@ export class EducfinamentVideoCapture
             };
 
             var s3 = new AWS.S3(config);
-            let key: string = "videos/"+fileEntry.name;
+            let key: string = "videos/" + fileEntry.name;
             s3.putObject({ Bucket: 'educfinament', Key: key, Body: videoData }, function(err, data) {
               if (err) {
                 reject(err);
@@ -171,7 +185,6 @@ export class EducfinamentVideoCapture
                 resolve(key);
               }
             }.bind(this));
-
           })
           .catch((error) => {
             reject(error);
@@ -180,6 +193,17 @@ export class EducfinamentVideoCapture
         reject(error);
       });
     }.bind(this));
+  }
+
+  async showAlert(msg: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: '',
+      message: msg,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }

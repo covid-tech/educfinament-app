@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { VideoItem } from 'models/models';
 import { cloudCredentials } from 'environments/cloud.credentials.prod';
 import { EducfinamentVideoCapture } from 'classes/educfinament.video.capture.class';
@@ -13,74 +11,60 @@ import { EducfinamentVideoCapture } from 'classes/educfinament.video.capture.cla
 })
 export class UploadStudentVideoPage implements OnInit {
 
-  public video: VideoItem;
   public isTranscodingVideo: Boolean = false;
   public isUploadingVideo: Boolean = false;
   public isVideoUploaded: Boolean = false;
   public videoData: VideoItem;
-  public videoForm: FormGroup;
+  public videoDescription: string;
   private loadingIndicator: any;
   private videoCapture: EducfinamentVideoCapture;
 
-  constructor(public formBuilder: FormBuilder, private route: ActivatedRoute, private alertController: AlertController, public loadingController: LoadingController) {
+  constructor(private alertController: AlertController, public loadingController: LoadingController, public modalController: ModalController) {
     this.videoCapture = new EducfinamentVideoCapture(cloudCredentials);
-    this.videoForm = this.createVideoForm();
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      switch(params["source"]) {
-        case "library": setTimeout(() => { this.getVideoFromLibrary(); }, 1000); break;
-        case "camera": setTimeout(() => { this.getVideoFromCamera(); }, 1000); break;
-      }
-    });
+    setTimeout(() => { this.showMessageAndGetVideoFromLibrary(); }, 1000);
   }
 
-  private createVideoForm() {
-    return new FormGroup({
-      description: new FormControl('', Validators.required),
-    });
+  async publishVideo() {
+    this.videoData.description = this.videoDescription;// document.getElementById("description").nodeValue;
+    await this.modalController.dismiss({ video: this.videoData });
   }
 
-  public getVideoFromCamera() {
+  async cancelVideo() {
+    await this.modalController.dismiss();
+  }
 
-    this.videoCapture.getVideoFromCamera(() => {
-      this.isTranscodingVideo = true;
-    }, ()=> {
-      this.isUploadingVideo = true;
-    }).then((data) => {
-      this.videoData = {
-        author: "Albert Nadal Garriga",
-        description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-        validated: false,
-        videoType: "video/mp4",
-        videoURL: data.videoUrl,
-        thumbnailURL: data.thumbnailUrl,
-        isAnswer: false
-      };
-      this.isTranscodingVideo = false;
-      this.isUploadingVideo = false;
-      this.isVideoUploaded = true;
-    }, (error) => {
-      this.showAlert("ERROR: " + error.message);
-      this.isTranscodingVideo = false;
-      this.isUploadingVideo = false;
+  async showMessageAndGetVideoFromLibrary() {
+    const alert = await this.alertController.create({
+      header: 'Seleccionar vídeo',
+      message: "A continuació és mostrarà la galeria de vídeos del teu dispositiu. Selecciona el vídeo que conté la resposta de l'activitat.",
+      buttons: [
+        {
+          text: 'Continuar',
+          handler: () => {
+            this.getVideoFromLibrary();
+          }
+        }
+      ]
     });
+
+    await alert.present();
   }
 
   public getVideoFromLibrary() {
-
-    this.videoCapture.getVideoFromLibrary( async () => {
+    this.videoCapture.getVideoFromLibrary(async () => {
       this.isTranscodingVideo = true;
-      this.showLoaderIndicator("Codificant vídeo...");
-    }, async ()=> {
+      await this.showLoaderIndicator("Codificant vídeo...");
+    }, async () => {
       this.isUploadingVideo = true;
       await this.hideLoaderIndicator();
-      this.showLoaderIndicator("Desant vídeo...");
+      await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
       this.videoData = {
         author: null,
-        description: null,
+        description: "",
         validated: false,
         videoType: "video/mp4",
         videoURL: data.videoUrl,
@@ -94,9 +78,10 @@ export class UploadStudentVideoPage implements OnInit {
       this.hideLoaderIndicator(1500);
     }, (error) => {
       this.hideLoaderIndicator();
-      this.showAlert("ERROR: " + error.message);
+      //this.showAlert("ERROR: " + error);
       this.isTranscodingVideo = false;
       this.isUploadingVideo = false;
+      this.cancelVideo();
     });
   }
 
@@ -108,14 +93,14 @@ export class UploadStudentVideoPage implements OnInit {
   }
 
   async hideLoaderIndicator(delay: number = 0) {
-    if(delay) {
+    if (delay) {
       setTimeout(() => { this.loadingIndicator.dismiss(); }, delay);
     } else {
       this.loadingIndicator.dismiss();
     }
   }
 
-  async showAlert(msg: string) {
+/*  async showAlert(msg: string) {
     const alert = await this.alertController.create({
       header: 'Alert',
       subHeader: '',
@@ -124,5 +109,5 @@ export class UploadStudentVideoPage implements OnInit {
     });
 
     await alert.present();
-  }
+  }*/
 }

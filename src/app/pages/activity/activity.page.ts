@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { AndroidPermissionService } from 'services/AndroidPermissionService';
+import { /*AlertController,*/ ModalController } from '@ionic/angular';
+import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-student-video.page';
+import { VideoItem } from 'models/models';
 
 @Component({
   selector: 'app-activity',
@@ -8,17 +11,39 @@ import { Router, NavigationExtras } from '@angular/router';
 })
 export class ActivityPage implements OnInit {
 
-  constructor(private router: Router) { }
+  public newVideoDataString: string;
+
+  constructor(private androidPermissions: AndroidPermissionService/*, private alertController: AlertController*/, public modalController: ModalController) { }
 
   ngOnInit() {
+    this.androidPermissions.requestNecessaryPermissions().then(() => {
+
+    });
   }
 
-  public goToUploadVideoFromLibrary() {
-    this.router.navigate(['upload-student-video'], { queryParams: { source: "library" } });
+  async showModalUploadVideo() {
+    const modal = await this.modalController.create({
+      component: UploadStudentVideoPage,
+      componentProps: {}
+    });
+
+    modal.present();
+    let data: any = await modal.onWillDismiss();
+    if(data.data.hasOwnProperty('video')) {
+      // TODO: Call proper API endpoint to save the video data
+      let videoItem: VideoItem = data.data.video;
+      this.newVideoDataString = JSON.stringify(videoItem);
+    }
   }
 
-  public goToUploadVideoFromFromCamera() {
-    this.router.navigate(['upload-student-video'], { queryParams: { source: "camera" } });
-  }
+/*  async showAlert(msg: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      subHeader: '',
+      message: msg,
+      buttons: ['OK']
+    });
 
+    alert.present();
+  }*/
 }

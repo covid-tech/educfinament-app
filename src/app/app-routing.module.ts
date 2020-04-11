@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'upload-student-video',
-    loadChildren: () => import('./upload-student-video/upload-student-video.module').then( m => m.UploadStudentVideoPageModule)
+    loadChildren: () => import('./pages/upload-student-video/upload-student-video.module').then( m => m.UploadStudentVideoPageModule)
   },
 ];
 

@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancelVideo()">
+        Cancel·lar
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Puja la teva resposta</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="publishVideo()">
+        Enviar
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isVideoUploaded">
+  <app-video-item [video-item]="videoData"></app-video-item>
+
+  <ion-item>
+    <ion-label>Descripció</ion-label>
+    <ion-textarea [(ngModel)]="videoDescription" type="text" maxlength="255" mode="ios" auto-grow="true" rows="4" clearOnEdit="false"></ion-textarea>
+  </ion-item>
+
+</ion-content>
