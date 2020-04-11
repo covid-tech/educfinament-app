@@ -24,4 +24,21 @@ export class ActivitatManagerAPIClient extends EducfinamentAPIClient {
       
   }
 
+  creaActivitat(activitat: Activitat) {
+    let url = environment.SERVER_API_URL + '/activitats';
+
+    return Observable.create(observer => {
+      this.postContentToURL(url, JSON.stringify(activitat)).subscribe(
+        (res: Activitat) => {
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }
+      )
+      
+    });
+
+  }
+
 }

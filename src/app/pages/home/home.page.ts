@@ -4,7 +4,7 @@ import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPICli
 import { Organitzacio, User, Grup } from 'models/models';
 import { AuthService } from 'services/auth/auth.service';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -61,8 +61,15 @@ export class HomePage {
     return this.user ? this.auth.getUserProfileImg() : null;      
   }
 
-  creaActivitat() {
-    this.router.navigate(['new-activity']);
+  creaActivitat(grup: Grup) {
+
+    let extras: NavigationExtras = {
+      state: {
+        grup: grup
+      }
+    };
+    this.router.navigate(['new-activity'], extras);
+
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Activitat } from 'models/models';
+import { Router } from '@angular/router';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 
 @Component({
   selector: 'app-new-activity',
@@ -37,8 +39,27 @@ export class NewActivityPage implements OnInit {
     esPrivada: false
   };
 
-  constructor() { }
+  constructor(
+    private router: Router,
+    private activityMgr: ActivitatManagerAPIClient
+  ) {
+    if (this.router.getCurrentNavigation().extras.state) {
+      this.activitat.grup = this.router.getCurrentNavigation().extras.state.grup;
+    } else {
+      console.log("TODO: Msg hi ha hagut un problema al obtenir les dades del grup")
+    }
+  }
 
   ngOnInit() {}
+
+  creaActivitat() {
+    this.activityMgr.creaActivitat(this.activitat)
+      .subscribe(
+        res => {
+          this.router.navigate(['home']);
+        },
+        err => { console.log("ERR: ", err) },
+      );
+  }
 
 }

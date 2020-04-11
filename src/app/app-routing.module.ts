@@ -16,6 +16,11 @@ const routes: Routes = [
     path: 'activity/:id',
     loadChildren: () => import('./pages/activity/activity.module').then( m => m.ActivityPageModule)
   },
+  {
+    path: 'new-activity',
+    loadChildren: () => import('./pages/new-activity/new-activity.module').then( m => m.NewActivityPageModule)
+  },
+
 ];
 
 @NgModule({
