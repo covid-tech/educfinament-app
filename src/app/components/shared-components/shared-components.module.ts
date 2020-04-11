@@ -5,8 +5,6 @@ import { VideoItemComponent } from '../video-item/video-item.component';
 import { ActivityBtnComponent } from '../activity-btn/activity-btn.component';
 import { ActivityItemComponent } from '../activity-item/activity-item.component';
 
-
-
 @NgModule({
   declarations: [
     VideoItemComponent,
