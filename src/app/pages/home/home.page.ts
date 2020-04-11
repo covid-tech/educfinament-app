@@ -7,6 +7,7 @@ import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
+import { ColorService } from 'src/app/color.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,8 @@ export class HomePage {
     private userMgr: UserManagerAPIClient,
     private router: Router,
     private alertController: AlertController,
-    private grupMgr: GrupManagerAPIClient
+    private grupMgr: GrupManagerAPIClient,
+    private color: ColorService
   ) {}
 
   ionViewWillEnter() {
@@ -128,6 +130,10 @@ export class HomePage {
     });
 
     await alert.present();
+  }
+
+  getColor(color: string, transparent: boolean = false) {
+    return this.color.getColor(color, transparent);
   }
 
 }

@@ -5,8 +5,12 @@
     </ion-buttons>
     <ion-title>{{ activitat ? activitat.titol : 'Activitat' }}</ion-title>
     <ion-buttons slot="end">
-      <ion-button fill="clear">
+      <!-- FASE 2
+      <ion-button fill="clear" *ngIf="activitat && activitat.publicada">
         Editar
+      </ion-button> -->
+      <ion-button fill="clear" *ngIf="activitat && !activitat.publicada">
+        Publicar
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -20,33 +24,65 @@
 
 <ion-content>
 
-  <!--
-    videoProfessor: VideoItem = {
-      author: "Professor",
-      description: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      validated: false,
-      videoType: "video/mp4",
-      videoURL: "https://www.w3schools.com/html/mov_bbb.mp4",
-      isAnswer: false
-    }
-  <app-video-item
-    [video-item]="videoAlumneNoValidat">
-  </app-video-item> -->
+  <ion-item (click)="mostrantDetalls = !mostrantDetalls" color="getColor">
+    <ion-label>
+      <ion-text>
+        {{ activitat ? activitat.objectius : '' }}
+      </ion-text>
+    </ion-label>
+    <ion-chip outline="true" [color]="activitat ? activitat.color : 'medium'">
+      <ion-label>Detalls</ion-label>
+      <ion-icon *ngIf="!mostrantDetalls" name="chevron-down"></ion-icon>
+      <ion-icon *ngIf="mostrantDetalls" name="chevron-up"></ion-icon>
+    </ion-chip>
+    <!-- <ion-note slot="end" color="blue">Més informació</ion-note>
+    <ion-icon *ngIf="!mostrantDetalls" slot="end" name="chevron-down"></ion-icon>
+    <ion-icon *ngIf="mostrantDetalls" slot="end" name="chevron-up"></ion-icon> -->
+  </ion-item>
+
+  <div *ngIf="mostrantDetalls">
+    <ion-item lines="none">
+      <ion-label position="stacked">Descripció</ion-label>
+      <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.descripcio" readonly></ion-textarea>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Objectius</ion-label>
+      <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.objectius" readonly></ion-textarea>
+    </ion-item>
+  
+    <ion-item lines="none">
+      <ion-label position="stacked">Materials</ion-label>
+      <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.materials" readonly></ion-textarea>
+    </ion-item>
+  
+    <ion-item>
+        <p>De - Fins</p>
+        <p>
+          <span *ngIf="activitat && activitat.dataPublicacio">{{ activitat.dataPublicacio | date:'dd/MM/yyyy' }}</span>
+          <span *ngIf="activitat && activitat.dataPublicacio && activitat.dataFinalitzacio"> - {{ activitat.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
+          <span *ngIf="activitat && !activitat.dataPublicacio && !activitat.dataFinalitzacio">No publicada</span>
+        </p>
+    </ion-item>
+  </div>
 
   <app-video-item
     *ngIf="activitat && activitat.videoInici"
-    [video]="activitat.videoInici"></app-video-item>
+    [video]="activitat.videoInici"
+    [color]="activitat.color">
+  </app-video-item>
 
-  <div class="ion-margin-bottom flex-container ion-margin-horizontal" *ngIf="activitat && activitat.participants">
+  <div class="ion-margin flex-container" *ngIf="activitat && activitat.videos">
     <app-activity-btn
-      *ngFor="let user of activitat.participants"
-      [user]="user">
+      *ngFor="let video of videos"
+      [video]="video">
     </app-activity-btn>
   </div>
 
   <app-video-item
     *ngIf="activitat && activitat.videoFi"
-    [video]="activitat.videoFi">
+    [video]="activitat.videoFi"
+    color="blue">
   </app-video-item>
 
 </ion-content>

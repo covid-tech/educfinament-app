@@ -32,12 +32,13 @@ export class NewActivityPage implements OnInit {
     calValidacio: true,
     copsVista: 0,
     visitants: [],
-    participants: [],
     videoFi: null,
     codiInvitacioProfessor: null,
     codiInvitacioAlumne: null,
     esPrivada: false,
-    professors: []
+    professors: [],
+    socProfessor: true,
+    descripcio: ""
   };
 
   constructor(
