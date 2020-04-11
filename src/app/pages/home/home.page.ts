@@ -5,6 +5,8 @@ import { Organitzacio, User, Grup } from 'models/models';
 import { AuthService } from 'services/auth/auth.service';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { Router, NavigationExtras } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +22,9 @@ export class HomePage {
   constructor(
     private auth: AuthService,
     private userMgr: UserManagerAPIClient,
-    private router: Router
+    private router: Router,
+    private alertController: AlertController,
+    private grupMgr: GrupManagerAPIClient
   ) {}
 
   ionViewWillEnter() {
@@ -70,6 +74,54 @@ export class HomePage {
     };
     this.router.navigate(['new-activity'], extras);
 
+  }
+
+  async creaGrup() {
+    const alert = await this.alertController.create({
+      header: 'Nou grup',
+      inputs: [
+        {
+          name: 'nomgrup',
+          type: 'text',
+          placeholder: 'Nom del grup'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel·la',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Crea',
+          handler: (data) => {
+
+            if(data.nomgrup) {
+              let grup: Grup = {
+                id: null,
+                activitats: [],
+                participants: [],
+                nom: data.nomgrup
+              }
+
+              this.grupMgr.creaGrup(grup)
+                .subscribe(
+                  res => { console.log("RES: ", res); },
+                  err => { console.log("ERR: ", err); }
+                );
+
+            }
+
+            console.log('Confirm Ok');
+            
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

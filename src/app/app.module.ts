@@ -22,6 +22,7 @@ import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPICli
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 import { TokenInterceptor } from 'services/token.interceptor';
 import { AndroidPermissionService } from 'services/AndroidPermissionService'
+import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +45,8 @@ import { AndroidPermissionService } from 'services/AndroidPermissionService'
     UserManagerAPIClient,
     ActivitatManagerAPIClient,
     OrganitzacioManagerAPIClient,
-  AndroidPermissionService,
+    GrupManagerAPIClient,
+    AndroidPermissionService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
