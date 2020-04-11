@@ -7,6 +7,8 @@ import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { Router, NavigationExtras } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
+import { ColorService } from 'src/app/color.service';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +20,16 @@ export class HomePage {
   user: User;
   organizations: Organitzacio[];
   selectedOrg: Organitzacio;
+  codiInvitacio: string;
 
   constructor(
     private auth: AuthService,
     private userMgr: UserManagerAPIClient,
     private router: Router,
     private alertController: AlertController,
-    private grupMgr: GrupManagerAPIClient
+    private grupMgr: GrupManagerAPIClient,
+    private color: ColorService,
+    private activitatMgr: ActivitatManagerAPIClient
   ) {}
 
   ionViewWillEnter() {
@@ -69,7 +74,8 @@ export class HomePage {
 
     let extras: NavigationExtras = {
       state: {
-        grup: grup
+        grup: grup,
+        professor: this.user
       }
     };
     this.router.navigate(['new-activity'], extras);
@@ -103,12 +109,17 @@ export class HomePage {
                 id: null,
                 activitats: [],
                 participants: [],
-                nom: data.nomgrup
+                nom: data.nomgrup,
+                organitzacio: this.selectedOrg,
+                professors: [this.user]
               }
 
               this.grupMgr.creaGrup(grup)
                 .subscribe(
-                  res => { console.log("RES: ", res); },
+                  res => { 
+                    console.log("Grup creat: ", res); 
+                    this.carregaInfoUsuari();
+                  },
                   err => { console.log("ERR: ", err); }
                 );
 
@@ -122,6 +133,22 @@ export class HomePage {
     });
 
     await alert.present();
+  }
+
+  getColor(color: string, transparent: boolean = false) {
+    return this.color.getColor(color, transparent);
+  }
+
+  acceptaInvitacio() {
+    this.activitatMgr.acceptaActivitatAmbCodi(this.user, this.codiInvitacio)
+      .subscribe(
+        res => { 
+          console.log("Resposta: ", res); 
+          this.carregaInfoUsuari();
+          this.codiInvitacio = "";
+        },
+        err => { console.log("Error: ", err); }
+      );
   }
 
 }

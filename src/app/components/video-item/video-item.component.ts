@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VideoItem, Video } from 'models/models';
+import { Video } from 'models/models';
+import { ColorService } from 'src/app/color.service';
 
 @Component({
   selector: 'app-video-item',
@@ -9,16 +10,16 @@ import { VideoItem, Video } from 'models/models';
 export class VideoItemComponent implements OnInit {
 
   @Input('video') video: Video;
-  constructor() { }
+  @Input('color') color: string;
+ 
+  constructor(
+    private colorSVC: ColorService
+  ) { }
 
   ngOnInit() {}
 
-  getBackgroundColor() {
-    return 'secondary';
-  }
-
-  getItemColor() {
-    return 'secondary';
+  getColor(color: string, transparent: boolean = false) {
+    return this.colorSVC.getColor(color, transparent);
   }
 
 }

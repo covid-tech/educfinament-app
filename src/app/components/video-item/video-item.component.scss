@@ -1,10 +1,11 @@
 video {
     width: 100%;
     height: auto;
+    color: rgb(53, 86, 140);
 }
 
 ion-card {
-    --background: #FFD65D;
+    // --background: #FFD65D;
     border-radius: 0px;
 }
 
@@ -27,4 +28,8 @@ ion-button.btn-validar {
 
 h1, p {
     display: inline-block;
+}
+
+.bar {
+    height: 5px;
 }

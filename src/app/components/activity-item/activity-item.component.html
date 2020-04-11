@@ -1,4 +1,4 @@
-<div class="back" [style.background]="'url(' + activity.imatgeVideoInici + ')'" [style.background-size]="'cover'" (click)="goToActivity()">
+<div class="back" [style.background]="activity && activity.VideoInici ? 'url(' + activity.VideoInici.urlThumbnail + ')' : 'transparent'" [style.background-size]="'cover'" (click)="goToActivity()">
   <div class="color" [style.background]="getColor(activity.color, true)">
     <div class="activity">
 
@@ -21,7 +21,7 @@
         </p>
 
         <div class="users">
-          <app-activity-btn *ngFor="let usuari of firstUsers()" [user]="usuari" small="true"></app-activity-btn>
+          <app-activity-btn *ngFor="let usuari of firstVideos()" [video]="video" small="true"></app-activity-btn>
           <div class="extra-qty" *ngIf="activity.participants && activity.participants.length && activity.participants.length > maxUsers"
             [style.color]="getColor(activity.color)">{{ extraUsersText() }}
           </div>

@@ -3,7 +3,8 @@
     <ion-title class="ion-text-left">{{  selectedOrg ? selectedOrg.nom : 'Educfinament' }}</ion-title>
 
     <ion-avatar slot="end" *ngIf="user" (click)="doLogout()">
-      <img [src]="userImg() || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'"/>
+      <img
+        [src]="userImg() || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'" />
     </ion-avatar>
 
   </ion-toolbar>
@@ -17,6 +18,22 @@
 
 <ion-content class="ion-padding-horizontal">
 
+  <!-- *ngIf="!selectedOrg || selectedOrg.grups.length == 0"  -->
+  <div class="invitacio">
+
+    <ion-text color="light">
+      <h3>Codi Invitació</h3>
+    </ion-text>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="codiInvitacio"></ion-input>
+      <ion-button (click)="acceptaInvitacio()" slot="end" fill="clear" color="yellow">
+        <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <p>Text explicatiu pendent</p>
+
+  </div>
+
   <div *ngIf="selectedOrg">
     <div *ngFor="let grup of selectedOrg.grups">
 
@@ -26,11 +43,12 @@
           <h3>{{ grup.nom }}</h3>
           <ion-button (click)="creaActivitat(grup)" slot="end" fill="clear" class="ion-no-margin">
             <ion-icon slot="icon-only" name="add"></ion-icon>
-          </ion-button>   
+          </ion-button>
         </ion-item>
 
         <!-- <h3 style="font-weight: lighter;">{{ grup.nom }}</h3> -->
-        <p (click)="afegeixActivitat(grup)" class="ion-text-center" *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
+        <p (click)="afegeixActivitat(grup)" class="ion-text-center"
+          *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
           <ion-icon name="add"></ion-icon>
           Crea una activitat
         </p>
@@ -41,11 +59,6 @@
       </div>
 
     </div>
-  </div>
-
-<div *ngIf="!selectedOrg || selectedOrg.grups.length == 0" class="invitacio">
-    <ion-label color="light">Introdueix el codi:</ion-label>
-    <ion-input type="text" placeholder="Codi d'invitació"></ion-input>
   </div>
 
 </ion-content>

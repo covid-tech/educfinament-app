@@ -17,18 +17,119 @@ export class ActivityPage implements OnInit {
   activitat: Activitat;
   videoInici: Video;
   videoFi: Video;
+  mostrantDetalls: boolean = false;
+
+  videos: Video[] = [
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+    {
+      id: 18,
+      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
+      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
+      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
+      validat: false,
+      enviatPer: 2,
+      dataPublicacio: new Date(),
+      activitat: 7,
+      copsVist: 0,
+      visitants: ""
+    },
+
+  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private activitatsAPI: ActivitatManagerAPIClient,
-    private androidPermissions: AndroidPermissionService,
+    // private androidPermissions: AndroidPermissionService,
     public modalController: ModalController) {
   }
 
   ngOnInit() {
-    this.androidPermissions.requestNecessaryPermissions().then(() => {
+    // this.androidPermissions.requestNecessaryPermissions().then(() => {
 
-    });
+    // });
   }
 
   ionViewDidEnter() {
@@ -58,5 +159,5 @@ export class ActivityPage implements OnInit {
       let videoItem: Video = data.data.video;
     }
   }
-
+  
 }

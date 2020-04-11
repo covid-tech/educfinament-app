@@ -3,22 +3,10 @@
   --color: var(--ion-color-light);
 }
 
-// Descomentar per remarcar escola seleccionada
-// .school-active {
-//   --background: var(--ion-color-success);
-//   --color: var(--ion-color-dark);
-// }
-
 .classroom {
   --background: var(--ion-color-secondary);
   --color: var(--ion-color-light);
 }
-
-// Descomentar per remarcar classe seleccionada
-// .classroom-active {
-//   --background: var(--ion-color-success);
-//   --color: var(--ion-color-dark);
-// }
 
 ion-avatar {
   border: 1px solid #EEE;
@@ -28,18 +16,30 @@ ion-avatar {
 
 .invitacio {
   background: var(--ion-color-blue);
-  margin-top: 32px;
+  margin-top: 16px;
   padding: 16px;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  text-align: center;
+  text-align: left;
   border-radius: 16px;
 
+  ion-item {
+    --background: transparent;
+  }
+
   ion-input {
-    margin-top: 16px;
     --background: var(--ion-color-light);
-    border-radius: 100px;
+    border-radius: 8px;
     --padding-start: 8px;
+  }
+
+  h3 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin: 0;
+    margin-top: 10px;
+    color: var(--ion-color-light);
   }
 
 }
