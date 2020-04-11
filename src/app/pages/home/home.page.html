@@ -10,7 +10,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab *ngIf="selectedOrg && selectedOrg.socProfessor" vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button color="light" (click)="creaGrup()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
@@ -30,7 +30,7 @@
         <ion-icon slot="icon-only" name="chevron-forward"></ion-icon>
       </ion-button>
     </ion-item>
-    <p>Text explicatiu pendent</p>
+    <p>Enganxa aquí el codi que t'ha passat el teu centre o professor per afegir la nova activitat</p>
 
   </div>
 
@@ -41,13 +41,14 @@
 
         <ion-item lines="none">
           <h3>{{ grup.nom }}</h3>
-          <ion-button (click)="creaActivitat(grup)" slot="end" fill="clear" class="ion-no-margin">
+          <ion-button
+            *ngIf="grup.socProfessor"
+           (click)="creaActivitat(grup)" slot="end" fill="clear" class="ion-no-margin">
             <ion-icon slot="icon-only" name="add"></ion-icon>
           </ion-button>
         </ion-item>
 
-        <!-- <h3 style="font-weight: lighter;">{{ grup.nom }}</h3> -->
-        <p (click)="afegeixActivitat(grup)" class="ion-text-center"
+        <p (click)="creaActivitat(grup)" class="ion-text-left ion-no-margin"
           *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
           <ion-icon name="add"></ion-icon>
           Crea una activitat
@@ -55,7 +56,7 @@
       </ion-text>
 
       <div *ngFor="let activitat of grup.activitats">
-        <app-activity-item [activity]="activitat"></app-activity-item>
+        <app-activity-item [activity]="activitat" *ngIf="activitat.socProfessor || activitat.publicada"></app-activity-item>
       </div>
 
     </div>

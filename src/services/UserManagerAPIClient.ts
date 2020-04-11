@@ -21,8 +21,6 @@ export class UserManagerAPIClient extends EducfinamentAPIClient {
       this.postContentToURL(url, JSON.stringify(data)).subscribe(
         (res: AuthenticateResponse) => {
 
-          console.log("RES", res);
-
           this.storage.set('jwt', res.jwt);
           this.storage.set('email', data.user);
           this.storage.set('password', data.pass);

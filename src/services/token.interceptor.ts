@@ -13,8 +13,6 @@ export class TokenInterceptor implements HttpInterceptor {
         // add authorization header with jwt token if available
         const currentAuthToken = this.auth.getToken();
         
-        console.log("INTERCEPT!", request.url, "TOKEN", currentAuthToken);
-
         if (currentAuthToken) {
             const headers = {
                 'Authorization': `Bearer ${currentAuthToken}`,

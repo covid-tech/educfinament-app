@@ -48,19 +48,6 @@ export class HomePage {
       );
   }
 
-  addStudent(ev: any) {
-    console.log("Add student");
-    ev.stopPropagation();
-  }
-
-  openActivity() {
-    console.log("Open activity");
-  }
-
-  afegeixActivitat(grup: Grup) {
-    console.log('Encara no va aixo');
-  }
-
   doLogout() {
     this.userMgr.logout();
     this.router.navigate(['signin']);
@@ -143,7 +130,6 @@ export class HomePage {
     this.activitatMgr.acceptaActivitatAmbCodi(this.user, this.codiInvitacio)
       .subscribe(
         res => { 
-          console.log("Resposta: ", res); 
           this.carregaInfoUsuari();
           this.codiInvitacio = "";
         },

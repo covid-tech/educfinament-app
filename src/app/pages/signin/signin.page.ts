@@ -57,7 +57,7 @@ export class SigninPage implements OnInit {
         this.hideLoaderIndicator();
         // TODO: Verify the http response code and show the proper message
         setTimeout(() => {
-          this.presentAlert("Error", "Hi ha hagut un problema amb l'autentificació. Intenti-ho de nou.\n" + JSON.stringify(err), () => {});
+          this.presentAlert("Error", "Usuari o contrasenya no vàlids.<br> Intenti-ho de nou.", () => {});
         }, 1000);
       },
       () => {
