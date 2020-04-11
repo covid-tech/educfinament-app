@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AndroidPermissionService } from 'services/AndroidPermissionService';
 import { ModalController } from '@ionic/angular';
 import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-student-video.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 import { Activitat, User, Video, VideoItem } from 'models/models';
 
@@ -17,115 +17,17 @@ export class ActivityPage implements OnInit {
   activitat: Activitat;
   videoInici: Video;
   videoFi: Video;
+  user: User;
   mostrantDetalls: boolean = false;
-
-  videos: Video[] = [
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-    {
-      id: 18,
-      descripcio: "Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been...",
-      urlVideo: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-video.mp4",
-      urlThumbnail: "https://educfinament.s3-us-west-2.amazonaws.com/videos/1586106774699-thumbnail.jpg",
-      validat: false,
-      enviatPer: 2,
-      dataPublicacio: new Date(),
-      activitat: 7,
-      copsVist: 0,
-      visitants: ""
-    },
-
-  ];
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private activitatsAPI: ActivitatManagerAPIClient,
+    private router: Router,
     // private androidPermissions: AndroidPermissionService,
     public modalController: ModalController) {
   }
-
+  
   ngOnInit() {
     // this.androidPermissions.requestNecessaryPermissions().then(() => {
 
@@ -137,10 +39,10 @@ export class ActivityPage implements OnInit {
     this.activitatsAPI.obtenirActivitat(this.id)
       .subscribe((res: Activitat) => {
 
-        // BORRAR: Nomes per dev
-        res.videoInici = res.videos[0];
-        res.videoFi = res.videos[0];
-        // FI BORRAR
+        // // BORRAR: Nomes per dev
+        // res.videoInici = res.videos[0];
+        // res.videoFi = res.videos[0];
+        // // FI BORRAR
 
         this.activitat = res;
       });
@@ -158,6 +60,18 @@ export class ActivityPage implements OnInit {
       // TODO: Call proper API endpoint to save the video data
       let videoItem: Video = data.data.video;
     }
+  }
+
+  goToEditActivity() {
+
+    let extras: NavigationExtras = {
+      state: {
+        grup: this.activitat.grup,
+        professor: this.user
+      }
+    };
+    
+    this.router.navigate(['new-activity', this.activitat.id]);
   }
   
 }

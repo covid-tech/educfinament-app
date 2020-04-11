@@ -11,17 +11,15 @@ div {
 }
 
 .outter {
-    width: 60px;
-    height: 60px;
-    // border-radius: 15px;
+    width: 70px;
+    height: 70px;
+    margin-top: 8px;
     border-radius: 50%;
-    // margin-top: 10px;
 }
 
 .inner {
-    width: 50px;
-    height: 50px;
-    // border-radius: 10px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     font-size: 20px;
     background-size: cover;
@@ -30,14 +28,13 @@ div {
 .outter.small {
     width: 30px;
     height: 30px;
-    // border-radius: 7px;
+    margin-top: 0px;
     border-radius: 50%;
 }
 
 .outter.small .inner {
     width: 27px;
     height: 27px;
-    // border-radius: 6px;
     border-radius: 50%;
     font-size: 12px;
 }

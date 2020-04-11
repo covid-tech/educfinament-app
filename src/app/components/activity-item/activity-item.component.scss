@@ -5,6 +5,16 @@
     margin-bottom: 8px;
 }
 
+.stripped {
+  background: repeating-linear-gradient(
+                    45deg,
+                    #666,
+                    #666 10px,
+                    #AAA 10px,
+                    #AAA 20px
+                    ) !important;
+}
+
 .color {
     height: 100%;
 }

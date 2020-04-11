@@ -24,7 +24,7 @@
   'shadow-1': true, 
   'shadow-2': video && !video.validat && !small, 
   'small': small}">
-  <div class="inner" [style.background]=" video.urlThumbnail ? 'url(' + video.urlThumbnail + ')' : 'transparent'" [style.background-size]="'cover'">
-    <span *ngIf="!video.urlThumbnail">{{ getStands() }}</span>
+  <div class="inner" [style.background]=" video && video.enviatPer.imatgePerfil ? 'url(' + video.enviatPer.imatgePerfil + ')' : 'transparent'" [style.background-size]="'cover'">
+    <span *ngIf="video && !video.enviatPer.imatgePerfil">{{ getStands() }}</span>
   </div>
 </div>

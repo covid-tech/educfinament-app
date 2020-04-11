@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'new-activity',
     loadChildren: () => import('./pages/new-activity/new-activity.module').then( m => m.NewActivityPageModule)
   },
+  {
+    path: 'new-activity/:id',
+    loadChildren: () => import('./pages/new-activity/new-activity.module').then( m => m.NewActivityPageModule)
+  },
 
 ];
 

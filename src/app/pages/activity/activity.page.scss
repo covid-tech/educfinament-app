@@ -1,3 +1,38 @@
 app-activity-btn {
     margin: 5px;
 }
+
+.participants-outter {
+    text-align: center;
+}
+
+.participants-inner {
+    display: inline-block;
+}
+
+.no-publicada-outer {
+    background: #f0f0f2;
+    padding: 8px;
+    border-bottom: 1px solid #DDD;
+}
+
+.no-publicada {
+    background-size: 16px;
+    --webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    background-color: #AAA;
+    background-image: repeating-linear-gradient(
+        45deg,
+        #666,
+        #666 5px,
+        #AAA 5px,
+        #AAA 10px
+        ) !important;
+}
+
+.no-publicada h1 {
+    font-family: 'Source Sans Pro', sans-serif !important;
+    font-weight: bold !important;
+    margin: 0;
+}

@@ -5,12 +5,9 @@
     </ion-buttons>
     <ion-title>{{ activitat ? activitat.titol : 'Activitat' }}</ion-title>
     <ion-buttons slot="end">
-      <!-- FASE 2
-      <ion-button fill="clear" *ngIf="activitat && activitat.publicada">
+      <!-- TODO: Mostrar boto nomes quan socProfessor: *ngIf="activitat && activitat.socProfessor" -->
+      <ion-button fill="clear" (click)="goToEditActivity()">
         Editar
-      </ion-button> -->
-      <ion-button fill="clear" *ngIf="activitat && !activitat.publicada">
-        Publicar
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,7 +21,13 @@
 
 <ion-content>
 
-  <ion-item (click)="mostrantDetalls = !mostrantDetalls" color="getColor">
+  <div class="no-publicada-outer" *ngIf="activitat && !activitat.publicada">
+    <div class="no-publicada">
+      <h1 class="ion-text-center">NO PULICADA</h1>
+    </div>
+  </div>
+
+  <ion-item (click)="mostrantDetalls = !mostrantDetalls" lines="none">
     <ion-label>
       <ion-text>
         {{ activitat ? activitat.objectius : '' }}
@@ -56,14 +59,25 @@
       <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.materials" readonly></ion-textarea>
     </ion-item>
   
-    <ion-item>
-        <p>De - Fins</p>
-        <p>
-          <span *ngIf="activitat && activitat.dataPublicacio">{{ activitat.dataPublicacio | date:'dd/MM/yyyy' }}</span>
-          <span *ngIf="activitat && activitat.dataPublicacio && activitat.dataFinalitzacio"> - {{ activitat.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
-          <span *ngIf="activitat && !activitat.dataPublicacio && !activitat.dataFinalitzacio">No publicada</span>
-        </p>
-    </ion-item>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-label position="stacked">De</ion-label>
+            <!-- TODO: Canviar el format horari i afegir hora -->
+            <ion-datetime [(ngModel)]="activitat.dataPublicacio" display-timezone="utc" readonly></ion-datetime>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none">
+            <ion-label position="stacked">Fins</ion-label>
+            <!-- TODO: Canviar el format horari i afegir hora -->
+            <ion-datetime [(ngModel)]="activitat.dataFinalitzacio" display-timezone="utc" readonly></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
   </div>
 
   <app-video-item
@@ -72,11 +86,15 @@
     [color]="activitat.color">
   </app-video-item>
 
-  <div class="ion-margin flex-container" *ngIf="activitat && activitat.videos">
-    <app-activity-btn
-      *ngFor="let video of videos"
-      [video]="video">
-    </app-activity-btn>
+  <div class="participants-outter ion-padding" *ngIf="activitat && activitat.videos">
+    <div class="participants-inner">
+
+      <app-activity-btn
+        *ngFor="let video of activitat.videos"
+        [video]="video">
+      </app-activity-btn>
+      
+    </div>
   </div>
 
   <app-video-item
