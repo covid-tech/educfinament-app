@@ -15,8 +15,8 @@ export class ActivityPage implements OnInit {
 
   id: number;
   activitat: Activitat;
-  videoInici: VideoItem;
-  videoFi: VideoItem;
+  videoInici: Video;
+  videoFi: Video;
 
   constructor(
     private activatedRoute: ActivatedRoute,
