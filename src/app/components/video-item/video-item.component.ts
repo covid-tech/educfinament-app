@@ -11,13 +11,15 @@ export class VideoItemComponent implements OnInit {
 
   @Input('video') video: Video;
   @Input('color') color: string;
+  @Input('autoplay') autoplay: boolean;
+  @Input('descripcio') descripcio: string;
  
   constructor(
     private colorSVC: ColorService
-  ) { }
-
+  ) {}
+  
   ngOnInit() {}
-
+  
   getColor(color: string, transparent: boolean = false) {
     return this.colorSVC.getColor(color, transparent);
   }

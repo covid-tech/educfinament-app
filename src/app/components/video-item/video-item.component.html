@@ -1,5 +1,5 @@
 <ion-card class="ion-no-margin" [style.background]="getColor(color, true)">
-  <video controls preload="none" [poster]="video.urlThumbnail">
+  <video controls preload="none" [poster]="video.urlThumbnail" [autoplay]="autoplay">
     <!-- https://www.w3schools.com/html/mov_bbb.mp4 -->
     <!-- video/mp4 -->
     <source [src]="video.urlVideo" type="video/mp4">
@@ -7,9 +7,9 @@
   </video>
   <ion-card-content class="ion-no-padding">
 
-    <p class="ion-padding" *ngIf="video.descripcio">
+    <p class="ion-padding" *ngIf="descripcio || video.descripcio">
       <!-- Descripció de l'activitat. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been... -->
-      {{video.descripcio}}
+      {{ descripcio ? descripcio : video.descripcio}}
     </p>
 
     <!-- Autor -->
