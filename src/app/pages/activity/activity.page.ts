@@ -8,6 +8,7 @@ import { Activitat, User, Video, VideoItem } from 'models/models';
 import { ColorService } from 'src/app/color.service';
 import { ValidacioActivitatPage } from 'components/validacio-activitat/validacio-activitat.page';
 import { AuthService } from 'services/auth/auth.service';
+import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
 
 @Component({
   selector: 'app-activity',
@@ -31,7 +32,8 @@ export class ActivityPage implements OnInit {
     private colorSVC: ColorService,
     private auth: AuthService,
     private androidPermissions: AndroidPermissionService,
-    public modalController: ModalController) {
+    public modalController: ModalController,
+    private videoMgr: VideoManagerAPIClient) {
   }
 
   ngOnInit() {
@@ -65,6 +67,14 @@ export class ActivityPage implements OnInit {
     if (data.data.hasOwnProperty('video')) {
       // TODO: Call proper API endpoint to save the video data
       let videoItem: Video = data.data.video;
+      // TODO: Fer que no calgui parseInt posant com a number les id a tot arreu
+      videoItem.activitat = parseInt(this.activitat.id);
+      this.videoMgr.modificaVideo(videoItem)
+        .subscribe(
+          res => { console.log("Funciona? ", res); },
+          err => { console.log("Error? ", err); },
+        );
+
     }
   }
 

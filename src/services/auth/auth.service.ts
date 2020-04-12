@@ -11,39 +11,52 @@ export class AuthService {
   private user: User;
   private token: string;
   
-  // private user: any = {
-  //   id: "20",
-  //   username: "sergi@correu.com",
-  //   email: "sergi@correu.com",
+  // private token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjcsImlhdCI6MTU4NjY1MTIzNywiZXhwIjoxNTg5MjQzMjM3fQ.IwwhK0VnPxxwDM0BmjD90omCCN7irwAxFJ82OB3Rgrs";
+  // private user : any = {
+  //   id: 27,
+  //   username: "alum@correu.com",
+  //   email: "alum@correu.com",
   //   provider: "local",
   //   confirmed: true,
   //   blocked: null,
-  //   role: {
-  //       id: 5,
-  //       name: "Participant",
-  //       description: "",
-  //       type: "participant"
-  //   },
-  //   nom: "Sergi Domenech Balta",
+  //   role: {id: 5, name: "Participant", description: "", type: "participant"},
+  //   nom: "Alumne Mates",
   //   dataNaixement: null,
-  //   created_at: "2020-04-10T14:59:22.719Z",
-  //   updated_at: "2020-04-10T19:24:29.522Z",
-  //   imatgePerfil: {
-  //       id: 5,
-  //       name: "logo_trans.png",
-  //       hash: "a3cea8a6f8ce41b2a40bcefb35e50bab",
-  //       sha256: "ULNZVf-ZaACNcy40oNg5cI6cGqPRGCM-GI1ho9TnkCA",
-  //       ext: ".png",
-  //       mime: "image/png",
-  //       size: 63.29,
-  //       url: "/uploads/a3cea8a6f8ce41b2a40bcefb35e50bab.png",
-  //       provider: "local",
-  //       provider_metadata: null,
-  //       created_at: "2020-04-10T16:12:01.825Z",
-  //       updated_at: "2020-04-10T16:12:01.825Z"
-  //   }
-  // };
-  // private token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImlhdCI6MTU4NjU1NDkzMiwiZXhwIjoxNTg5MTQ2OTMyfQ.2IkZwuhf5T4y5UkuDZbCM-oPWrXVh2uhbShcfFDV3Ag";
+  //   imatgePerfil: null,
+  //   created_at: "2020-04-11T17:14:09.809Z",
+  //   updated_at: "2020-04-11T17:14:09.892Z",
+  //   alumneGrups: [],
+  //   professorGrups: [],
+  //   alumneActivitats: [],
+  //   professorActivitats: [],
+  //   alumneOrganitzacions: [],
+  //   professorOrganitzacions: [],
+  // }
+
+
+  // private token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTU4NjYyOTQzNSwiZXhwIjoxNTg5MjIxNDM1fQ.DuAZfzU-b8NkCTu1gqespF7ik3cZ15k0kh0tHJfpHkE";
+
+  // private user: any = {
+  //   id: 26,
+  //   username: "profe@correu.com",
+  //   email: "profe@correu.com",
+  //   provider: "local",
+  //   confirmed: true,
+  //   blocked: null,
+  //   role: {id: 5, name: "Participant", description: "", type: "participant"},
+  //   nom: "Professor Mates",
+  //   dataNaixement: null,
+  //   imatgePerfil: null,
+  //   created_at: "2020-04-11T17:07:22.468Z",
+  //   updated_at: "2020-04-11T17:07:22.550Z",
+  //   alumneGrups: [],
+  //   professorGrups: [],
+  //   alumneActivitats: [],
+  //   professorActivitats: [],
+  //   alumneOrganitzacions: [],
+  //   professorOrganitzacions: []
+  //  };
+
 
   constructor(private storage: Storage) { }
   
@@ -77,7 +90,7 @@ export class AuthService {
   
   getUserProfileImg() {
     if (this.user.imatgePerfil) {
-      return environment.SERVER_API_URL + this.user.imatgePerfil.url;
+      return environment.SERVER_API_URL + this.user.imatgePerfil;
     } else {
       return null;
     }

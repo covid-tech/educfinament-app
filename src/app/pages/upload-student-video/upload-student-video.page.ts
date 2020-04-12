@@ -65,7 +65,7 @@ export class UploadStudentVideoPage implements OnInit {
       await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
 
-      let _videoData = {
+      let _videoData : Video = {
         id: null,
         descripcio: "",
         urlVideo: data.videoUrl,
@@ -75,7 +75,8 @@ export class UploadStudentVideoPage implements OnInit {
         dataPublicacio: new Date(),
         activitat: 0,
         copsVist: 0,
-        visitants: ""
+        visitants: "",
+        avaluacio: null
       };
 
       this.videoMgr.creaVideo(_videoData)
