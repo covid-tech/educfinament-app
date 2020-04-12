@@ -5,7 +5,7 @@ import { Organitzacio, User, Grup } from 'models/models';
 import { AuthService } from 'services/auth/auth.service';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { Router, NavigationExtras } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController } from '@ionic/angular';
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
 import { ColorService } from 'src/app/color.service';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
@@ -30,7 +30,8 @@ export class HomePage {
     private alertController: AlertController,
     private grupMgr: GrupManagerAPIClient,
     private color: ColorService,
-    private activitatMgr: ActivitatManagerAPIClient
+    private activitatMgr: ActivitatManagerAPIClient,
+    private actionSheetCtrl: ActionSheetController
   ) {}
 
   ionViewWillEnter() {
@@ -47,6 +48,30 @@ export class HomePage {
           this.selectedOrg = this.organizations[0];
         }
       );
+  }
+
+  async showUserMenu() {
+    let _user: User = this.auth.getUser();
+
+    const actionSheet = await this.actionSheetCtrl.create({
+
+      header: _user.nom || "Opcions",
+      buttons: [{
+        text: 'Tancar la sessió',
+        icon: 'exit-outline',
+        handler: () => {
+          this.doLogout();
+        }
+      },
+      {
+        text: 'Cancel·la',
+        icon: 'close',
+        role: 'cancel',
+        handler: () => {
+        }
+      }]
+    });
+    await actionSheet.present();
   }
 
   doLogout() {
