@@ -30,14 +30,14 @@ export class ActivityPage implements OnInit {
     private router: Router,
     private colorSVC: ColorService,
     private auth: AuthService,
-    // private androidPermissions: AndroidPermissionService,
+    private androidPermissions: AndroidPermissionService,
     public modalController: ModalController) {
   }
-  
-  ngOnInit() {
-    // this.androidPermissions.requestNecessaryPermissions().then(() => {
 
-    // });
+  ngOnInit() {
+    this.androidPermissions.requestNecessaryPermissions().then(() => {
+
+    });
   }
 
   ionViewDidEnter() {
@@ -45,12 +45,6 @@ export class ActivityPage implements OnInit {
     this.user = this.auth.getUser();
     this.activitatsAPI.obtenirActivitat(this.id)
       .subscribe((res: Activitat) => {
-
-        // // BORRAR: Nomes per dev
-        // res.videoInici = res.videos[0];
-        // res.videoFi = res.videos[0];
-        // // FI BORRAR
-
         this.activitat = res;
         if (this.activitat.videos) {
           let videos = this.activitat.videos.filter(x => x.enviatPer.id == this.user.id);
@@ -112,5 +106,5 @@ export class ActivityPage implements OnInit {
   getColor(color: string, transparent: boolean = false) {
     return this.colorSVC.getColor(color, transparent);
   }
-  
+
 }

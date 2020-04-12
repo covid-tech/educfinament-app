@@ -7,17 +7,16 @@ import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
 import { AuthService } from 'services/auth/auth.service';
 
 @Component({
-  selector: 'app-upload-student-video',
-  templateUrl: './upload-student-video.page.html',
-  styleUrls: ['./upload-student-video.page.scss'],
+  selector: 'app-upload-activity-video',
+  templateUrl: './upload-activity-video.page.html',
+  styleUrls: ['./upload-activity-video.page.scss'],
 })
-export class UploadStudentVideoPage implements OnInit {
+export class UploadActivityVideoPage implements OnInit {
 
   public isTranscodingVideo: Boolean = false;
   public isUploadingVideo: Boolean = false;
   public isVideoUploaded: Boolean = false;
   public videoData: Video;
-  public videoDescription: string;
   private loadingIndicator: any;
   private videoCapture: EducfinamentVideoCapture;
 
@@ -30,7 +29,6 @@ export class UploadStudentVideoPage implements OnInit {
   }
 
   async publishVideo() {
-    this.videoData.descripcio = this.videoDescription;// document.getElementById("description").nodeValue;
     await this.modalController.dismiss({ video: this.videoData });
   }
 
@@ -41,7 +39,7 @@ export class UploadStudentVideoPage implements OnInit {
   async showMessageAndGetVideoFromLibrary() {
     const alert = await this.alertController.create({
       header: 'Seleccionar vídeo',
-      message: "A continuació és mostrarà la galeria de vídeos del teu dispositiu. Selecciona el vídeo que conté la resposta de l'activitat.",
+      message: "A continuació és mostrarà la galeria de vídeos del teu dispositiu. Selecciona el vídeo per a l'activitat.",
       buttons: [
         {
           text: 'Continuar',
@@ -94,6 +92,7 @@ export class UploadStudentVideoPage implements OnInit {
             this.cancelVideo();
           },
       );
+
 
     }, (error) => {
       this.hideLoaderIndicator();

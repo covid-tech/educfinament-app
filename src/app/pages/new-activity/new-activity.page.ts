@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Activitat, User } from 'models/models';
+import { Activitat, User, Video } from 'models/models';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { UploadActivityVideoPage } from 'pages/upload-activity-video/upload-activity-video.page';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 
 @Component({
@@ -15,11 +17,15 @@ export class NewActivityPage implements OnInit {
   mostrantDetalls: boolean = false;
   user: User;
 
+  public videoIniciThumbnailUrl: string = "../../../assets/imatges/add_video_btn.jpg";
+  public videoFinalThumbnailUrl: string = "../../../assets/imatges/add_video_btn.jpg";
+
   constructor(
     private router: Router,
     private activityMgr: ActivitatManagerAPIClient,
     private activatedRoute: ActivatedRoute,
-    private activitatsAPI: ActivitatManagerAPIClient
+    private activitatsAPI: ActivitatManagerAPIClient,
+    private modalController: ModalController
   ) {
 
     this.id = this.activatedRoute.snapshot.params['id'];
@@ -28,6 +34,8 @@ export class NewActivityPage implements OnInit {
       this.activitatsAPI.obtenirActivitat(this.id)
         .subscribe((res: Activitat) => {
         this.activitat = res;
+        this.videoIniciThumbnailUrl = this.activitat.imatgeVideoInici || "../../../assets/imatges/add_video_btn.jpg";
+        this.videoFinalThumbnailUrl = this.activitat.imatgeVideoFi || "../../../assets/imatges/add_video_btn.jpg";
       });
 
     } else {
@@ -63,7 +71,7 @@ export class NewActivityPage implements OnInit {
       };
       if (this.router.getCurrentNavigation().extras.state) {
         this.activitat.grup = this.router.getCurrentNavigation().extras.state.grup;
-        this.activitat.professors.push(this.router.getCurrentNavigation().extras.state.professor); 
+        this.activitat.professors.push(this.router.getCurrentNavigation().extras.state.professor);
       } else {
         console.log("TODO: Msg hi ha hagut un problema al obtenir les dades del grup")
       }
@@ -93,6 +101,36 @@ export class NewActivityPage implements OnInit {
         );
     }
 
+  }
+
+  async showModalUploadVideoInici() {
+    const modal = await this.modalController.create({
+      component: UploadActivityVideoPage,
+      componentProps: {}
+    });
+
+    modal.present();
+    let data: any = await modal.onWillDismiss();
+    if (data.data.hasOwnProperty('video')) {
+      this.activitat.videoInici = data.data.video;
+      this.activitat.imatgeVideoInici = data.data.video.urlThumbnail;
+      this.videoIniciThumbnailUrl = data.data.video.urlThumbnail;
+    }
+  }
+
+  async showModalUploadVideoFinal() {
+    const modal = await this.modalController.create({
+      component: UploadActivityVideoPage,
+      componentProps: {}
+    });
+
+    modal.present();
+    let data: any = await modal.onWillDismiss();
+    if (data.data.hasOwnProperty('video')) {
+      this.activitat.videoFi = data.data.video;
+      this.activitat.imatgeVideoFi = data.data.video.urlThumbnail;
+      this.videoFinalThumbnailUrl = data.data.video.urlThumbnail;
+    }
   }
 
 }

@@ -33,14 +33,19 @@
       </ion-select>
     </ion-item>
 
-
     <ion-item>
-      <ion-thumbnail slot="start">
-        <img
-          src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fs3.amazonaws.com%2FFringeBucket%2Fimage_placeholder.png&f=1&nofb=1" />
-      </ion-thumbnail>
-      <ion-label position="stacked">Label</ion-label>
-      <ion-textarea></ion-textarea>
+      <table style="margin-top:20px;margin-bottom:20px;min-width:100%;">
+        <tr>
+          <td style="padding-bottom:20px">
+            <ion-label>Vídeo explicatiu de l'activitat</ion-label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img [src]="videoIniciThumbnailUrl" (click)="showModalUploadVideoInici()" style="width:100%;position: unset; top: unset; bottom: unset; border-radius: 6px; margin-bottom: 10px;">
+          </td>
+        </tr>
+      </table>
     </ion-item>
 
     <!-- <ion-item>
@@ -125,6 +130,21 @@
     </ion-grid>
   </ion-item>  -->
 
+
+    <ion-item>
+      <table style="margin-top:20px;margin-bottom:20px;min-width:100%;">
+        <tr>
+          <td style="padding-bottom:20px">
+            <ion-label>Vídeo de cloenda de l'activitat</ion-label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img [src]="videoFinalThumbnailUrl" (click)="showModalUploadVideoFinal()" style="width:100%;position: unset; top: unset; bottom: unset; border-radius: 6px; margin-bottom: 10px;">
+          </td>
+        </tr>
+      </table>
+    </ion-item>
 
     <ion-item lines="none">
       <ion-label position="floating">Observacions cloenda</ion-label>

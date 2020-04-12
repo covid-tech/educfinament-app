@@ -64,7 +64,6 @@ export interface Activitat {
   professors: User[]
 }
 
-
 export interface Video {
   id: number,
   descripcio: string,
