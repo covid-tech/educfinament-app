@@ -21,6 +21,7 @@ export class HomePage {
   organizations: Organitzacio[];
   selectedOrg: Organitzacio;
   codiInvitacio: string;
+  novaInvitacioVisible: boolean = false;
 
   constructor(
     private auth: AuthService,
@@ -135,6 +136,11 @@ export class HomePage {
         },
         err => { console.log("Error: ", err); }
       );
+  }
+
+  async doRefresh(ev: any) {
+    ev.target.complete();
+    await this.carregaInfoUsuari();
   }
 
 }
