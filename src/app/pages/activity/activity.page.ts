@@ -5,6 +5,9 @@ import { UploadStudentVideoPage } from 'pages/upload-student-video/upload-studen
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 import { Activitat, User, Video, VideoItem } from 'models/models';
+import { ColorService } from 'src/app/color.service';
+import { ValidacioActivitatPage } from 'components/validacio-activitat/validacio-activitat.page';
+import { AuthService } from 'services/auth/auth.service';
 
 @Component({
   selector: 'app-activity',
@@ -19,11 +22,14 @@ export class ActivityPage implements OnInit {
   videoFi: Video;
   user: User;
   mostrantDetalls: boolean = false;
+  videoUsuari: Video;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private activitatsAPI: ActivitatManagerAPIClient,
     private router: Router,
+    private colorSVC: ColorService,
+    private auth: AuthService,
     private androidPermissions: AndroidPermissionService,
     public modalController: ModalController) {
   }
@@ -36,15 +42,15 @@ export class ActivityPage implements OnInit {
 
   ionViewDidEnter() {
     this.id = this.activatedRoute.snapshot.params['id'];
+    this.user = this.auth.getUser();
     this.activitatsAPI.obtenirActivitat(this.id)
       .subscribe((res: Activitat) => {
-
-        // // BORRAR: Nomes per dev
-        // res.videoInici = res.videos[0];
-        // res.videoFi = res.videos[0];
-        // // FI BORRAR
-
         this.activitat = res;
+        if (this.activitat.videos) {
+          let videos = this.activitat.videos.filter(x => x.enviatPer.id == this.user.id);
+          if (videos.length > 0) this.videoUsuari = videos[0];
+        }
+
       });
   }
 
@@ -62,6 +68,28 @@ export class ActivityPage implements OnInit {
     }
   }
 
+  async showModalValidaActivitat(video: Video, activitat: Activitat) {
+    
+    console.log("video", video);
+    console.log("activitat", activitat);
+
+    const modal = await this.modalController.create({
+      component: ValidacioActivitatPage,
+      componentProps: {
+        video: video,
+        activitat: activitat
+      }
+    });
+    modal.present();
+    
+    let { data }: any = await modal.onWillDismiss();
+    if (data && data.hasOwnProperty('video')) {
+      let index = this.activitat.videos.indexOf(video);
+      this.activitat.videos[index] = data.video;
+    }
+    
+  }
+
   goToEditActivity() {
 
     let extras: NavigationExtras = {
@@ -70,8 +98,13 @@ export class ActivityPage implements OnInit {
         professor: this.user
       }
     };
+    
+    this.router.navigate(['new-activity', this.activitat.id], extras);
+  }
 
-    this.router.navigate(['new-activity', this.activitat.id]);
+  
+  getColor(color: string, transparent: boolean = false) {
+    return this.colorSVC.getColor(color, transparent);
   }
 
 }

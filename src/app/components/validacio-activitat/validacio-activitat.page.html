@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Validació</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+  <app-video-item *ngIf="video" autoplay="true" [video]="video" [color]="activitat ? activitat.color : 'blue'">
+  </app-video-item>
+
+  <div *ngIf="activitat.socProfe">
+    <p class="ion-padding-horizontal">Toca per avaluar l'activitat</p>
+    <ion-item lines="none">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6" class="bg-moltbe" [ngClass]="{'selected': video.avaluacio == 1}">
+            <ion-label position="stacked">Molt bé</ion-label>
+            <ion-textarea readonly (click)="avalua(1)" [ngModel]="activitat.criteriAvaluacioMoltBe"></ion-textarea>
+          </ion-col>
+          <ion-col size="6" class="bg-be" [ngClass]="{'selected': video.avaluacio == 2}">
+            <ion-label position="stacked">Bé</ion-label>
+            <ion-textarea readonly (click)="avalua(2)" [ngModel]="activitat.criteriAvaluacioBe"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6" class="bg-fluix" [ngClass]="{'selected': video.avaluacio == 3}">
+            <ion-label position="stacked">Fluix</ion-label>
+            <ion-textarea readonly (click)="avalua(3)" [ngModel]="activitat.criteriAvaluacioFluix"></ion-textarea>
+          </ion-col>
+          <ion-col size="6" class="bg-noassolit" [ngClass]="{'selected': video.avaluacio == 4}">
+            <ion-label position="stacked">No assolit</ion-label>
+            <ion-textarea readonly (click)="avalua(4)" [ngModel]="activitat.criteriAvaluacioNoAssolit"></ion-textarea>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-button (click)="guarda()" expand="full" fill="outline" shape="round" color="success" class="ion-margin">
+      {{ activitat.calValidacio ? 'Validar' : 'Confirmar' }}
+    </ion-button>
+  </div>
+
+
+</ion-content>

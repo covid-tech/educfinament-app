@@ -87,7 +87,7 @@ export class NewActivityPage implements OnInit {
       this.activityMgr.modificaActivitat(this.activitat)
         .subscribe(
           res => {
-            this.router.navigate(['home']);
+            this.router.navigate(['activity', this.activitat.id]);
           },
           err => { console.log("ERR: ", err) },
         );

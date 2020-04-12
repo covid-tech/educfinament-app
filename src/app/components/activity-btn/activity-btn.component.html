@@ -19,10 +19,10 @@
 -->
 
 <div class="outter" [ngClass]="{
-  'no-validated': video && !video.validat, 
-  'validated': video && video.validat, 
+  'no-validated': video && needValidation && !video.validat, 
+  'validated': video && needValidation && video.validat, 
   'shadow-1': true, 
-  'shadow-2': video && !video.validat && !small, 
+  'shadow-2': video && needValidation && !video.validat && !small, 
   'small': small}">
   <div class="inner" [style.background]=" video && video.enviatPer.imatgePerfil ? 'url(' + video.enviatPer.imatgePerfil + ')' : 'transparent'" [style.background-size]="'cover'">
     <span *ngIf="video && !video.enviatPer.imatgePerfil">{{ getStands() }}</span>

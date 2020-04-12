@@ -1,8 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Activitat } from 'models/models';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ColorService } from 'src/app/color.service';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+
 
 @Component({
   selector: 'app-activity-item',
@@ -17,7 +19,9 @@ export class ActivityItemComponent implements OnInit {
   constructor(
     private actionSheetCtrl: ActionSheetController,
     private router: Router,
-    private colorSVC: ColorService
+    private colorSVC: ColorService,
+    private clipboard: Clipboard,
+    private toast: ToastController
   ) { }
 
   ngOnInit() { }
@@ -46,18 +50,29 @@ export class ActivityItemComponent implements OnInit {
       buttons: [{
         text: 'Elimina',
         role: 'destructive',
-        // icon: 'trash',
+        icon: 'trash',
         handler: () => {
           console.log('Delete clicked');
         }
       }, {
-        text: 'Compartir activitat',
-        // icon: 'share',
+        text: 'Compartir activitat a professor',
+        icon: 'barcode',
         handler: () => {
-          console.log('Share clicked');
+          this.clipboard.copy(this.activity.codiInvitacioProfessor);
+          this.presentToast('Codi copiat. Comparteix-lo amb els professors.');
         }
-      }, {
+      },
+      {
+        text: 'Compartir activitat a alumne',
+        icon: 'barcode',
+        handler: () => {
+          this.clipboard.copy(this.activity.codiInvitacioAlumne);
+          this.presentToast('Codi copiat. Comparteix-lo amb els alumnes.');
+        }
+      },
+      {
         text: 'Cancel·la',
+        icon: 'close',
         role: 'cancel',
         handler: () => {
           console.log('Cancel clicked');
@@ -74,5 +89,14 @@ export class ActivityItemComponent implements OnInit {
   getColor(color: string, transparent: boolean = false) {
     return this.colorSVC.getColor(color, transparent);
   }
+
+  async presentToast(text:string) {
+    const toast = await this.toast.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
+  }
+
 
 }

@@ -27,7 +27,12 @@ const routes: Routes = [
   {
     path: 'upload-avatar-page',
     loadChildren: () => import('./pages/upload-avatar-page/upload-avatar.module').then( m => m.UploadAvatarPageModule)
+  },
+  {
+    path: 'validacio-activitat',
+    loadChildren: () => import('./components/validacio-activitat/validacio-activitat.module').then( m => m.ValidacioActivitatPageModule)
   }
+
 ];
 
 @NgModule({

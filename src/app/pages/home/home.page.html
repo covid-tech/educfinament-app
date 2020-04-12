@@ -2,23 +2,37 @@
   <ion-toolbar>
     <ion-title class="ion-text-left">{{  selectedOrg ? selectedOrg.nom : 'Educfinament' }}</ion-title>
 
-    <ion-avatar slot="end" *ngIf="user" (click)="doLogout()" style="margin-right:10px;">
+    <ion-avatar slot="end" *ngIf="user" (click)="doLogout()" class="ion-margin-end">
       <img [src]="userImg() || 'https://educfinament.s3-us-west-2.amazonaws.com/avatars/default.jpg'"/>
     </ion-avatar>
 
   </ion-toolbar>
 </ion-header>
 
-<ion-fab *ngIf="selectedOrg && selectedOrg.socProfessor" vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab *ngIf="selectedOrg && !selectedOrg.socProfessor" vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button color="light" (click)="creaGrup()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
 
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="selectedOrg && selectedOrg.socProfessor">
+  <ion-fab-button color="light">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button (click)="novaInvitacioVisible = true"><ion-icon name="barcode"></ion-icon></ion-fab-button>
+    <ion-fab-button (click)="creaGrup()"><ion-icon name="add"></ion-icon></ion-fab-button>
+  </ion-fab-list>
+</ion-fab>
+
 <ion-content class="ion-padding-horizontal">
 
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <!-- *ngIf="!selectedOrg || selectedOrg.grups.length == 0"  -->
-  <div class="invitacio">
+  <!-- <div class="invitacio" *ngIf="!selectedOrg || selectedOrg.grups.length == 0 || novaInvitacioVisible">
 
     <ion-text color="light">
       <h3>Codi Invitació</h3>
@@ -31,7 +45,7 @@
     </ion-item>
     <p>Enganxa aquí el codi que t'ha passat el teu centre o professor per afegir la nova activitat</p>
 
-  </div>
+  </div> -->
 
   <div *ngIf="selectedOrg">
     <div *ngFor="let grup of selectedOrg.grups">

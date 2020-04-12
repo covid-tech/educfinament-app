@@ -21,7 +21,7 @@
         </p>
 
         <div class="users">
-          <app-activity-btn *ngFor="let video of firstVideos()" [video]="video" small="true"></app-activity-btn>
+          <app-activity-btn *ngFor="let video of firstVideos()" [video]="video" small="true" [needValidation]="activity && activity.calValidacio"></app-activity-btn>
           <div class="extra-qty" *ngIf="activity.videos && activity.videos.length && activity.videos.length > maxUsers"
             [style.color]="getColor(activity.color)">{{ extraUsersText() }}
           </div>

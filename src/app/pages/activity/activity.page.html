@@ -5,15 +5,14 @@
     </ion-buttons>
     <ion-title>{{ activitat ? activitat.titol : 'Activitat' }}</ion-title>
     <ion-buttons slot="end">
-      <!-- TODO: Mostrar boto nomes quan socProfessor: *ngIf="activitat && activitat.socProfessor" -->
-      <ion-button fill="clear" (click)="goToEditActivity()">
+      <ion-button fill="clear" (click)="goToEditActivity()" *ngIf="activitat && activitat.socProfessor">
         Editar
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="activitat && !activitat.socProfessor && !videoUsuari">
   <ion-fab-button color="light" (click)="showModalUploadVideo()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
@@ -27,10 +26,10 @@
     </div>
   </div>
 
-  <ion-item (click)="mostrantDetalls = !mostrantDetalls" lines="none">
+  <ion-item (click)="mostrantDetalls = !mostrantDetalls" lines="none" *ngIf="activitat">
     <ion-label>
       <ion-text>
-        {{ activitat ? activitat.objectius : '' }}
+        {{ activitat && !mostrantDetalls ? activitat.objectius : '' }}
       </ion-text>
     </ion-label>
     <ion-chip outline="true" [color]="activitat ? activitat.color : 'medium'">
@@ -44,11 +43,7 @@
   </ion-item>
 
   <div *ngIf="mostrantDetalls">
-    <ion-item lines="none">
-      <ion-label position="stacked">Descripció</ion-label>
-      <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.descripcio" readonly></ion-textarea>
-    </ion-item>
-  
+
     <ion-item lines="none">
       <ion-label position="stacked">Objectius</ion-label>
       <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.objectius" readonly></ion-textarea>
@@ -82,19 +77,34 @@
 
   <app-video-item
     *ngIf="activitat && activitat.videoInici"
+    [descripcio]="activitat.descripcio"
     [video]="activitat.videoInici"
     [color]="activitat.color">
   </app-video-item>
 
   <div class="participants-outter ion-padding" *ngIf="activitat && activitat.videos">
-    <div class="participants-inner">
+    <div class="participants-inner" *ngIf="activitat && (activitat.socProfessor || !activitat.esPrivada)">
 
-      <app-activity-btn
-        *ngFor="let video of activitat.videos"
-        [video]="video">
-      </app-activity-btn>
+      <span *ngFor="let video of activitat.videos">
+        <app-activity-btn
+          *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
+          (click)="showModalValidaActivitat(video, activitat)"
+          [video]="video"
+          [needValidation]="activitat.calValidar">
+        </app-activity-btn>
+      </span>
       
     </div>
+
+    <div class="participants-inner" *ngIf="activitat && activitat.esPrivada && !activitat.socProfessor && videoUsuari">
+      <app-activity-btn
+          *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
+          (click)="showModalValidaActivitat(videoUsuari, activitat)"
+          [video]="videoUsuari"
+          [needValidation]="activitat.calValidar">
+        </app-activity-btn>
+    </div>
+
   </div>
 
   <app-video-item

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
-import { Video } from 'models/models';
+import { Activitat, User, AcceptaActivitatRequest, Video } from 'models/models';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -12,14 +12,14 @@ export class VideoManagerAPIClient extends EducfinamentAPIClient {
     let url = environment.SERVER_API_URL + "/videos/" + id;
 
     return Observable.create(observer => {
-        this.getContentFromURL(url).subscribe(
-            (res: Video) => {
-                observer.next(res);
-                observer.complete();
-            }, err => {
-                observer.error(err);
-            }
-        );
+      this.getContentFromURL(url).subscribe(
+        (res: Video) => {
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }
+      );
     });
 
   }
@@ -37,6 +37,22 @@ export class VideoManagerAPIClient extends EducfinamentAPIClient {
         }
       )
 
+    });
+
+  }
+
+  modificaVideo(video: Video) {
+
+    let url = environment.SERVER_API_URL + '/videos/' + video.id;
+    return Observable.create(observer => {
+      this.putContentToURL(url, JSON.stringify(video)).subscribe(
+        (res: Activitat) => {
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }
+      );
     });
 
   }
