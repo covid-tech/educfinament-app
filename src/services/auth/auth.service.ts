@@ -35,7 +35,6 @@ export class AuthService {
 
 
   // private token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTU4NjYyOTQzNSwiZXhwIjoxNTg5MjIxNDM1fQ.DuAZfzU-b8NkCTu1gqespF7ik3cZ15k0kh0tHJfpHkE";
-
   // private user: any = {
   //   id: 26,
   //   username: "profe@correu.com",
@@ -59,41 +58,55 @@ export class AuthService {
 
 
   constructor(private storage: Storage) { }
-  
+
   getUser() {
     return this.user;
   }
-  
-  setUser(user: any) {  
+
+  setUser(user: any) {
     this.user = user;
   }
-  
+
   getToken() {
     return this.token;
   }
-  
+
   setToken(jwt: string) {
     this.token = jwt;
   }
 
-  existingSession() {
+  public existingSession() {
     return new Promise((resolve, reject) => {
-      if (this.token) {
-        resolve(true);
-      } else {
-        this.storage.get('jwt').then(res => {
-          resolve(res != null);
-        })
-      }
+
+      this.storage.get('jwt').then(res => {
+        resolve(res != null);
+      })
+
     });
   }
-  
-  getUserProfileImg() {
-    if (this.user.imatgePerfil) {
-      return environment.SERVER_API_URL + this.user.imatgePerfil;
-    } else {
-      return null;
-    }
+
+  public getSessionCredentials() {
+    return new Promise((resolve, reject) => {
+
+      this.storage.get('email').then(_email => {
+        if (_email == null) {
+          reject();
+        } else {
+          this.storage.get('password').then(_password => {
+            if (_password == null) {
+              reject();
+            } else {
+              resolve({ email: _email, password: _password });
+            }
+          });
+        }
+      });
+
+    });
+  }
+
+  public getUserProfileImg() {
+    return (this.user.imatgePerfil || "https://educfinament.s3-us-west-2.amazonaws.com/avatars/default.jpg");
   }
 
 }

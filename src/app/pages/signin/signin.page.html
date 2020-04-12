@@ -1,18 +1,18 @@
 <ion-content class="ion-padding">
-  
+
   <div class="content">
     <img src="../../../assets/imatges/logo_trans.png"/>
-    <ion-card class="ion-padding ion-no-margin">
+    <ion-card class="ion-padding ion-no-margin" *ngIf="!isPerformingAutologin">
       <h1 class="ion-text-center">Inicia sessió</h1>
       <form [formGroup]="signInForm" (ngSubmit)="doLogin()" padding-right>
-  
+
         <ion-input type="text" formControlName="email" placeholder="Correu electrònic" required></ion-input>
         <ion-input type="password" formControlName="password" placeholder="Contrasenya" required></ion-input>
-    
+
         <ion-button color="pink" expand="block" [disabled]="!signInForm.valid" type="submit" shape="round">Entrar</ion-button>
-  
+
         <p class="ion-text-center">Encara no tens compte?<a (click)="goToSignup()"> Crea'n un</a></p>
-  
+
       </form>
     </ion-card>
   </div>
