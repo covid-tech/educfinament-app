@@ -45,6 +45,7 @@ export class ValidacioActivitatPage implements OnInit {
             });
           }
         );
+        
     }
 
   }

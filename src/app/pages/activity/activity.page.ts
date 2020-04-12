@@ -80,16 +80,16 @@ export class ActivityPage implements OnInit {
     }
   }
 
-  async showModalValidaActivitat(video: Video, activitat: Activitat) {
+  async showModalValidaActivitat(video: Video) {
     
-    console.log("video", video);
-    console.log("activitat", activitat);
+    console.log("video: ", video);
+    console.log("activitat: ", this.activitat);
 
     const modal = await this.modalController.create({
       component: ValidacioActivitatPage,
       componentProps: {
         video: video,
-        activitat: activitat
+        activitat: this.activitat
       }
     });
     modal.present();
@@ -121,13 +121,11 @@ export class ActivityPage implements OnInit {
 
   respostesFiltrades() {
     let videos = this.filtreRespostes.obtenirRespostesFiltrades(this.activitat);
-    console.log("videos filtrats", videos);
     return videos;
   }
 
   necessitaValidacio(video: Video) {
     let validacio = this.filtreRespostes.calValidacio(video, this.activitat);
-    console.log("necessita validacio", validacio);
     return validacio;
   }
 

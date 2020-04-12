@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar [color]=" activitat ? activitat.color : 'light'">
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -26,13 +26,13 @@
     </div>
   </div>
 
-  <ion-item (click)="mostrantDetalls = !mostrantDetalls" lines="none" *ngIf="activitat">
+  <ion-item (click)="mostrantDetalls = !mostrantDetalls" lines="none" *ngIf="activitat" class="item-transparent" [ngStyle]="{'background': getColor(activitat.color, true) }">
     <ion-label>
       <ion-text>
         {{ activitat && !mostrantDetalls ? activitat.objectius : '' }}
       </ion-text>
     </ion-label>
-    <ion-chip outline="true" [color]="activitat ? activitat.color : 'medium'">
+    <ion-chip outline="true" color="dark">
       <ion-label>Detalls</ion-label>
       <ion-icon *ngIf="!mostrantDetalls" name="chevron-down"></ion-icon>
       <ion-icon *ngIf="mostrantDetalls" name="chevron-up"></ion-icon>
@@ -84,41 +84,13 @@
 
       <span *ngFor="let video of respostesFiltrades()">
         <app-activity-btn
-          (click)="showModalValidaActivitat(video, activitat)" [video]="video"
+          (click)="showModalValidaActivitat(video)" [video]="video"
           [needValidation]="necessitaValidacio(video)">
         </app-activity-btn>
       </span>
 
     </div>
   </div>
-
-
-  <!-- *ngIf="activitat && (activitat.socProfessor || !activitat.esPrivada)" -->
-  <!-- <div class="participants-outter ion-padding" *ngIf="activitat && activitat.videos">
-    <div class="participants-inner">
-
-      <span *ngFor="let video of activitat.videos">
-        <app-activity-btn
-          *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
-          (click)="showModalValidaActivitat(video, activitat)"
-          [video]="video"
-          [needValidation]="activitat.calValidacio && (activitat.socProfessor || video.enviatPer.id == user.id)">
-        </app-activity-btn>
-      </span>
-      
-    </div> -->
-
-  <!-- <div class="participants-inner" *ngIf="activitat && activitat.esPrivada && !activitat.socProfessor && videoUsuari">
-      <app-activity-btn
-          *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
-          (click)="showModalValidaActivitat(videoUsuari, activitat)"
-          [video]="videoUsuari"
-          [needValidation]="activitat.calValidacio">
-        </app-activity-btn>
-    </div> 
-
-  </div>
-  -->
 
   <app-video-item *ngIf="activitat && activitat.videoFi" [video]="activitat.videoFi" color="blue">
   </app-video-item>

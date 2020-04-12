@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Activitat } from 'models/models';
+import { Activitat, Video } from 'models/models';
 import { ActionSheetController, ModalController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ColorService } from 'src/app/color.service';
@@ -16,6 +16,7 @@ export class ActivityItemComponent implements OnInit {
 
   @Input('activity') activity: Activitat;
   @Input('max-videos') maxVideos: number = 5;
+  videos: Video[] = [];
 
   constructor(
     private actionSheetCtrl: ActionSheetController,
@@ -33,9 +34,9 @@ export class ActivityItemComponent implements OnInit {
   }
 
   firstVideos() {
-    let videos = this.filtreRespostes.obtenirRespostesFiltrades(this.activity);
-    let quantitat = videos.length > this.maxVideos ? this.maxVideos : videos.length;
-    return this.activity.videos.slice(0, quantitat);
+    this.videos = this.filtreRespostes.obtenirRespostesFiltrades(this.activity);
+    let quantitat = this.videos.length > this.maxVideos ? this.maxVideos : this.videos.length;
+    return this.videos.slice(0, quantitat);
   }
 
   async obreOpcions(ev) {

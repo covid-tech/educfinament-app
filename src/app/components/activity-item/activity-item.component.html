@@ -28,10 +28,10 @@
         <div class="users">
           <app-activity-btn *ngFor="let video of firstVideos()" [video]="video" small="true" [needValidation]="false">
           </app-activity-btn>
-          <div class="extra-qty" *ngIf="activity && activity.videos && activity.videos.length > maxVideos" 
+          <div class="extra-qty" *ngIf="videos && videos.length > maxVideos" 
             [style.color]="getColor(activity.color)">{{ extraUsersText() }}
           </div>
-          <p class="no-users" *ngIf="!activity.videos || activity.videos.length < 1">Encara no hi ha participants</p>
+          <p class="no-users" *ngIf="!videos || videos.length < 1">Encara no hi ha participants</p>
         </div>
       </div>
 

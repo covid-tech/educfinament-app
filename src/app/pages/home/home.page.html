@@ -67,12 +67,11 @@
           </ion-button>
         </ion-item>
 
-        <p (click)="creaActivitat(grup)" class="ion-text-left ion-no-margin"
-          *ngIf="grup.activitats && grup.activitats.length < 1" style="font-weight: lighter;">
-          <ion-icon name="add"></ion-icon>
-          Crea una activitat
-        </p>
-      </ion-text>
+        <div *ngIf="(grup && grup.activitats.length < 1)" class="ion-text-center">
+          <p class="ion-no-margin">No hi ha activitats</p>
+        </div>
+
+      </ion-text> 
 
       <div *ngFor="let activitat of grup.activitats">
         <app-activity-item [activity]="activitat" *ngIf="activitat.socProfessor || activitat.publicada"></app-activity-item>

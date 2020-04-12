@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Validació</ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button (click)="closeModal()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title>Validació</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
   <app-video-item *ngIf="video" autoplay="true" [video]="video" [color]="activitat ? activitat.color : 'blue'">
   </app-video-item>
 
-  <div *ngIf="activitat.socProfe">
+  <div *ngIf="activitat.socProfessor">
     <p class="ion-padding-horizontal">Toca per avaluar l'activitat</p>
     <ion-item lines="none">
       <ion-grid>
