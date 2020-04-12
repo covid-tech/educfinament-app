@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
-import { Activitat, User, AcceptaActivitatRequest, Video } from 'models/models';
+import { Activitat, User, AcceptaActivitatRequest, Video, VisitaAActivitatRequest } from 'models/models';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -95,6 +95,28 @@ export class ActivitatManagerAPIClient extends EducfinamentAPIClient {
           }
         );
     })
+
+  }
+
+  registraVisita(user: User, activitat: Activitat) {
+
+    let url = environment.SERVER_API_URL + '/activitats/' + activitat.id + '/visites';
+
+    let req : VisitaAActivitatRequest = { 
+      usuari: parseInt(user.id), 
+      activitat: parseInt(activitat.id) 
+    }
+
+    return Observable.create(observer => {
+      this.postContentToURL(url, JSON.stringify(req)).subscribe(
+        (res) => {
+          observer.next(res);
+          observer.complete();
+        }, err => {
+          observer.error(err);
+        }
+      );
+    });
 
   }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
-import { Activitat, User, AcceptaActivitatRequest, Video, VisitaRequest } from 'models/models';
+import { Activitat, User, Video, VisitaAVideoRequest } from 'models/models';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth/auth.service';
 
@@ -62,7 +62,7 @@ export class VideoManagerAPIClient extends EducfinamentAPIClient {
 
     let url = environment.SERVER_API_URL + '/videos/' + video.id + '/visites';
 
-    let req : VisitaRequest = { usuari: parseInt(user.id), video: video.id }
+    let req: VisitaAVideoRequest = { usuari: parseInt(user.id), video: video.id }
 
     return Observable.create(observer => {
       this.postContentToURL(url, JSON.stringify(req)).subscribe(

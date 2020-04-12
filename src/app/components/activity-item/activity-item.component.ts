@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { ColorService } from 'src/app/color.service';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
 import { FiltreRespostesService } from 'src/app/services/filtre-respostes.service';
+import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
+import { AuthService } from 'services/auth/auth.service';
 
 
 @Component({
@@ -24,7 +26,9 @@ export class ActivityItemComponent implements OnInit {
     private colorSVC: ColorService,
     private clipboard: Clipboard,
     private toast: ToastController,
-    private filtreRespostes: FiltreRespostesService
+    private filtreRespostes: FiltreRespostesService,
+    private activitatSVC: ActivitatManagerAPIClient,
+    private auth: AuthService
   ) { }
 
   ngOnInit() { }
@@ -83,6 +87,8 @@ export class ActivityItemComponent implements OnInit {
   }
 
   goToActivity() {
+    let user = this.auth.getUser();
+    this.activitatSVC.registraVisita(user, this.activity).subscribe();
     this.router.navigate(['activity', this.activity.id]);
   }
 
