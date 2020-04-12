@@ -3,6 +3,8 @@ import { AlertController, LoadingController, ModalController } from '@ionic/angu
 import { Video } from 'models/models';
 import { cloudCredentials } from 'environments/cloud.credentials.prod';
 import { EducfinamentVideoCapture } from 'classes/educfinament.video.capture.class';
+import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
+import { AuthService } from 'services/auth/auth.service';
 
 @Component({
   selector: 'app-upload-student-video',
@@ -19,7 +21,7 @@ export class UploadStudentVideoPage implements OnInit {
   private loadingIndicator: any;
   private videoCapture: EducfinamentVideoCapture;
 
-  constructor(private alertController: AlertController, public loadingController: LoadingController, public modalController: ModalController) {
+  constructor(private alertController: AlertController, public loadingController: LoadingController, public modalController: ModalController, private videoMgr: VideoManagerAPIClient, private auth: AuthService) {
     this.videoCapture = new EducfinamentVideoCapture(cloudCredentials);
   }
 
@@ -63,23 +65,36 @@ export class UploadStudentVideoPage implements OnInit {
       await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
 
-      this.videoData = {
-        id: 0,
+      let _videoData = {
+        id: null,
         descripcio: "",
         urlVideo: data.videoUrl,
         urlThumbnail: data.thumbnailUrl,
         validat: false,
-        enviatPer: null,
+        enviatPer: this.auth.getUser(),
         dataPublicacio: new Date(),
         activitat: 0,
         copsVist: 0,
         visitants: ""
       };
 
-      this.isVideoUploaded = true;
-      this.isTranscodingVideo = false;
-      this.isUploadingVideo = false;
-      this.hideLoaderIndicator(1500);
+      this.videoMgr.creaVideo(_videoData)
+        .subscribe(
+          (_video: Video) => {
+            this.videoData = _video;
+            this.isVideoUploaded = true;
+            this.isTranscodingVideo = false;
+            this.isUploadingVideo = false;
+            this.hideLoaderIndicator(1500);
+          },
+          err => {
+            this.hideLoaderIndicator();
+            this.isTranscodingVideo = false;
+            this.isUploadingVideo = false;
+            this.cancelVideo();
+          },
+      );
+
     }, (error) => {
       this.hideLoaderIndicator();
       //this.showAlert("ERROR: " + error);

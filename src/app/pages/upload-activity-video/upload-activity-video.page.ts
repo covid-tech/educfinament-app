@@ -63,8 +63,6 @@ export class UploadActivityVideoPage implements OnInit {
       await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
 
-
-
       let _videoData = {
         id: null,
         descripcio: "",
