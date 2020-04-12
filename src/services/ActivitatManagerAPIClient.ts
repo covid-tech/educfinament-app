@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EducfinamentAPIClient } from 'services/EducfinamentAPIClient';
 import { environment } from 'environments/environment';
-import { Activitat, User, AcceptaActivitatRequest } from 'models/models';
+import { Activitat, User, AcceptaActivitatRequest, Video } from 'models/models';
 import { Observable } from 'rxjs';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class ActivitatManagerAPIClient extends EducfinamentAPIClient {
             }
         );
     });
-      
+
   }
 
   creaActivitat(activitat: Activitat) {
@@ -36,7 +36,7 @@ export class ActivitatManagerAPIClient extends EducfinamentAPIClient {
           observer.error(err);
         }
       )
-      
+
     });
 
   }
@@ -68,11 +68,29 @@ export class ActivitatManagerAPIClient extends EducfinamentAPIClient {
     return Observable.create(observer => {
       this.postContentToURL(url, JSON.stringify(req))
         .subscribe(
-          res => { 
+          res => {
             observer.next(res);
             observer.complete();
           },
-          err => { 
+          err => {
+            observer.error(err);
+          }
+        );
+    })
+
+  }
+
+  guardarVideoResposta(id_activitat: string, video: Video) {
+    let url = environment.SERVER_API_URL + '/activitats/'+id_activitat+'/videos/videoResposta';
+
+    return Observable.create(observer => {
+      this.postContentToURL(url, JSON.stringify(video))
+        .subscribe(
+          res => {
+            observer.next(res);
+            observer.complete();
+          },
+          err => {
             observer.error(err);
           }
         );
