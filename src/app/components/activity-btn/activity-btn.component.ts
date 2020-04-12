@@ -10,6 +10,7 @@ export class ActivityBtnComponent implements OnInit {
 
   @Input('video') video: Video;
   @Input('small') small: boolean = false;
+  @Input('needValidation') needValidation: boolean = true;
 
   constructor() { }
 
@@ -29,5 +30,7 @@ export class ActivityBtnComponent implements OnInit {
     }
 
   }
+
+  
 
 }
