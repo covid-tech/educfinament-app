@@ -1,11 +1,15 @@
-<div class="back" [style.background]="activity && activity.videoInici ? 'url(' + activity.videoInici.urlThumbnail + ')' : 'transparent'" [style.background-size]="'cover'" (click)="goToActivity()">
+<div class="back"
+  [style.background]="activity && activity.videoInici ? 'url(' + activity.videoInici.urlThumbnail + ')' : 'transparent'"
+  [style.background-size]="'cover'" (click)="goToActivity()">
   <div class="color" [style.background]="getColor(activity.color, true)">
     <div class="activity">
 
-      <div class="bar" [ngClass]="{'stripped': activity && !activity.publicada}" [style.background]="getColor(activity.color)"></div>
+      <div class="bar" [ngClass]="{'stripped': activity && !activity.publicada}"
+        [style.background]="getColor(activity.color)"></div>
 
       <div class="share">
-        <ion-button *ngIf="activity.socProfessor" (click)="obreOpcions($event)" shape="round" fill="clear" [style.color]="getColor(activity.color)">
+        <ion-button *ngIf="activity.socProfessor" (click)="obreOpcions($event)" shape="round" fill="clear"
+          [style.color]="getColor(activity.color)">
           <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
         </ion-button>
       </div>
@@ -15,14 +19,16 @@
         <p class="subtitle">
           <ion-text color="medium">
             <span *ngIf="activity.dataPublicacio">{{ activity.dataPublicacio | date:'dd/MM/yyyy' }}</span>
-            <span *ngIf="activity.dataPublicacio && activity.dataFinalitzacio"> - {{ activity.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
+            <span *ngIf="activity.dataPublicacio && activity.dataFinalitzacio"> -
+              {{ activity.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
             <span *ngIf="!activity.dataPublicacio && !activity.dataFinalitzacio">No publicada</span>
           </ion-text>
         </p>
 
         <div class="users">
-          <app-activity-btn *ngFor="let video of firstVideos()" [video]="video" small="true" [needValidation]="activity && activity.calValidacio"></app-activity-btn>
-          <div class="extra-qty" *ngIf="activity.videos && activity.videos.length && activity.videos.length > maxUsers"
+          <app-activity-btn *ngFor="let video of firstVideos()" [video]="video" small="true" [needValidation]="false">
+          </app-activity-btn>
+          <div class="extra-qty" *ngIf="activity && activity.videos && activity.videos.length > maxVideos" 
             [style.color]="getColor(activity.color)">{{ extraUsersText() }}
           </div>
           <p class="no-users" *ngIf="!activity.videos || activity.videos.length < 1">Encara no hi ha participants</p>

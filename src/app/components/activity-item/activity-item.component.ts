@@ -4,6 +4,7 @@ import { ActionSheetController, ModalController, ToastController } from '@ionic/
 import { Router } from '@angular/router';
 import { ColorService } from 'src/app/color.service';
 import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { FiltreRespostesService } from 'src/app/services/filtre-respostes.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ActivityItemComponent implements OnInit {
     private router: Router,
     private colorSVC: ColorService,
     private clipboard: Clipboard,
-    private toast: ToastController
+    private toast: ToastController,
+    private filtreRespostes: FiltreRespostesService
   ) { }
 
   ngOnInit() { }
@@ -31,14 +33,9 @@ export class ActivityItemComponent implements OnInit {
   }
 
   firstVideos() {
-
-    if (this.activity.videos) {
-      let qty = this.activity.videos.length > this.maxVideos ? this.maxVideos : this.activity.videos.length;
-      return this.activity.videos.slice(0, qty);
-    } else {
-      return [];
-    }
-
+    let videos = this.filtreRespostes.obtenirRespostesFiltrades(this.activity);
+    let quantitat = videos.length > this.maxVideos ? this.maxVideos : videos.length;
+    return this.activity.videos.slice(0, quantitat);
   }
 
   async obreOpcions(ev) {
@@ -58,6 +55,7 @@ export class ActivityItemComponent implements OnInit {
         text: 'Compartir activitat a professor',
         icon: 'barcode',
         handler: () => {
+          console.log(this.activity.codiInvitacioProfessor);
           this.clipboard.copy(this.activity.codiInvitacioProfessor);
           this.presentToast('Codi copiat. Comparteix-lo amb els professors.');
         }
@@ -66,6 +64,7 @@ export class ActivityItemComponent implements OnInit {
         text: 'Compartir activitat a alumne',
         icon: 'barcode',
         handler: () => {
+          console.log(this.activity.codiInvitacioAlumne);
           this.clipboard.copy(this.activity.codiInvitacioAlumne);
           this.presentToast('Codi copiat. Comparteix-lo amb els alumnes.');
         }

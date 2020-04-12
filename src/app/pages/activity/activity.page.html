@@ -37,9 +37,6 @@
       <ion-icon *ngIf="!mostrantDetalls" name="chevron-down"></ion-icon>
       <ion-icon *ngIf="mostrantDetalls" name="chevron-up"></ion-icon>
     </ion-chip>
-    <!-- <ion-note slot="end" color="blue">Més informació</ion-note>
-    <ion-icon *ngIf="!mostrantDetalls" slot="end" name="chevron-down"></ion-icon>
-    <ion-icon *ngIf="mostrantDetalls" slot="end" name="chevron-up"></ion-icon> -->
   </ion-item>
 
   <div *ngIf="mostrantDetalls">
@@ -48,12 +45,12 @@
       <ion-label position="stacked">Objectius</ion-label>
       <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.objectius" readonly></ion-textarea>
     </ion-item>
-  
+
     <ion-item lines="none">
       <ion-label position="stacked">Materials</ion-label>
       <ion-textarea *ngIf="activitat" [(ngModel)]="activitat.materials" readonly></ion-textarea>
     </ion-item>
-  
+
     <ion-grid fixed>
       <ion-row>
         <ion-col size="6">
@@ -75,42 +72,55 @@
 
   </div>
 
-  <app-video-item
-    *ngIf="activitat && activitat.videoInici"
-    [descripcio]="activitat.descripcio"
-    [video]="activitat.videoInici"
-    [color]="activitat.color">
+  <app-video-item *ngIf="activitat && activitat.videoInici" [descripcio]="activitat.descripcio"
+    [video]="activitat.videoInici" [color]="activitat.color">
   </app-video-item>
 
+  <h3 class="ion-padding-horizontal">Respostes</h3>
+
+  <!-- Respostes alumnes -->
   <div class="participants-outter ion-padding" *ngIf="activitat && activitat.videos">
-    <div class="participants-inner" *ngIf="activitat && (activitat.socProfessor || !activitat.esPrivada)">
+    <div class="participants-inner">
+
+      <span *ngFor="let video of respostesFiltrades()">
+        <app-activity-btn
+          (click)="showModalValidaActivitat(video, activitat)" [video]="video"
+          [needValidation]="necessitaValidacio(video)">
+        </app-activity-btn>
+      </span>
+
+    </div>
+  </div>
+
+
+  <!-- *ngIf="activitat && (activitat.socProfessor || !activitat.esPrivada)" -->
+  <!-- <div class="participants-outter ion-padding" *ngIf="activitat && activitat.videos">
+    <div class="participants-inner">
 
       <span *ngFor="let video of activitat.videos">
         <app-activity-btn
           *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
           (click)="showModalValidaActivitat(video, activitat)"
           [video]="video"
-          [needValidation]="activitat.calValidar">
+          [needValidation]="activitat.calValidacio && (activitat.socProfessor || video.enviatPer.id == user.id)">
         </app-activity-btn>
       </span>
       
-    </div>
+    </div> -->
 
-    <div class="participants-inner" *ngIf="activitat && activitat.esPrivada && !activitat.socProfessor && videoUsuari">
+  <!-- <div class="participants-inner" *ngIf="activitat && activitat.esPrivada && !activitat.socProfessor && videoUsuari">
       <app-activity-btn
           *ngIf="activitat && (activitat.socProfessor || !activitat.calValidacio || video.validat)"
           (click)="showModalValidaActivitat(videoUsuari, activitat)"
           [video]="videoUsuari"
-          [needValidation]="activitat.calValidar">
+          [needValidation]="activitat.calValidacio">
         </app-activity-btn>
-    </div>
+    </div> 
 
   </div>
+  -->
 
-  <app-video-item
-    *ngIf="activitat && activitat.videoFi"
-    [video]="activitat.videoFi"
-    color="blue">
+  <app-video-item *ngIf="activitat && activitat.videoFi" [video]="activitat.videoFi" color="blue">
   </app-video-item>
 
 </ion-content>

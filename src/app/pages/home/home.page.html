@@ -9,8 +9,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-fab *ngIf="selectedOrg && !selectedOrg.socProfessor" vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button color="light" (click)="creaGrup()">
+<ion-fab *ngIf="(organizations && organizations.length < 1) || selectedOrg && !selectedOrg.socProfessor" vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="light" (click)="demanaInvitacio()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
@@ -46,6 +46,12 @@
     <p>Enganxa aquí el codi que t'ha passat el teu centre o professor per afegir la nova activitat</p>
 
   </div> -->
+
+  <div *ngIf="(organizations && organizations.length < 1)" class="ion-text-center">
+    <p>Encara no tens cap activitat.<br> 
+      Toca el <b class="remarcar">+</b> per introduir el teu codi d'invitació.
+    </p>
+  </div>
 
   <div *ngIf="selectedOrg">
     <div *ngFor="let grup of selectedOrg.grups">

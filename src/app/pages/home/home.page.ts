@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { OrganitzacioManagerAPIClient } from 'services/OrganitzacioManagerAPIClient';
 import { Organitzacio, User, Grup } from 'models/models';
 import { AuthService } from 'services/auth/auth.service';
 import { UserManagerAPIClient } from 'services/UserManagerAPIClient';
 import { Router, NavigationExtras } from '@angular/router';
-import { ActionSheetController, AlertController } from '@ionic/angular';
+import { ActionSheetController, AlertController, ToastController } from '@ionic/angular';
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
 import { ColorService } from 'src/app/color.service';
 import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
@@ -31,8 +29,9 @@ export class HomePage {
     private grupMgr: GrupManagerAPIClient,
     private color: ColorService,
     private activitatMgr: ActivitatManagerAPIClient,
-    private actionSheetCtrl: ActionSheetController
-  ) {}
+    private actionSheetCtrl: ActionSheetController,
+    private toast: ToastController
+  ) { }
 
   ionViewWillEnter() {
     this.carregaInfoUsuari();
@@ -111,13 +110,13 @@ export class HomePage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            console.log('Confirm Cancel');
+            // console.log('Confirm Cancel');
           }
         }, {
           text: 'Crea',
           handler: (data) => {
 
-            if(data.nomgrup) {
+            if (data.nomgrup) {
               let grup: Grup = {
                 id: null,
                 activitats: [],
@@ -166,6 +165,64 @@ export class HomePage {
   async doRefresh(ev: any) {
     ev.target.complete();
     await this.carregaInfoUsuari();
+  }
+
+  async demanaInvitacio() {
+    const alert = await this.alertController.create({
+      header: `Uneix-te a activitat`,
+      subHeader: `Enganxa aquí el codi que t'ha passat el teu centre o professor per afegir la nova activitat`,
+      inputs: [
+        {
+          name: 'codiinvitacio',
+          type: 'text',
+          placeholder: `Codi d'invitació`
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel·la',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            // console.log('Confirm Cancel');
+          }
+        }, {
+          text: 'Entrar',
+          handler: (data) => {
+
+            console.log("DATA", data);
+
+            if (data.codiinvitacio && data.codiinvitacio.length > 0) {
+              this.activitatMgr.acceptaActivitatAmbCodi(this.user, data.codiinvitacio)
+                .subscribe(
+                  res => {
+                    this.carregaInfoUsuari();
+                  },
+                  err => {
+                    this.presentToast(`Aquest codi no pertany a cap activitat`);
+                  }
+                );
+
+            } else {
+              this.presentToast(`Has d'introduir un codi vàlid`);
+            }
+
+            console.log('Confirm Ok');
+
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentToast(text: string) {
+    const toast = await this.toast.create({
+      message: text,
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

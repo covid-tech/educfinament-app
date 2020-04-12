@@ -9,6 +9,7 @@ import { ColorService } from 'src/app/color.service';
 import { ValidacioActivitatPage } from 'components/validacio-activitat/validacio-activitat.page';
 import { AuthService } from 'services/auth/auth.service';
 import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
+import { FiltreRespostesService } from 'src/app/services/filtre-respostes.service';
 
 @Component({
   selector: 'app-activity',
@@ -33,7 +34,8 @@ export class ActivityPage implements OnInit {
     private auth: AuthService,
     private androidPermissions: AndroidPermissionService,
     public modalController: ModalController,
-    private videoMgr: VideoManagerAPIClient) {
+    private videoMgr: VideoManagerAPIClient,
+    private filtreRespostes: FiltreRespostesService) {
   }
 
   ngOnInit() {
@@ -115,6 +117,18 @@ export class ActivityPage implements OnInit {
   
   getColor(color: string, transparent: boolean = false) {
     return this.colorSVC.getColor(color, transparent);
+  }
+
+  respostesFiltrades() {
+    let videos = this.filtreRespostes.obtenirRespostesFiltrades(this.activitat);
+    console.log("videos filtrats", videos);
+    return videos;
+  }
+
+  necessitaValidacio(video: Video) {
+    let validacio = this.filtreRespostes.calValidacio(video, this.activitat);
+    console.log("necessita validacio", validacio);
+    return validacio;
   }
 
 }
