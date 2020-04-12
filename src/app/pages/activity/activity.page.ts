@@ -35,7 +35,8 @@ export class ActivityPage implements OnInit {
     private androidPermissions: AndroidPermissionService,
     public modalController: ModalController,
     private videoMgr: VideoManagerAPIClient,
-    private filtreRespostes: FiltreRespostesService) {
+    private filtreRespostes: FiltreRespostesService,
+  ) {
   }
 
   ngOnInit() {
@@ -81,9 +82,8 @@ export class ActivityPage implements OnInit {
   }
 
   async showModalValidaActivitat(video: Video) {
-    
-    console.log("video: ", video);
-    console.log("activitat: ", this.activitat);
+
+    this.videoMgr.registraVisita(this.user, video).subscribe();
 
     const modal = await this.modalController.create({
       component: ValidacioActivitatPage,

@@ -123,6 +123,11 @@ export interface AuthenticateResponse {
   // imatgePerfil: string;
 }
 
+export interface VisitaRequest {
+  usuari: number,
+  video: number
+}
+
 export interface AcceptaActivitatRequest {
   usuari: string,
   codiInvitacio: string
