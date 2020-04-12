@@ -129,3 +129,30 @@ p {
   --ion-color-shade: var(--ion-color-turquoise-shade) !important;
   --ion-color-tint: var(--ion-color-turquoise-tint) !important;
 }
+
+// COLORS NOTES AVALUACIO
+.bg-moltbe {
+  background: #dff0d8;
+}
+.bg-be {
+  background: #d9edf7;
+}
+.bg-fluix {
+  background: #fcf8e3;
+}
+.bg-noassolit {
+  background: #f2dede;
+}
+
+.bg-moltbe.selected {
+  background: #3c763d;
+}
+.bg-be.selected {
+  background: #31708f;
+}
+.bg-fluix.selected {
+  background: #cf8e1d;
+}
+.bg-noassolit.selected {
+  background: #a94442;
+}
