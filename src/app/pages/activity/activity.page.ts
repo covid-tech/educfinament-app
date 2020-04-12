@@ -48,6 +48,10 @@ export class ActivityPage implements OnInit {
   ionViewDidEnter() {
     this.id = this.activatedRoute.snapshot.params['id'];
     this.user = this.auth.getUser();
+    this.loadActivity();
+  }
+
+  async loadActivity() {
     this.activitatsAPI.obtenirActivitat(this.id)
       .subscribe((res: Activitat) => {
         this.activitat = res;
@@ -55,7 +59,6 @@ export class ActivityPage implements OnInit {
           let videos = this.activitat.videos.filter(x => x.enviatPer.id == this.user.id);
           if (videos.length > 0) this.videoUsuari = videos[0];
         }
-
       });
   }
 
@@ -68,14 +71,15 @@ export class ActivityPage implements OnInit {
     modal.present();
     let data: any = await modal.onWillDismiss();
     if (data.data.hasOwnProperty('video')) {
-      // TODO: Call proper API endpoint to save the video data
-      let videoItem: Video = data.data.video;
-      // TODO: Fer que no calgui parseInt posant com a number les id a tot arreu
-      videoItem.activitat = parseInt(this.activitat.id);
-      this.videoMgr.modificaVideo(videoItem)
+      let _video: Video = data.data.video;
+      this.activitatsAPI.guardarVideoResposta(this.activitat.id, _video)
         .subscribe(
-          res => { console.log("Funciona? ", res); },
-          err => { console.log("Error? ", err); },
+          res => {
+            this.loadActivity(); // Reload the activity
+          },
+          err => {
+
+          },
         );
 
     }
@@ -93,13 +97,13 @@ export class ActivityPage implements OnInit {
       }
     });
     modal.present();
-    
+
     let { data }: any = await modal.onWillDismiss();
     if (data && data.hasOwnProperty('video')) {
       let index = this.activitat.videos.indexOf(video);
       this.activitat.videos[index] = data.video;
     }
-    
+
   }
 
   goToEditActivity() {
@@ -110,11 +114,11 @@ export class ActivityPage implements OnInit {
         professor: this.user
       }
     };
-    
+
     this.router.navigate(['new-activity', this.activitat.id], extras);
   }
 
-  
+
   getColor(color: string, transparent: boolean = false) {
     return this.colorSVC.getColor(color, transparent);
   }
