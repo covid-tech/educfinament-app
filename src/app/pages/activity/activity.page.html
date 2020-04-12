@@ -57,14 +57,18 @@
           <ion-item lines="none">
             <ion-label position="stacked">De</ion-label>
             <!-- TODO: Canviar el format horari i afegir hora -->
-            <ion-datetime [(ngModel)]="activitat.dataPublicacio" display-timezone="utc" readonly></ion-datetime>
+            <ion-datetime 
+              displayFormat="DD/MM/YYYY"
+              [(ngModel)]="activitat.dataPublicacio" display-timezone="utc" readonly></ion-datetime>
           </ion-item>
         </ion-col>
         <ion-col size="6">
           <ion-item lines="none">
             <ion-label position="stacked">Fins</ion-label>
             <!-- TODO: Canviar el format horari i afegir hora -->
-            <ion-datetime [(ngModel)]="activitat.dataFinalitzacio" display-timezone="utc" readonly></ion-datetime>
+            <ion-datetime
+              displayFormat="DD/MM/YYYY"
+              [(ngModel)]="activitat.dataFinalitzacio" display-timezone="utc" readonly></ion-datetime>
           </ion-item>
         </ion-col>
       </ion-row>
