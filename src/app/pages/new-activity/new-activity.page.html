@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="light">
+  <ion-toolbar color="light" >
     <ion-buttons slot="start">
       <ion-back-button text=""></ion-back-button>
     </ion-buttons>
@@ -15,6 +15,14 @@
 <ion-content class="ion-padding">
 
   <div *ngIf="activitat">
+
+    <ion-item>
+      <ion-label class="ion-text-wrap">
+        <h3>Activitat publicada</h3>
+        <p>Quan està publicada, els alumnes la poden veure i participar-hi</p>
+      </ion-label>
+      <ion-toggle [(ngModel)]="activitat.publicada"></ion-toggle>
+    </ion-item>
 
     <ion-list>
       <ion-item>
@@ -151,18 +159,19 @@
       <ion-textarea [(ngModel)]="activitat.observacionsFi"></ion-textarea>
     </ion-item>
 
+    <!-- Camps amagats perque els gestiona API
     <ion-item>
       <ion-label>Data publicació automàtica</ion-label>
       <ion-datetime [(ngModel)]="activitat.dataPublicacio" displayFormat="DD-MM-YYYY HH:mm" display-timezone="utc">
       </ion-datetime>
     </ion-item>
 
-
     <ion-item>
       <ion-label>Data finalització automàtica</ion-label>
       <ion-datetime [(ngModel)]="activitat.dataFinalitzacio" displayFormat="DD-MM-YYYY HH:mm" display-timezone="utc">
       </ion-datetime>
-    </ion-item>
+    </ion-item> 
+    -->
 
     <ion-item>
       <ion-label class="ion-text-wrap">
@@ -180,14 +189,6 @@
         <p>L'alumne no pot veure els videos dels altres alumnes</p>
       </ion-label>
       <ion-toggle [(ngModel)]="activitat.esPrivada"></ion-toggle>
-    </ion-item>
-
-    <ion-item>
-      <ion-label class="ion-text-wrap">
-        <h3>Activitat publicada</h3>
-        <p>Quan està publicada, els alumnes poden veure-la i participar-hi</p>
-      </ion-label>
-      <ion-toggle [(ngModel)]="activitat.publicada"></ion-toggle>
     </ion-item>
 
   </div>
