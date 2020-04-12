@@ -55,7 +55,7 @@ export class HomePage {
   }
 
   userImg() {
-    return this.user ? this.auth.getUserProfileImg() : null;      
+    return this.user ? this.auth.getUserProfileImg() : null;
   }
 
   creaActivitat(grup: Grup) {
@@ -104,8 +104,8 @@ export class HomePage {
 
               this.grupMgr.creaGrup(grup)
                 .subscribe(
-                  res => { 
-                    console.log("Grup creat: ", res); 
+                  res => {
+                    console.log("Grup creat: ", res);
                     this.carregaInfoUsuari();
                   },
                   err => { console.log("ERR: ", err); }
@@ -114,7 +114,7 @@ export class HomePage {
             }
 
             console.log('Confirm Ok');
-            
+
           }
         }
       ]
@@ -130,7 +130,7 @@ export class HomePage {
   acceptaInvitacio() {
     this.activitatMgr.acceptaActivitatAmbCodi(this.user, this.codiInvitacio)
       .subscribe(
-        res => { 
+        res => {
           this.carregaInfoUsuari();
           this.codiInvitacio = "";
         },

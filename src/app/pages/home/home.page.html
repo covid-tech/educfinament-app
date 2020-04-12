@@ -3,8 +3,7 @@
     <ion-title class="ion-text-left">{{  selectedOrg ? selectedOrg.nom : 'Educfinament' }}</ion-title>
 
     <ion-avatar slot="end" *ngIf="user" (click)="doLogout()" class="ion-margin-end">
-      <img
-        [src]="userImg() || 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fder-informatiker.ch%2Fwp-content%2Fuploads%2F2017%2F09%2Fuser-placeholder.jpg'" />
+      <img [src]="userImg() || 'https://educfinament.s3-us-west-2.amazonaws.com/avatars/default.jpg'"/>
     </ion-avatar>
 
   </ion-toolbar>

@@ -15,12 +15,13 @@ export class SigninPage implements OnInit {
 
   public signInForm: FormGroup;
   private loadingIndicator: any;
+  public isPerformingAutologin: boolean = true;
 
   constructor(
-    public formBuilder: FormBuilder, 
+    public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     private router: Router,
-    private userManagerAPIClient: UserManagerAPIClient, 
+    private userManagerAPIClient: UserManagerAPIClient,
     public alertController: AlertController,
     private auth: AuthService
   ) {
@@ -31,12 +32,33 @@ export class SigninPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    this.comprovaSessio();
+    this.doAutologin();
   }
 
-  async comprovaSessio() {
-    this.auth.existingSession().then(res => {
-      // if (res) this.router.navigate(['home']);
+  async doAutologin() {
+    this.isPerformingAutologin = true;
+    this.auth.existingSession().then(sessionAvailable => {
+      if (sessionAvailable) {
+        this.auth.getSessionCredentials().then(credentials => {
+          let signinRequest: AuthenticateRequest = {
+            user: credentials['email'],
+            pass: credentials['password']
+          };
+
+          this.userManagerAPIClient.signIn(signinRequest).subscribe(
+            data => {
+              this.router.navigate(['home']);
+            },
+            err => {
+              this.isPerformingAutologin = false;
+            },
+            () => {
+            }
+          );
+        });
+      } else {
+        this.isPerformingAutologin = false;
+      }
     })
   }
 
@@ -55,9 +77,8 @@ export class SigninPage implements OnInit {
       },
       err => {
         this.hideLoaderIndicator();
-        // TODO: Verify the http response code and show the proper message
         setTimeout(() => {
-          this.presentAlert("Error", "Usuari o contrasenya no vàlids.<br> Intenti-ho de nou.", () => {});
+          this.presentAlert("Error", "Usuari o contrasenya no vàlids.<br> Intenti-ho de nou.", () => { });
         }, 1000);
       },
       () => {
@@ -95,10 +116,11 @@ export class SigninPage implements OnInit {
       header: header,
       message: msg,
       buttons: [{
-          text: 'Ok',
-          handler: () => {
-            callback();
-          }}]
+        text: 'Ok',
+        handler: () => {
+          callback();
+        }
+      }]
     });
 
     await alert.present();
