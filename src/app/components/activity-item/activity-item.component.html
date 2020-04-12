@@ -17,11 +17,14 @@
       <div class="info">
         <p class="title">{{ activity.titol }}</p>
         <p class="subtitle">
-          <ion-text color="medium">
+          <ion-text color="medium" *ngIf="activity && !activity.publicada">
+            No publicada
+          </ion-text>
+
+          <ion-text color="medium" *ngIf="activity && activity.publicada">
             <span *ngIf="activity.dataPublicacio">{{ activity.dataPublicacio | date:'dd/MM/yyyy' }}</span>
-            <span *ngIf="activity.dataPublicacio && activity.dataFinalitzacio"> -
-              {{ activity.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
-            <span *ngIf="!activity.dataPublicacio && !activity.dataFinalitzacio">No publicada</span>
+            <span *ngIf="activity.dataPublicacio && activity.dataFinalitzacio"> - </span>
+            <span *ngIf="activity.dataFinalitzacio">{{ activity.dataFinalitzacio | date:'dd/MM/yyyy' }}</span>
           </ion-text>
         </p>
 
