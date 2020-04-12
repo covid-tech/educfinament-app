@@ -50,13 +50,6 @@ export class ActivityItemComponent implements OnInit {
     const actionSheet = await this.actionSheetCtrl.create({
       header: this.activity.titol,
       buttons: [{
-        text: 'Elimina',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          console.log('Delete clicked');
-        }
-      }, {
         text: 'Compartir activitat a professor',
         icon: 'barcode',
         handler: () => {
@@ -96,7 +89,7 @@ export class ActivityItemComponent implements OnInit {
     return this.colorSVC.getColor(color, transparent);
   }
 
-  async presentToast(text:string) {
+  async presentToast(text: string) {
     const toast = await this.toast.create({
       message: text,
       duration: 3000

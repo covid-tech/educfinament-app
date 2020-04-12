@@ -55,7 +55,8 @@ export class HomePage {
     const actionSheet = await this.actionSheetCtrl.create({
 
       header: _user.nom || "Opcions",
-      buttons: [{
+      buttons: [
+      {
         text: 'Tancar la sessió',
         icon: 'exit-outline',
         handler: () => {
