@@ -4,6 +4,7 @@ import { Video } from 'models/models';
 import { cloudCredentials } from 'environments/cloud.credentials.prod';
 import { EducfinamentVideoCapture } from 'classes/educfinament.video.capture.class';
 import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
+import { AuthService } from 'services/auth/auth.service';
 
 @Component({
   selector: 'app-upload-activity-video',
@@ -19,7 +20,7 @@ export class UploadActivityVideoPage implements OnInit {
   private loadingIndicator: any;
   private videoCapture: EducfinamentVideoCapture;
 
-  constructor(private alertController: AlertController, public loadingController: LoadingController, public modalController: ModalController, private videoMgr: VideoManagerAPIClient, ) {
+  constructor(private alertController: AlertController, public loadingController: LoadingController, public modalController: ModalController, private videoMgr: VideoManagerAPIClient, private auth: AuthService) {
     this.videoCapture = new EducfinamentVideoCapture(cloudCredentials);
   }
 
@@ -62,13 +63,15 @@ export class UploadActivityVideoPage implements OnInit {
       await this.showLoaderIndicator("Desant vídeo...");
     }).then((data) => {
 
+
+
       let _videoData = {
         id: null,
         descripcio: "",
         urlVideo: data.videoUrl,
         urlThumbnail: data.thumbnailUrl,
         validat: false,
-        enviatPer: null,
+        enviatPer: this.auth.getUser(),
         dataPublicacio: new Date(),
         activitat: 0,
         copsVist: 0,
