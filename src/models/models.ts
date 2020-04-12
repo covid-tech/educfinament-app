@@ -75,7 +75,8 @@ export interface Video {
   dataPublicacio: Date,
   activitat: number,
   copsVist: number,
-  visitants: string
+  visitants: string,
+  avaluacio: number
 }
 
 export interface Grup {

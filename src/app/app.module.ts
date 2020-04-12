@@ -25,6 +25,10 @@ import { ActivitatManagerAPIClient } from 'services/ActivitatManagerAPIClient';
 import { TokenInterceptor } from 'services/token.interceptor';
 import { AndroidPermissionService } from 'services/AndroidPermissionService'
 import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
+import { ValidacioActivitatPageModule } from 'components/validacio-activitat/validacio-activitat.module';
+import { VideoManagerAPIClient } from 'services/VideoManagerAPIClient';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,7 +40,8 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     AppRoutingModule,
     HttpClientModule,
     UploadStudentVideoPageModule,
-    UploadAvatarPageModule
+    UploadAvatarPageModule,
+    ValidacioActivitatPageModule
   ],
   providers: [
     StatusBar,
@@ -50,7 +55,9 @@ import { GrupManagerAPIClient } from 'services/GrupManagerAPIClient';
     ActivitatManagerAPIClient,
     OrganitzacioManagerAPIClient,
     GrupManagerAPIClient,
+    VideoManagerAPIClient,
     AndroidPermissionService,
+    Clipboard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
